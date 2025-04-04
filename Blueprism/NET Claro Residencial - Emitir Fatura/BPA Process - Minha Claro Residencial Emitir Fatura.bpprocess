@@ -1,0 +1,753 @@
+﻿<process name="Minha Claro Residencial Emitir Fatura" version="1.0" bpversion="7.4.0.14902" narrative="Processo que emite a fatura da net/claro residencial e envia um email com ela anexada" byrefcollection="true" processrunningmessage="" disableversioning="false" preferredid="ff600ff0-cf2a-4959-a9dc-f50add10e451" published="true" published_type="2">
+  <view>
+    <camerax>-11</camerax>
+    <cameray>-24</cameray>
+    <zoom version="2">1.875</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="cb143566-1f9c-49a9-9ae5-8746e8b1435e" type="Normal" published="False">
+    <name>Close Down</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-126</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="6fc714f0-8c41-4afe-af77-0d1cc396d45f" type="Normal" published="False">
+    <name>Startup</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-21</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="665aaafd-ca87-46eb-a372-4334929f9159" type="Normal" published="False">
+    <name>Enviar Email</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-135</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="d5635c1d-94ec-4a7a-95b0-a11c81148ecd" type="Normal" published="False">
+    <name>Configurar Email</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-63</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="655b66fc-18f3-4060-a591-1aa2f8d26185" name="Start" type="Start">
+    <display x="-30" y="-150" />
+    <onsuccess>0abeb131-44fe-4e26-8a17-447aa7238757</onsuccess>
+  </stage>
+  <stage stageid="092de232-9c81-4678-9eba-a14c934f2a7f" name="End" type="End">
+    <display x="-30" y="315" />
+  </stage>
+  <stage stageid="0aae49cf-76ed-46e4-bce7-4a43accffa56" name="Stage1" type="ProcessInfo">
+    <display x="-315" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="63ffefb0-2b0d-40df-9da8-b1e2deac8051" name="Adquire Credenciais de Acesso" type="Action">
+    <loginhibit onsuccess="true" />
+    <narrative>Get the specified set of credentials.
+
+An Exception will occur if access to the credentials is not allowed, based on the running Resource, Process and User.</narrative>
+    <display x="-30" y="-15" />
+    <inputs>
+      <input type="text" name="Credentials Name" friendlyname="Credentials Name" narrative="The name of the credentials to get" expr="&quot;NET/Claro Residencial&quot;" />
+    </inputs>
+    <outputs>
+      <output type="password" name="Password" friendlyname="Password" narrative="The password" stage="Password" />
+      <output type="text" name="Username" friendlyname="Username" narrative="The user name" stage="Username" />
+      <output type="date" name="Expiry Date" friendlyname="Expiry Date" narrative="The expiry date" stage="" />
+      <output type="text" name="Status" friendlyname="Status" narrative="The status" stage="" />
+    </outputs>
+    <onsuccess>3088288c-8a62-46c9-bfc7-894066a22f6d</onsuccess>
+    <resource object="Blueprism.Automate.clsCredentialsActions" action="Get" />
+  </stage>
+  <stage stageid="db94ffdf-24aa-4890-a67f-4e9075b3dfd7" name="Username" type="Data">
+    <display x="-180" y="-15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="280b9b16-583d-45c6-bdf9-444e30cbe7e1" name="Password" type="Data">
+    <display x="-120" y="-15" />
+    <datatype>password</datatype>
+    <initialvalueenc>
+    </initialvalueenc>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="38d0796c-1292-4d13-afa2-ff40f9a29c8c" name="Startup" type="SubSheetInfo">
+    <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
+    <narrative>Inicializa o navegador e verifica condições de inicialização</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="68c7e379-6743-429d-92e8-549b5aa74922" name="Start" type="Start">
+    <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
+    <display x="-45" y="-135" />
+    <onsuccess>295e05cc-f1e3-4dc7-be0d-60fd2c79ae13</onsuccess>
+  </stage>
+  <stage stageid="4ad3d6af-e4af-4f83-a94b-e839e7fb4eef" name="End" type="End">
+    <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
+    <display x="-45" y="0" />
+  </stage>
+  <stage stageid="295e05cc-f1e3-4dc7-be0d-60fd2c79ae13" name="Abrir Site" type="Action">
+    <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-90" />
+    <inputs>
+      <input type="flag" name="headless?" friendlyname="headless?" expr="[modo headless]" />
+    </inputs>
+    <onsuccess>433b0dba-930e-409f-9760-dafac9feca49</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Launch Google Chrome" />
+  </stage>
+  <stage stageid="433b0dba-930e-409f-9760-dafac9feca49" name="Check Cookies" type="Action">
+    <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-45" />
+    <onsuccess>4ad3d6af-e4af-4f83-a94b-e839e7fb4eef</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Accept Cookies" />
+  </stage>
+  <stage stageid="0abeb131-44fe-4e26-8a17-447aa7238757" name="Startup" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="-150" />
+    <onsuccess>aec5cfc1-8bbf-44ea-bd76-225782396b3d</onsuccess>
+    <processid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</processid>
+  </stage>
+  <stage stageid="aec5cfc1-8bbf-44ea-bd76-225782396b3d" name="Ir a pagina de Login" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="-75" />
+    <onsuccess>cce4ad2b-8347-4574-aa78-b845d1f29ab9</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Navigate to Login Page" />
+  </stage>
+  <stage stageid="3088288c-8a62-46c9-bfc7-894066a22f6d" name="Realizar Login" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="30" />
+    <inputs>
+      <input type="text" name="CPF" friendlyname="CPF" narrative="CPF de login" expr="[Username]" />
+      <input type="password" name="Senha" friendlyname="Senha" narrative="Senha de login" expr="[Password]" />
+    </inputs>
+    <onsuccess>1f49796b-33a6-45a9-a028-007515b0813a</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Login" />
+  </stage>
+  <stage stageid="1f49796b-33a6-45a9-a028-007515b0813a" name="Checar Modais pós Login" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="75" />
+    <onsuccess>4579ef50-a5d1-42f6-8dc3-ace980ec07ab</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Check Login Modals" />
+  </stage>
+  <stage stageid="4579ef50-a5d1-42f6-8dc3-ace980ec07ab" name="Ir para a pagina da fatura" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="75" />
+    <onsuccess>b879aaaa-f6db-47e7-a169-c3fda0ec2342</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Navigate to Fatura Page" />
+  </stage>
+  <stage stageid="b879aaaa-f6db-47e7-a169-c3fda0ec2342" name="Baixar Fatura" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="135" />
+    <outputs>
+      <output type="text" name="Downloaded File Path" friendlyname="Downloaded File Path" stage="Caminho do arquivo baixado" />
+    </outputs>
+    <onsuccess>e5eb076b-fbd1-48f7-985b-0c6c59914a43</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Emiitir Fatura" />
+  </stage>
+  <stage stageid="b646d24e-392d-4bc2-8d31-8ae82de377d1" name="Logout" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="180" />
+    <onsuccess>e861cae8-1e78-4b98-9124-28f6f1a73e5f</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Logout" />
+  </stage>
+  <stage stageid="a047585b-648c-418b-998f-8866328b788c" name="Caminho do arquivo baixado" type="Data">
+    <display x="-165" y="135" w="180" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">""</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="e861cae8-1e78-4b98-9124-28f6f1a73e5f" name="Fechar Navegador" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="225" />
+    <onsuccess>910f0d7e-3817-4024-ae3e-bce1519304c2</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Close Google Chrome" />
+  </stage>
+  <stage stageid="bc4e9784-b43d-42a8-91ff-50d77c77114b" name="Enviar Email" type="SubSheetInfo">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <narrative>Envia um email com a fatura adquirida</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="e7271b70-8c10-4c43-83b9-084321353859" name="Start" type="Start">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="0" y="-135" />
+    <inputs>
+      <input type="text" name="Caminho do arquivo" stage="Caminho do arquivo" />
+      <input type="flag" name="Emitiu Fatura" stage="Emitiu Fatura?" />
+    </inputs>
+    <onsuccess>bd223b01-38ca-4df3-8048-75f94a818197</onsuccess>
+  </stage>
+  <stage stageid="0200b55c-be17-4aaa-8e12-d8d12866d000" name="End" type="End">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="0" y="285" />
+  </stage>
+  <stage stageid="5f414353-4774-41ac-8d55-b72a14625b37" name="Caminho do arquivo" type="Data">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="-210" y="0" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="76395b77-232d-465d-8339-3e867c8f92b0" name="Configurar Email" type="SubSheetInfo">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <narrative>Analisa o servidor de email do remetente e retorna configurações apropriadas para o envio do email</narrative>
+    <display x="-225" y="-90" w="180" h="90" />
+  </stage>
+  <stage stageid="a0a6e694-68dc-4a16-ae5d-8138797d8ec1" name="Start" type="Start">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <display x="15" y="-120" />
+    <inputs>
+      <input type="text" name="Email" stage="Email Remetente" />
+    </inputs>
+    <onsuccess>9e00df11-6aed-42df-8e45-6da51b093cc8</onsuccess>
+  </stage>
+  <stage stageid="aac79cff-20d0-4c0a-9874-c82f0102d958" name="End" type="End">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <display x="15" y="210" />
+    <outputs>
+      <output type="collection" name="Configurações" stage="Configs" />
+    </outputs>
+  </stage>
+  <stage stageid="24e2068a-d871-4cc8-b36d-fcb26a6d3347" name="Configs" type="Collection">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <display x="-270" y="75" w="90" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="POP3 Server" type="text" />
+      <field name="POP3 Port" type="number" />
+      <field name="POP3 Use SSL" type="flag" />
+      <field name="SMTP Server" type="text" />
+      <field name="SMTP Port" type="number" />
+      <field name="SMTP Use SSL" type="flag" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="18442585-02d0-4761-98a3-b72879b87540" name="Servidor de email" type="Data">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-180" y="-15" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="59cfccda-8cd3-4052-9ebb-8fd9e8f8585d" name="Email Remetente" type="Data">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <display x="-270" y="-15" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="9e00df11-6aed-42df-8e45-6da51b093cc8" name="Adquire servidor do email" type="Calculation">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-75" />
+    <onsuccess>354a9d24-623f-4a64-ba31-3f73073cf970</onsuccess>
+    <calculation expression="Lower(&#xA;    Mid(&#xA;        [Email Remetente], &#xA;        InStr([Email Remetente], &quot;@&quot;) + 1, &#xA;        InStr(Mid([Email Remetente], InStr([Email Remetente], &quot;@&quot;) + 1, 100), &quot;.&quot;) - 1&#xA;    )&#xA;)" stage="Servidor de email" />
+  </stage>
+  <stage stageid="bd223b01-38ca-4df3-8048-75f94a818197" name="Adquire Remetente" type="Action">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Get the specified set of credentials.
+
+An Exception will occur if access to the credentials is not allowed, based on the running Resource, Process and User.</narrative>
+    <display x="0" y="-90" />
+    <inputs>
+      <input type="text" name="Credentials Name" friendlyname="Credentials Name" narrative="The name of the credentials to get" expr="&quot;NET/Claro Residencial Email Remetente&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Username" friendlyname="Username" narrative="The user name" stage="Remetente Email" />
+      <output type="password" name="Password" friendlyname="Password" narrative="The password" stage="Remetente Senha" />
+      <output type="date" name="Expiry Date" friendlyname="Expiry Date" narrative="The expiry date" stage="" />
+      <output type="text" name="Status" friendlyname="Status" narrative="The status" stage="" />
+    </outputs>
+    <onsuccess>ef34eef1-538a-478c-8f8e-0cc1a48b75a3</onsuccess>
+    <resource object="Blueprism.Automate.clsCredentialsActions" action="Get" />
+  </stage>
+  <stage stageid="f1837b8b-744a-464f-9152-c81eab5085a5" name="Remetente Email" type="Data">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="-210" y="30" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="816e947b-3d87-45cc-8958-a0ff9c855852" name="Remetente Senha" type="Data">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="-210" y="60" w="120" h="30" />
+    <datatype>password</datatype>
+    <initialvalueenc>
+    </initialvalueenc>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ef34eef1-538a-478c-8f8e-0cc1a48b75a3" name="Adquire Destinatario" type="Action">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Get the specified set of credentials.
+
+An Exception will occur if access to the credentials is not allowed, based on the running Resource, Process and User.</narrative>
+    <display x="0" y="-45" />
+    <inputs>
+      <input type="text" name="Credentials Name" friendlyname="Credentials Name" narrative="The name of the credentials to get" expr="&quot;NET/Claro Residencial Email Destinatario&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Username" friendlyname="Username" narrative="The user name" stage="Destinatario Email" />
+      <output type="password" name="Password" friendlyname="Password" narrative="The password" stage="" />
+      <output type="date" name="Expiry Date" friendlyname="Expiry Date" narrative="The expiry date" stage="" />
+      <output type="text" name="Status" friendlyname="Status" narrative="The status" stage="" />
+    </outputs>
+    <onsuccess>a1208f7d-dfb3-4709-9e54-db543d0eb3ba</onsuccess>
+    <resource object="Blueprism.Automate.clsCredentialsActions" action="Get" />
+  </stage>
+  <stage stageid="f3ebbad7-e883-4a73-bc97-59a00469045d" name="Destinatario Email" type="Data">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="-210" y="90" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="a1208f7d-dfb3-4709-9e54-db543d0eb3ba" name="Configurar Email" type="SubSheet">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="0" />
+    <inputs>
+      <input type="text" name="Email" friendlyname="Email" expr="[Remetente Email]" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Configurações" friendlyname="Configurações" stage="Email Server Configs" />
+    </outputs>
+    <onsuccess>411ae334-1fb1-4180-a505-dbd588a076a5</onsuccess>
+    <processid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</processid>
+  </stage>
+  <stage stageid="63bd7b9e-f1af-489f-952f-853d76134b23" name="Otherwise1" type="ChoiceEnd">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <display x="15" y="165" />
+    <onsuccess>5d15008f-002f-419c-87f8-255240a4331f</onsuccess>
+    <groupid>a3a98569-e847-4058-8934-4ef023a64097</groupid>
+  </stage>
+  <stage stageid="d317400a-a55d-458b-9d6d-9cb6a73da4a7" name="Configurar" type="ChoiceStart">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <display x="15" y="30" />
+    <groupid>a3a98569-e847-4058-8934-4ef023a64097</groupid>
+    <choices>
+      <choice expression="[Servidor de email]=&quot;gmail&quot;">
+        <name>Gmail</name>
+        <distance>30</distance>
+        <ontrue>ae3164b5-ca35-4492-8c23-b0c65432271e</ontrue>
+      </choice>
+      <choice expression="[Servidor de email]=&quot;hotmail&quot; OR&#xA;[Servidor de email]=&quot;outlook&quot; OR&#xA;[Servidor de email]=&quot;live&quot;&#xA;&#xA;">
+        <name>Hotmail/Outlook/Live</name>
+        <distance>75</distance>
+        <ontrue>283faf48-890e-475c-94c9-60bb37213e21</ontrue>
+      </choice>
+    </choices>
+  </stage>
+  <stage stageid="ae3164b5-ca35-4492-8c23-b0c65432271e" name="Configs Gmail" type="MultipleCalculation">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="240" y="60" />
+    <onsuccess>37a05b6c-9964-4eda-b2fe-3c71a35e2025</onsuccess>
+    <steps>
+      <calculation expression="995" stage="Configs.POP3 Port" />
+      <calculation expression="&quot;pop.gmail.com&quot;" stage="Configs.POP3 Server" />
+      <calculation expression="True" stage="Configs.POP3 Use SSL" />
+      <calculation expression="587" stage="Configs.SMTP Port" />
+      <calculation expression="&quot;smtp.gmail.com&quot;" stage="Configs.SMTP Server" />
+      <calculation expression="True" stage="Configs.SMTP Use SSL" />
+    </steps>
+  </stage>
+  <stage stageid="5d15008f-002f-419c-87f8-255240a4331f" name="Servidor de email não configurado" type="Exception">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <display x="-105" y="165" w="150" h="30" />
+    <exception localized="yes" type="System Exception" detail="&quot;Não foi feita a configuração para o servidor de email requisitado&quot;" />
+  </stage>
+  <stage stageid="283faf48-890e-475c-94c9-60bb37213e21" name="Configs Outlook" type="MultipleCalculation">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="240" y="105" />
+    <onsuccess>92c0f435-a338-4fe9-8887-39dfa97e21b0</onsuccess>
+    <steps>
+      <calculation expression="995" stage="Configs.POP3 Port" />
+      <calculation expression="&quot;outlook.office365.com&quot;" stage="Configs.POP3 Server" />
+      <calculation expression="True" stage="Configs.POP3 Use SSL" />
+      <calculation expression="587" stage="Configs.SMTP Port" />
+      <calculation expression="&quot;smtp-mail.outlook.com&quot;" stage="Configs.SMTP Server" />
+      <calculation expression="True" stage="Configs.SMTP Use SSL" />
+    </steps>
+  </stage>
+  <stage stageid="37a05b6c-9964-4eda-b2fe-3c71a35e2025" name="Anchor1" type="Anchor">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="315" y="60" w="10" h="10" />
+    <onsuccess>92c0f435-a338-4fe9-8887-39dfa97e21b0</onsuccess>
+  </stage>
+  <stage stageid="92c0f435-a338-4fe9-8887-39dfa97e21b0" name="Anchor2" type="Anchor">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="315" y="105" w="10" h="10" />
+    <onsuccess>21307c85-90b7-43ce-ba08-2af0b442373b</onsuccess>
+  </stage>
+  <stage stageid="21307c85-90b7-43ce-ba08-2af0b442373b" name="Anchor3" type="Anchor">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="315" y="210" w="10" h="10" />
+    <onsuccess>aac79cff-20d0-4c0a-9874-c82f0102d958</onsuccess>
+  </stage>
+  <stage stageid="354a9d24-623f-4a64-ba31-3f73073cf970" name="Add Row" type="Action">
+    <subsheetid>d5635c1d-94ec-4a7a-95b0-a11c81148ecd</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-30" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Configs&quot;" />
+    </inputs>
+    <onsuccess>d317400a-a55d-458b-9d6d-9cb6a73da4a7</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="411ae334-1fb1-4180-a505-dbd588a076a5" name="Config Email" type="Action">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="45" />
+    <inputs>
+      <input type="text" name="Username" friendlyname="Username" narrative="The POP3 and SMTP Username" expr="[Remetente Email]" />
+      <input type="password" name="Password" friendlyname="Password" narrative="The POP3 and SMTP Password" expr="[Remetente Senha]" />
+      <input type="text" name="POP3 Server" friendlyname="POP3 Server" narrative="The POP3 Server address e.g. pop.domain.com" expr="[Email Server Configs.POP3 Server]" />
+      <input type="number" name="POP3 Port" friendlyname="POP3 Port" narrative="The POP3 Port, e.g. 110 or 995" expr="[Email Server Configs.POP3 Port]" />
+      <input type="flag" name="POP3 UseSSL" friendlyname="POP3 UseSSL" narrative="Whether to use SSL for POP3" expr="[Email Server Configs.POP3 Use SSL]" />
+      <input type="text" name="SMTP Server" friendlyname="SMTP Server" narrative="The SMTP Server address e.g. smtp.domain.com" expr="[Email Server Configs.SMTP Server]" />
+      <input type="number" name="SMTP Port" friendlyname="SMTP Port" narrative="The SMTP Port, e.g 25 or 465" expr="[Email Server Configs.SMTP Port]" />
+      <input type="flag" name="SMTP UseSSL" friendlyname="SMTP UseSSL" narrative="Whether to use SSL for SMTP" expr="[Email Server Configs.SMTP Use SSL]" />
+      <input type="flag" name="Use OAuth2" friendlyname="Use OAuth2" narrative="Optional: Flag that indicates OAuth2 authentication should be used when connecting to the POP3 server." expr="" />
+      <input type="text" name="OAuth2 Access Token" friendlyname="OAuth2 Access Token" narrative="Optional: A valid, non-expired OAuth2 access token for the target platform (ex. Exchange Online, Google Mail, etc). Note: Use of OAuth only applies to POP3. SMTP AUTH is still used for SMTP connections." expr="" />
+      <input type="text" name="IMAP Server" friendlyname="IMAP Server" narrative="The IMAP Server. Supplied by your IT dept or ISP" expr="" />
+      <input type="number" name="IMAP Port" friendlyname="IMAP Port" narrative="The IMAP Port 993 or in some cases 143" expr="" />
+      <input type="flag" name="UseStartTLS" friendlyname="UseStartTLS" narrative="Use StartTLS for IMAP Server" expr="" />
+    </inputs>
+    <onsuccess>4c45159a-f14c-4e63-9031-2f86cbf7f5eb</onsuccess>
+    <resource object="Email - POP3/SMTP/IMAP" action="Configure" />
+  </stage>
+  <stage stageid="d1063c56-bac1-4363-a9c5-d51dc6c830e0" name="Email Server Configs" type="Collection">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="-210" y="135" w="90" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="POP3 Server" type="text" />
+      <field name="POP3 Port" type="number" />
+      <field name="POP3 Use SSL" type="flag" />
+      <field name="SMTP Server" type="text" />
+      <field name="SMTP Port" type="number" />
+      <field name="SMTP Use SSL" type="flag" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="95100399-c163-4ebf-aa23-d9cad55c9b97" name="Attached Files Paths" type="Collection">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="-210" y="180" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Path" type="text" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="eff25429-9ce2-4b19-9c75-d9be627b89e2" name="Attach Files Path" type="Calculation">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="195" />
+    <onsuccess>70f36eaa-5598-47d9-bcc4-05893b818266</onsuccess>
+    <calculation expression="[Caminho do arquivo]" stage="Attached Files Paths.Path" />
+  </stage>
+  <stage stageid="70f36eaa-5598-47d9-bcc4-05893b818266" name="Enviar Email" type="Action">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="240" />
+    <inputs>
+      <input type="text" name="From" friendlyname="From" narrative="The email address of the sender." expr="[Remetente Email]" />
+      <input type="text" name="To" friendlyname="To" narrative="The email address of the recipient. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="[Destinatario Email]" />
+      <input type="text" name="CC" friendlyname="CC" narrative="The email address of the recipient in CC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="BCC" friendlyname="BCC" narrative="The email address of the recipient in BCC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="Subject" friendlyname="Subject" narrative="The subject of the email." expr="&quot;Robô Fatura NET/Claro Residencial&quot;" />
+      <input type="text" name="Body" friendlyname="Body" narrative="The body of the email." expr="&quot;O robô executou com sucesso e emitiu a fatura em anexo&quot;" />
+      <input type="collection" name="Attachments" friendlyname="Attachments" narrative="A Collection containing a list of files to add to the email as attachments." expr="[Attached Files Paths]" />
+      <input type="flag" name="BodyIsHTML" friendlyname="BodyIsHTML" narrative="Indicates if the body should be sent as HTML" expr="False" />
+    </inputs>
+    <onsuccess>0200b55c-be17-4aaa-8e12-d8d12866d000</onsuccess>
+    <resource object="Email - POP3/SMTP/IMAP" action="Send Message" />
+  </stage>
+  <stage stageid="910f0d7e-3817-4024-ae3e-bce1519304c2" name="Enviar Email" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="270" />
+    <inputs>
+      <input type="text" name="Caminho do arquivo" friendlyname="Caminho do arquivo" expr="[Caminho do arquivo baixado]" />
+      <input type="flag" name="Emitiu Fatura" friendlyname="Emitiu Fatura" expr="[Emitiu Fatura]" />
+    </inputs>
+    <onsuccess>092de232-9c81-4678-9eba-a14c934f2a7f</onsuccess>
+    <processid>665aaafd-ca87-46eb-a372-4334929f9159</processid>
+  </stage>
+  <stage stageid="8a99d69a-301f-4548-aa19-e54857ac7a3d" name="Add Row" type="Action">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="150" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Attached Files Paths&quot;" />
+    </inputs>
+    <onsuccess>eff25429-9ce2-4b19-9c75-d9be627b89e2</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="a5edca65-eb58-4eb4-b7bb-39c7b4755ea2" name="Tentativas Maximas" type="Data">
+    <loginhibit onsuccess="true" />
+    <display x="-330" y="0" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>3</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="d4461e9c-c1da-4c49-8819-211d9bcca3a5" name="Tentativa Atual" type="Data">
+    <loginhibit onsuccess="true" />
+    <narrative>Tentativa atual de navegação. Caso ocorra falha durante a navegação é incrementada. Caso atinja um maximo pre-definido, o robô ira parar e enviar mensagem de erro</narrative>
+    <display x="-330" y="-30" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>1</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="cc34fb9a-a209-4fd5-aa20-f6a37696f3cf" name="Block1" type="Block">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="-105" w="165" h="60" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="240f4b08-89b3-42b9-80c2-501ac5ce4d44" name="Recover1" type="Recover">
+    <loginhibit />
+    <display x="150" y="-75" />
+    <onsuccess>8e169285-eb5a-4328-93fd-1fd035e96466</onsuccess>
+  </stage>
+  <stage stageid="90d877ea-1a9b-4ec5-a91f-fdd1055c6e4b" name="Tentar Novamente?" type="Decision">
+    <display x="465" y="-75" />
+    <decision expression="[Tentativa Atual]&lt;=[Tentativas Maximas]" />
+    <ontrue>95155f59-7e82-458f-bd74-f6a2ab552836</ontrue>
+    <onfalse>4387a31e-1d5d-40f2-b592-8027a991a768</onfalse>
+  </stage>
+  <stage stageid="adb90738-e503-4ab7-a772-c2949d2ff3ca" name="Close Down" type="SubSheetInfo">
+    <subsheetid>cb143566-1f9c-49a9-9ae5-8746e8b1435e</subsheetid>
+    <narrative>Encerra todos as instancias e aplicativos utilizados pelo robô</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="4321fa04-7d59-431b-bfa7-d943fced083b" name="Start" type="Start">
+    <subsheetid>cb143566-1f9c-49a9-9ae5-8746e8b1435e</subsheetid>
+    <display x="-45" y="-135" />
+    <onsuccess>9982a66b-9e4a-4e23-a89a-a7e99472eb1a</onsuccess>
+  </stage>
+  <stage stageid="780bec65-98fb-4fb8-853e-06baafa20a85" name="End" type="End">
+    <subsheetid>cb143566-1f9c-49a9-9ae5-8746e8b1435e</subsheetid>
+    <display x="-45" y="-45" />
+  </stage>
+  <stage stageid="9982a66b-9e4a-4e23-a89a-a7e99472eb1a" name="Fechar Navegador" type="Action">
+    <subsheetid>cb143566-1f9c-49a9-9ae5-8746e8b1435e</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-90" />
+    <onsuccess>780bec65-98fb-4fb8-853e-06baafa20a85</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Close Google Chrome" />
+  </stage>
+  <stage stageid="d0804f0f-13bc-4717-9c48-5ed8e08d35bb" name="Tentar Novamente Em" type="Data">
+    <loginhibit onsuccess="true" />
+    <narrative>Tempo em segundos antes de iniciar uma nova tentativa</narrative>
+    <display x="-330" y="30" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>60</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="4b965828-d101-4a78-b483-41a5ceaa8e3d" name="Aguardar" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="360" y="-150" />
+    <inputs>
+      <input type="number" name="Sleep Time (Seconds)" friendlyname="Sleep Time (Seconds)" narrative="The time (in seconds) for which to sleep" expr="[Tentar Novamente Em]" />
+    </inputs>
+    <onsuccess>2c5c8c9e-7e80-46c2-a9ec-cd5d7ff2855a</onsuccess>
+    <resource object="Utility - General" action="Sleep" />
+  </stage>
+  <stage stageid="2c5c8c9e-7e80-46c2-a9ec-cd5d7ff2855a" name="Proxima Tentativa" type="Calculation">
+    <loginhibit onsuccess="true" />
+    <display x="270" y="-150" />
+    <onsuccess>0abeb131-44fe-4e26-8a17-447aa7238757</onsuccess>
+    <calculation expression="[Tentativa Atual]+1" stage="Tentativa Atual" />
+  </stage>
+  <stage stageid="95155f59-7e82-458f-bd74-f6a2ab552836" name="Resume1" type="Resume">
+    <loginhibit />
+    <display x="465" y="-150" />
+    <onsuccess>4b965828-d101-4a78-b483-41a5ceaa8e3d</onsuccess>
+  </stage>
+  <stage stageid="ac5ff717-1e31-4ecb-b87c-23c87cf9ea5e" name="Emitiu Fatura" type="Data">
+    <loginhibit onsuccess="true" />
+    <display x="-330" y="60" w="120" h="30" />
+    <datatype>flag</datatype>
+    <initialvalue>False</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="e5eb076b-fbd1-48f7-985b-0c6c59914a43" name="Emitiu Fatura Sim" type="Calculation">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="135" />
+    <onsuccess>b646d24e-392d-4bc2-8d31-8ae82de377d1</onsuccess>
+    <calculation expression="True" stage="Emitiu Fatura" />
+  </stage>
+  <stage stageid="325197bd-e205-41be-9f1c-fcd688df5410" name="Emitiu Fatura?" type="Data">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="-210" y="-30" w="120" h="30" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="4c45159a-f14c-4e63-9031-2f86cbf7f5eb" name="Emitiu Fatura?" type="Decision">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <display x="0" y="90" />
+    <decision expression="[Emitiu Fatura?]" />
+    <ontrue>8a99d69a-301f-4548-aa19-e54857ac7a3d</ontrue>
+    <onfalse>fe340828-e810-4257-8573-cb56e42f2ed6</onfalse>
+  </stage>
+  <stage stageid="fe340828-e810-4257-8573-cb56e42f2ed6" name="Enviar Email (Falha)" type="Action">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="90" y="90" />
+    <inputs>
+      <input type="text" name="From" friendlyname="From" narrative="The email address of the sender." expr="[Remetente Email]" />
+      <input type="text" name="To" friendlyname="To" narrative="The email address of the recipient. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="[Destinatario Email]" />
+      <input type="text" name="CC" friendlyname="CC" narrative="The email address of the recipient in CC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="BCC" friendlyname="BCC" narrative="The email address of the recipient in BCC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="Subject" friendlyname="Subject" narrative="The subject of the email." expr="&quot;Falha ao emitir fatura NET/Claro&quot;" />
+      <input type="text" name="Body" friendlyname="Body" narrative="The body of the email." expr="&quot;O robô NET/Claro Residencial não conseguiu emitir a fatura. Erro: &quot; &amp; [ExceptionType] &amp; &quot;, &quot; &amp; [ExceptionDetail]" />
+      <input type="collection" name="Attachments" friendlyname="Attachments" narrative="A Collection containing a list of files to add to the email as attachments." expr="" />
+      <input type="flag" name="BodyIsHTML" friendlyname="BodyIsHTML" narrative="Indicates if the body should be sent as HTML" expr="False" />
+    </inputs>
+    <onsuccess>a81931ee-dcde-4cd3-8f11-e067ac5f635f</onsuccess>
+    <resource object="Email - POP3/SMTP/IMAP" action="Send Message" />
+  </stage>
+  <stage stageid="4387a31e-1d5d-40f2-b592-8027a991a768" name="Get Exception Data" type="MultipleCalculation">
+    <loginhibit onsuccess="true" />
+    <display x="465" y="-15" />
+    <onsuccess>e8ae8d5a-488a-4970-ba44-e2f7abca105e</onsuccess>
+    <steps>
+      <calculation expression="ExceptionType()" stage="ExceptionType" />
+      <calculation expression="ExceptionDetail()" stage="ExceptionDetail" />
+    </steps>
+  </stage>
+  <stage stageid="c760b346-8991-4eb4-a0f6-ff96baa9f7b1" name="ExceptionType" type="Data">
+    <display x="-345" y="105" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="1dc792da-6000-4710-913d-acb6c5361af6" name="ExceptionDetail" type="Data">
+    <display x="-345" y="135" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="a81931ee-dcde-4cd3-8f11-e067ac5f635f" name="Anchor7" type="Anchor">
+    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="90" y="285" w="10" h="10" />
+    <onsuccess>0200b55c-be17-4aaa-8e12-d8d12866d000</onsuccess>
+  </stage>
+  <stage stageid="8e169285-eb5a-4328-93fd-1fd035e96466" name="Close Down" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="360" y="-75" />
+    <onsuccess>90d877ea-1a9b-4ec5-a91f-fdd1055c6e4b</onsuccess>
+    <processid>cb143566-1f9c-49a9-9ae5-8746e8b1435e</processid>
+  </stage>
+  <stage stageid="0403241f-4758-4d83-8714-f9804adf6491" name="Recover2" type="Recover">
+    <loginhibit />
+    <display x="660" y="-150" />
+    <onsuccess>4e6f0be2-5e35-4dda-9dcb-876edd05f6c1</onsuccess>
+  </stage>
+  <stage stageid="4e6f0be2-5e35-4dda-9dcb-876edd05f6c1" name="Close Down" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="660" y="-105" />
+    <onsuccess>a79f008b-c362-4589-b62c-13f514380f9c</onsuccess>
+    <processid>cb143566-1f9c-49a9-9ae5-8746e8b1435e</processid>
+  </stage>
+  <stage stageid="a79f008b-c362-4589-b62c-13f514380f9c" name="Get Exception Data" type="MultipleCalculation">
+    <loginhibit onsuccess="true" />
+    <display x="660" y="-60" />
+    <onsuccess>6043f437-1ca9-4563-a831-40fcb93693f2</onsuccess>
+    <steps>
+      <calculation expression="ExceptionType()" stage="ExceptionType" />
+      <calculation expression="ExceptionDetail()" stage="ExceptionDetail" />
+    </steps>
+  </stage>
+  <stage stageid="35651878-413e-4b22-b9a8-9c0c1e1a4a34" name="Enviar Email" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="660" y="30" />
+    <inputs>
+      <input type="text" name="Caminho do arquivo" friendlyname="Caminho do arquivo" expr="[Caminho do arquivo baixado]" />
+      <input type="flag" name="Emitiu Fatura" friendlyname="Emitiu Fatura" expr="[Emitiu Fatura]" />
+    </inputs>
+    <onsuccess>ad8ef38f-0528-437f-b2b5-cd0cdafc0e7e</onsuccess>
+    <processid>665aaafd-ca87-46eb-a372-4334929f9159</processid>
+  </stage>
+  <stage stageid="ad8ef38f-0528-437f-b2b5-cd0cdafc0e7e" name="End1" type="End">
+    <loginhibit onsuccess="true" />
+    <display x="660" y="75" />
+  </stage>
+  <stage stageid="6043f437-1ca9-4563-a831-40fcb93693f2" name="Resume2" type="Resume">
+    <loginhibit />
+    <display x="660" y="-15" />
+    <onsuccess>35651878-413e-4b22-b9a8-9c0c1e1a4a34</onsuccess>
+  </stage>
+  <stage stageid="76dfd3f1-aee1-4d25-918a-f69c104c9f6b" name="Block2" type="Block">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="45" w="240" h="120" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="9e6d4384-7d04-458c-8f46-7a03008afb31" name="Recover1" type="Recover">
+    <loginhibit />
+    <display x="150" y="75" />
+    <onsuccess>5c375a94-c90c-410f-94a5-7275a18b2978</onsuccess>
+  </stage>
+  <stage stageid="5c375a94-c90c-410f-94a5-7275a18b2978" name="Logout" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="225" y="75" />
+    <onsuccess>972c4a0c-f99c-4f4a-b13f-4cb3f28ceda6</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Logout" />
+  </stage>
+  <stage stageid="e8ae8d5a-488a-4970-ba44-e2f7abca105e" name="Anchor8" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="675" y="-15" w="10" h="10" />
+    <onsuccess>6043f437-1ca9-4563-a831-40fcb93693f2</onsuccess>
+  </stage>
+  <stage stageid="cce4ad2b-8347-4574-aa78-b845d1f29ab9" name="Anchor4" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="-15" w="10" h="10" />
+    <onsuccess>63ffefb0-2b0d-40df-9da8-b1e2deac8051</onsuccess>
+  </stage>
+  <stage stageid="972c4a0c-f99c-4f4a-b13f-4cb3f28ceda6" name="Anchor6" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="360" y="75" w="10" h="10" />
+    <onsuccess>8e169285-eb5a-4328-93fd-1fd035e96466</onsuccess>
+  </stage>
+  <stage stageid="0aba117c-f707-4b93-8aa1-42c8b939ecc3" name="modo headless" type="Data">
+    <loginhibit onsuccess="true" />
+    <narrative>ATENÇÃO: O MODO HEADLESS FAZ A PAGINA BLOQUEAR, IMPEDINDO QUALQUER EXECUÇÃO DO ROBÔ. ENTRETANDO ELE FOI IMPLEMENTADO POR MOTIVOS DE PRATICA.</narrative>
+    <display x="-150" y="-150" w="90" h="30" />
+    <datatype>flag</datatype>
+    <initialvalue>False</initialvalue>
+    <alwaysinit />
+  </stage>
+</process>
