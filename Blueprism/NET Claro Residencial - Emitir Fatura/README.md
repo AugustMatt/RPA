@@ -16,7 +16,9 @@ Este projeto é um robô desenvolvido em **Blue Prism (versão 7.4)** para autom
 
 Confira abaixo um vídeo demonstrando a automação em funcionamento:
 
-[![Assista à demonstração no YouTube](https://img.youtube.com/vi/rdILDB0sc5k/0.jpg)](https://www.youtube.com/watch?v=rdILDB0sc5k)
+<a href="https://www.youtube.com/watch?v=rdILDB0sc5k" target="_blank">
+  <img src="https://img.youtube.com/vi/rdILDB0sc5k/0.jpg" alt="Assista à demonstração no YouTube" />
+</a>
 
 ---
 
