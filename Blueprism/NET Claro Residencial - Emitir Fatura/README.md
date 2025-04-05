@@ -12,6 +12,14 @@ Este projeto é um robô desenvolvido em **Blue Prism (versão 7.4)** para autom
 
 ---
 
+## 🎥 Demonstração
+
+Confira abaixo um vídeo demonstrando a automação em funcionamento:
+
+[![Assista à demonstração no YouTube](https://img.youtube.com/vi/rdILDB0sc5k/0.jpg)](https://www.youtube.com/watch?v=rdILDB0sc5k)
+
+---
+
 ## Requisitos
 
 ### 1. Dependências (VBOs)
@@ -76,4 +84,3 @@ O bot também possui outras configurações, como **número de tentativas**, **t
 Matheus Amaral - RPA Developer
 
 Se precisar de ajustes ou melhorias, fique à vontade para contribuir! 🚀
-
