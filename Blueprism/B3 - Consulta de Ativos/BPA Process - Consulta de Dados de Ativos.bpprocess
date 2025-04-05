@@ -1,0 +1,1383 @@
+﻿<process name="Consulta de Dados de Ativos" version="1.0" bpversion="7.4.0.14902" narrative="O process consiste em consultar dados de ativos como preço, oscilação, entre outros no site da B3, escrever esses dados em um excel, salvar em uma pasta e enviar por email." byrefcollection="true" processrunningmessage="" disableversioning="false" preferredid="d9034bb1-9a60-4ec1-a264-aeda00c7b756" published="true" published_type="2">
+  <view>
+    <camerax>0</camerax>
+    <cameray>9</cameray>
+    <zoom version="2">1.5625</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="2dd766e8-018e-47df-8d5f-ab6ddf6c615c" type="Normal" published="False">
+    <name>Popular Fila</name>
+    <view>
+      <camerax>28</camerax>
+      <cameray>-33</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="9f7625d1-916a-4d0e-b5f3-2ed7b66e974d" type="Normal" published="False">
+    <name>Startup</name>
+    <view>
+      <camerax>-28</camerax>
+      <cameray>-6</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="84bdd8bf-e073-4fa1-9ccf-40f4889c551f" type="Normal" published="False">
+    <name>Lê Dados de Ativo</name>
+    <view>
+      <camerax>226</camerax>
+      <cameray>63</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="cd4fd67d-1089-40e6-a039-1c35139c0a51" type="Normal" published="False">
+    <name>Escrever dados no excel</name>
+    <view>
+      <camerax>49</camerax>
+      <cameray>21</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="98e7738e-321d-4e8f-8a01-f2686d36155b" type="Normal" published="False">
+    <name>Close Down</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>42</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791" type="Normal" published="False">
+    <name>Envia Email</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>84</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="981f24e1-8038-4f3a-8767-941e99a64b00" name="Start" type="Start">
+    <display x="0" y="-225" />
+    <onsuccess>bc885309-7dd0-411e-badd-cbc0135153c4</onsuccess>
+  </stage>
+  <stage stageid="246f59a7-e963-4461-8d30-fca1b9b172eb" name="End" type="End">
+    <display x="75" y="270" />
+  </stage>
+  <stage stageid="dde810cb-c110-4fc3-8164-eb2d4e66d985" name="Stage1" type="ProcessInfo">
+    <display x="-150" y="-195" w="150" h="120" />
+  </stage>
+  <stage stageid="28efba4f-f25c-4049-ba27-478efb2c1a21" name="Popular Fila" type="SubSheetInfo">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <narrative>Abre o Excel de ativos, captura os dados importando para o robô e adicionando-os a fila/queue</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="87750d3b-10e8-4df9-92b0-3087246c0276" name="Start" type="Start">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="30" y="-195" />
+    <onsuccess>bf17a840-1433-4ae3-ba5a-b5328e075ffa</onsuccess>
+  </stage>
+  <stage stageid="cd5acb05-8c43-4245-8600-5626dc8998ae" name="End" type="End">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="30" y="390" />
+  </stage>
+  <stage stageid="bc885309-7dd0-411e-badd-cbc0135153c4" name="Popular Fila" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="0" y="-180" />
+    <onsuccess>4564c9c8-2746-414a-9292-3aaebb547e2b</onsuccess>
+    <processid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</processid>
+  </stage>
+  <stage stageid="536b3034-7bd7-42f9-86e9-2f7a3697793f" name="Create Instance" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="30" y="-30" />
+    <inputs>
+      <input type="flag" name="Enable Events" friendlyname="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>475f71e2-4692-4f52-95d2-06f0951881af</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="5bdffb0d-9905-4270-bfbc-b8e9954fdaba" name="handle" type="Data">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="-210" y="45" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="475f71e2-4692-4f52-95d2-06f0951881af" name="Show" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="30" y="30" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance which should have its window displayed. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <onsuccess>07b4e589-dc8c-4c2e-bc92-d443cc3deb5f</onsuccess>
+    <resource object="MS Excel VBO" action="Show" />
+  </stage>
+  <stage stageid="07b4e589-dc8c-4c2e-bc92-d443cc3deb5f" name="Open Workbook" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="30" y="90" />
+    <inputs>
+      <input type="number" name="Timeout" friendlyname="Timeout" narrative="The time available for the action to complete." expr="" />
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="[Camiho Arquivo - Ativos]" />
+      <input type="text" name="Password" friendlyname="Password" narrative="Optional. The password required to open the workbook. This only applies to workbooks that were saved with a password." expr="" />
+      <input type="flag" name="Update Links" friendlyname="Update Links" narrative="Optional. Flag that controls whether external references (links) in the file, such as the reference to other Workbooks, are updated. Default value is True." expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Workbook Name" />
+    </outputs>
+    <onsuccess>2ac7f9eb-9519-4639-b6f1-b1aa67609e83</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="30dc5084-4d46-4e45-b77e-beb037dee0d4" name="Workbook Name" type="Data">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="-210" y="105" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="77ca5ff6-e1fd-4721-afe2-7603dcfc1082" name="Camiho Arquivo - Ativos" type="Data">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="75" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">C:\Users\Matheus\Downloads\Ativos.xlsx</initialvalue>
+    <exposure>Environment</exposure>
+    <alwaysinit />
+  </stage>
+  <stage stageid="fc7d828a-e2a5-460e-8d48-273d5fccbcaa" name="Close All Instances" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="30" y="210" />
+    <onsuccess>6b1631bd-62eb-4f97-9025-ee16ad1f9231</onsuccess>
+    <resource object="MS Excel VBO" action="Close All Instances" />
+  </stage>
+  <stage stageid="2ac7f9eb-9519-4639-b6f1-b1aa67609e83" name="Get Worksheet As Collection" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="30" y="150" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the worksheet which should be retrieved resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which contains the sheet required. The default empty text indicates the currently active workbook on the specified instance." expr="[Workbook Name]" />
+      <input type="text" name="Worksheet Name" friendlyname="Worksheet Name" narrative="The name of the worksheet within the specified workbook which should be written to a collection. The default empty text indicates the currently active worksheet within the specified workbook." expr="" />
+      <input type="text" name="Fetch Data with Method" friendlyname="Fetch Data with Method" narrative="Optional: The method used to fetch data from cells in the worksheet. Options include Text, Value, and Value2. The default indicates Value will be used." expr="" />
+      <input type="flag" name="Use Clipboard" friendlyname="Use Clipboard" narrative="Optional: Flag that indicates the Windows clipboard should be used. Default value is False." expr="" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" friendlyname="Data" narrative="The collection containing the data from the specified worksheet - the column IDs will be gleaned from the first row on the sheet being retrieved." stage="Data Excel" />
+    </outputs>
+    <onsuccess>fc7d828a-e2a5-460e-8d48-273d5fccbcaa</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet As Collection" />
+  </stage>
+  <stage stageid="d8070ccc-5557-4fdf-afbf-bf52e4a0fdf5" name="Data Excel" type="Collection">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="-210" y="135" w="120" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="6b1631bd-62eb-4f97-9025-ee16ad1f9231" name="Add to Queue" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>The Data collection contains the items to be added to the queue. The collection may contain single or multiple rows, with each representing an item to be added.
+
+If there is a failure during the process, the queue will be unchanged - i.e. no rows will be loaded even if the error occurred on the last one.
+
+If Defer Until is specified, the items will not be available to be worked until then. Otherwise, they are available immediately.
+
+If the queue has a key field defined, an item added has key data longer than the maximum permitted 255 characters, an error will occur</narrative>
+    <display x="30" y="270" />
+    <inputs>
+      <input type="text" name="Queue Name" friendlyname="Queue Name" narrative="The name of the queue to add items to" expr="[Queue Name]" />
+      <input type="collection" name="Data" friendlyname="Data" narrative="A collection containing the data, one row for each item to be added" expr="[Data Excel]" />
+      <input type="datetime" name="Defer Until" friendlyname="Defer Until" narrative="Optionally, the date/time the new item(s) should be deferred until" expr="" />
+      <input type="number" name="Priority" friendlyname="Priority" narrative="Optionally, the priority for the new item(s). Lower numbers represent higher priorities. The default is 0." expr="" />
+      <input type="text" name="Tags" friendlyname="Tags" narrative="Optionally, a semi-colon-separated set of tags to apply to the queue item(s)" expr="" />
+      <input type="text" name="Status" friendlyname="Status" narrative="Optionally, the initial status required of the work queue item(s) " expr="&quot;Pending&quot;" />
+      <input type="number" name="Batch Size" friendlyname="Batch Size" narrative="Optionally, the batch size to use when adding many items to the queue.  A Value of 0 will process all items in one batch.  An empty field will use the default batch size of 1000." expr="">
+        <validator type="BluePrism.AutomateProcessCore.RangeParameterValidation" parameter="0:25000" />
+      </input>
+      <input type="timespan" name="SLA" friendlyname="SLA" narrative="Optionally, the SLA that specifies the agreed-upon response or resolution time for the item(s), indicating the maximum acceptable duration for processing them based on their criticality or urgency.&#xD;&#xA;SLA values are provided as a timespan with a minimum value of 1 second and a maximum value of 999 days, 23 hours, 59 minutes, and 59 seconds.&#xD;&#xA;There is no default value for SLA if one is not provided." expr="" />
+      <input type="datetime" name="SLA Deadline" friendlyname="SLA Deadline" narrative="Optionally, the SLA Deadline specifies the agreed-upon response or resolution time for the item(s),&#xD;&#xA;indicating an explicitly set date for addressing them based on their criticality or urgency.&#xD;&#xA;SLA Deadline values are provided as a DateTime which must be less than 1000 days in the future.&#xD;&#xA;There is no default value for SLA Deadline if one is not provided. This value will override any&#xD;&#xA;value provided in the SLA input." expr="" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Item IDs" friendlyname="Item IDs" narrative="The IDs of the items which have been added to the queue, in the order of the collection of data passed that was input" stage="" />
+    </outputs>
+    <onsuccess>78763337-8364-4b4f-b05c-94e137fe3824</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Add To Queue" />
+  </stage>
+  <stage stageid="e5775f6a-dc4c-4168-9e3e-525de764e699" name="Startup" type="SubSheetInfo">
+    <subsheetid>9f7625d1-916a-4d0e-b5f3-2ed7b66e974d</subsheetid>
+    <narrative>Inicializa o que for necessario para prosseguir com o processamento</narrative>
+    <display x="-180" y="-195" w="150" h="90" />
+  </stage>
+  <stage stageid="d461095c-d3b9-4df6-9632-271ff1497276" name="Start" type="Start">
+    <subsheetid>9f7625d1-916a-4d0e-b5f3-2ed7b66e974d</subsheetid>
+    <display x="-30" y="-225" />
+    <onsuccess>87ce0fe3-8217-4dab-bfbb-b6ecba64f4f3</onsuccess>
+  </stage>
+  <stage stageid="149d2de6-39a0-476f-a88c-58f597023b1b" name="End" type="End">
+    <subsheetid>9f7625d1-916a-4d0e-b5f3-2ed7b66e974d</subsheetid>
+    <display x="-30" y="-90" />
+  </stage>
+  <stage stageid="9dd8b772-0dd0-42b7-96dd-9f649f5b67a7" name="Startup" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="0" y="-15" />
+    <onsuccess>fb881e27-8603-45ca-9c63-a4b200179410</onsuccess>
+    <processid>9f7625d1-916a-4d0e-b5f3-2ed7b66e974d</processid>
+  </stage>
+  <stage stageid="87ce0fe3-8217-4dab-bfbb-b6ecba64f4f3" name="Inicializar Google Chrome" type="Action">
+    <subsheetid>9f7625d1-916a-4d0e-b5f3-2ed7b66e974d</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="-165" w="60" h="60" />
+    <onsuccess>149d2de6-39a0-476f-a88c-58f597023b1b</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Launch google chrome" />
+  </stage>
+  <stage stageid="9e06d79b-fadf-4646-bbb5-3c093b6f6c1b" name="Lê Dados de Ativo" type="SubSheetInfo">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <narrative>Faz a leitura dos dados de um ativo pesquisado</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="792a3cbf-da62-4b18-a557-6c593f42d4ae" name="Start" type="Start">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-60" y="-165" />
+    <onsuccess>826dbae0-7ec4-41ca-9b7b-6f8ae3eec132</onsuccess>
+  </stage>
+  <stage stageid="2e46f950-a4d1-4e6f-8a43-9b3bd1eee218" name="End" type="End">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-60" y="285" />
+  </stage>
+  <stage stageid="fb881e27-8603-45ca-9c63-a4b200179410" name="Lê Dados de Ativo" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="0" y="60" />
+    <onsuccess>71e6901b-2487-48f9-903f-bfafffdaa871</onsuccess>
+    <processid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</processid>
+  </stage>
+  <stage stageid="e253b1a4-6ce6-4fd6-bc51-74b50f5b0d52" name="Escrever ativo" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="-45" />
+    <inputs>
+      <input type="text" name="Ativo" friendlyname="Ativo" narrative="Ativo para consulta" expr="[Item Data.Ativo]" />
+    </inputs>
+    <onsuccess>de13f7a2-d3a8-478c-9273-6ff0907228fb</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Escrever Ativo" />
+  </stage>
+  <stage stageid="de13f7a2-d3a8-478c-9273-6ff0907228fb" name="Buscar ativo" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="0" />
+    <onsuccess>29b0032c-b3dc-467e-9c8e-6426c802cd03</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Clicar em Buscar" />
+  </stage>
+  <stage stageid="29b0032c-b3dc-467e-9c8e-6426c802cd03" name="Ler preço" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="45" />
+    <outputs>
+      <output type="text" name="preço ativo" friendlyname="preço ativo" narrative="Preço do ativo consultado" stage="preço do ativo" />
+    </outputs>
+    <onsuccess>4398d082-58cc-4ee1-8c26-fbc58d9da1e7</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Ler Preço" />
+  </stage>
+  <stage stageid="4398d082-58cc-4ee1-8c26-fbc58d9da1e7" name="Ler oscilação" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="90" />
+    <outputs>
+      <output type="text" name="oscilação do ativo" friendlyname="oscilação do ativo" narrative="oscilação do ativo consultado" stage="oscilação do ativo" />
+    </outputs>
+    <onsuccess>3a4db228-356b-4551-b2a0-3fc55c5acc51</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Ler Oscilação" />
+  </stage>
+  <stage stageid="3a4db228-356b-4551-b2a0-3fc55c5acc51" name="Ler data e hora" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="135" />
+    <outputs>
+      <output type="text" name="data do ativo" friendlyname="data do ativo" narrative="data do ativo consultado" stage="data do ativo" />
+      <output type="text" name="hora do ativo" friendlyname="hora do ativo" narrative="hora do ativo consultado" stage="hora do ativo" />
+    </outputs>
+    <onsuccess>eb310c65-b40b-479f-b71c-c7526e85edce</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Ler Data e Hora" />
+  </stage>
+  <stage stageid="e05e38e5-a7af-48b3-96a3-6a3c54055176" name="preço do ativo" type="Data">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-210" y="-30" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ca4e7d27-cddb-4e0a-87b4-413d1b773fb4" name="oscilação do ativo" type="Data">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-210" y="0" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="70c1577a-30b8-4bca-a041-68b931f6185f" name="data do ativo" type="Data">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-210" y="30" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ebcd1ae5-6840-41f0-b11a-77d5155419e5" name="hora do ativo" type="Data">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-210" y="60" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="4564c9c8-2746-414a-9292-3aaebb547e2b" name="Get Next Item" type="Action">
+    <narrative>This action gets the next item to be worked from the queue, returning its details and locking it so no other case can work it.
+
+Items with higher priorities (lower numerical value) are processed first. Where the priority is the same, the next item is the one that has been in the queue the longest,  is not already locked, and is not already completed.
+
+The Item ID returned is used to make further calls to update the work status for that item. It may be empty, in which case there are no items available. This can mean either a) the queue is empty, or b) the queue is not running. This mechanism can be used to cleanly stop all processes working a particular queue at the end of the next case. Items that have a 'deferred' time set will not be returned unless that time has been reached.</narrative>
+    <display x="0" y="-135" />
+    <inputs>
+      <input type="text" name="Queue Name" friendlyname="Queue Name" narrative="The name of the queue" expr="[Queue Name]" />
+      <input type="text" name="Key Filter" friendlyname="Key Filter" narrative="Optionally, a key value to filter by. Only items with this key value will be considered." expr="" />
+      <input type="text" name="Tag Filter" friendlyname="Tag Filter" narrative="Optionally, a tag mask to filter by. This can consist of any number of tag searches - each term can be separated by a semi-colon and they are all applied to the search (ie. they are AND'ed terms not OR'ed terms). For example, &quot;Account: Joint; -Balance: Overdrawn; Card: *Visa*&quot; will include any items which match all the terms, ie. every item must have an 'Account: Joint' tag applied, no item can have a 'Balance: Overdrawn' tag applied, every item must have a tag applied which starts with 'Card: ' and then contains the text 'Visa'." expr="" />
+      <input type="text" name="Sort Order" friendlyname="Sort Order" narrative="Sort order method (Priority, SLA, PriorityAndSLA)" expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Item ID" friendlyname="Item ID" narrative="The ID of the item retrieved - empty if there are none available." stage="Item ID" />
+      <output type="collection" name="Data" friendlyname="Data" narrative="The data associated with the item - a single collection row." stage="Item Data" />
+      <output type="text" name="Status" friendlyname="Status" narrative="The status of the item." stage="Status" />
+      <output type="number" name="Attempts" friendlyname="Attempts" narrative="The number of attempts already made to work this item." stage="Attempts" />
+    </outputs>
+    <onsuccess>c270e3ad-1026-4d10-8666-282486513fe5</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Get Next Item" />
+  </stage>
+  <stage stageid="a87e4eff-e8af-40fe-ab19-36d71116c4f0" name="Queue Name" type="Data">
+    <loginhibit onsuccess="true" />
+    <display x="-150" y="-105" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">B3 - Consulta de Ativos</initialvalue>
+    <alwaysinit />
+  </stage>
+  <stage stageid="4b5264a9-7487-419a-b5df-1ab81454e183" name="Item ID" type="Data">
+    <display x="-180" y="-30" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="d0421c49-e0ba-4059-bb7b-be2ba0648f1f" name="Item Data" type="Collection">
+    <display x="-180" y="15" w="90" h="30" />
+    <datatype>collection</datatype>
+    <alwaysinit />
+  </stage>
+  <stage stageid="5b3165d6-ca08-40cf-b80c-2273dbc9b706" name="Status" type="Data">
+    <display x="-180" y="60" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="940de6b8-0d7f-4632-88d1-28267c46c24f" name="Attempts" type="Data">
+    <display x="-180" y="105" w="90" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="e027e591-0418-4cb1-b7e7-0b239d14b084" name="Mark Item as Completed" type="Action">
+    <loginhibit onsuccess="true" />
+    <narrative>Marks the item as completed, by updating the Completed timestamp and setting Locked to null. The item must be 'owned' by the calling process - i.e. it must have been retrieved using Get Next Item.</narrative>
+    <display x="0" y="180" />
+    <inputs>
+      <input type="text" name="Item ID" friendlyname="Item ID" narrative="The ID of the item to mark" expr="[Item ID]" />
+    </inputs>
+    <onsuccess>7a5f043e-2665-4b32-ab6e-72d6c97372ae</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Mark Completed" />
+  </stage>
+  <stage stageid="8d7b7f06-1174-4fb6-867b-b1727ccb4bc8" name="Escrever dados no excel" type="SubSheetInfo">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <narrative>Escreve dados do ativo no excel</narrative>
+    <display x="-345" y="-345" w="150" h="90" />
+  </stage>
+  <stage stageid="6366b54f-68e0-4e7d-a353-988ec858c4f6" name="Start" type="Start">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="0" y="-390" />
+    <onsuccess>c002480a-1f95-45f9-b10a-21c66e0aa73f</onsuccess>
+  </stage>
+  <stage stageid="a1ed5836-af12-446d-b50e-38cf8063175d" name="End" type="End">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="0" y="195" />
+  </stage>
+  <stage stageid="71e6901b-2487-48f9-903f-bfafffdaa871" name="Escrever dados no excel" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="0" y="105" />
+    <onsuccess>e027e591-0418-4cb1-b7e7-0b239d14b084</onsuccess>
+    <processid>cd4fd67d-1089-40e6-a039-1c35139c0a51</processid>
+  </stage>
+  <stage stageid="e4ad9938-727e-49d0-be8e-6f71b45150d0" name="Create Instance" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="-240" />
+    <inputs>
+      <input type="flag" name="Enable Events" friendlyname="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>3b358fb4-98c1-4203-80f6-22d5ecfbb55f</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="3b358fb4-98c1-4203-80f6-22d5ecfbb55f" name="Show" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="-195" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance which should have its window displayed. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <onsuccess>7b71e6d9-b1c5-4853-bb81-a29ae51a6d5e</onsuccess>
+    <resource object="MS Excel VBO" action="Show" />
+  </stage>
+  <stage stageid="7b71e6d9-b1c5-4853-bb81-a29ae51a6d5e" name="Open Workbook" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="-150" />
+    <inputs>
+      <input type="number" name="Timeout" friendlyname="Timeout" narrative="The time available for the action to complete." expr="" />
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="[Camiho Arquivo - Ativos]" />
+      <input type="text" name="Password" friendlyname="Password" narrative="Optional. The password required to open the workbook. This only applies to workbooks that were saved with a password." expr="" />
+      <input type="flag" name="Update Links" friendlyname="Update Links" narrative="Optional. Flag that controls whether external references (links) in the file, such as the reference to other Workbooks, are updated. Default value is True." expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Workbook Name" />
+    </outputs>
+    <onsuccess>dd8ba1fd-6316-41ac-8ad4-a8795c95b7c1</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="dd8ba1fd-6316-41ac-8ad4-a8795c95b7c1" name="Get Ativo" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="-105" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance from which the required cell value should be retrieved. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The cell reference indicating which cell's value should be retrieved. An empty value indicates that the currently active cell's value should be retrieved." expr="&quot;A&quot; &amp; [Counter Excel]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Value" friendlyname="Value" narrative="The (unformatted) value from the required cell." stage="Value" />
+    </outputs>
+    <onsuccess>fc9ab55a-f0be-414b-9881-08416f71fe69</onsuccess>
+    <resource object="MS Excel VBO" action="Get Cell Value" />
+  </stage>
+  <stage stageid="acdba3d2-ebdd-4dc7-921b-19c048470895" name="Counter Excel" type="Data">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <narrative>Contador de linha atual do excel</narrative>
+    <display x="-345" y="-135" w="90" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>2</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="282e52bb-0f38-4060-8814-d451be05ec22" name="Value" type="Data">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="-345" y="-165" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="43e9062b-146f-44ef-937d-942ba2264264" name="Excel" type="Block">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-405" y="-195" w="120" h="90" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="fc9ab55a-f0be-414b-9881-08416f71fe69" name="É ativo certo?" type="Decision">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="0" y="-45" />
+    <decision expression="[Value] = [Item Data.Ativo]" />
+    <ontrue>4fbce881-439f-49d3-8351-f1a7a4cf4511</ontrue>
+    <onfalse>ff7bae35-93c2-4743-b8df-13d2c0e98f41</onfalse>
+  </stage>
+  <stage stageid="ff7bae35-93c2-4743-b8df-13d2c0e98f41" name="Counter Excel ++" type="Calculation">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="105" y="-45" />
+    <onsuccess>03e92f48-057f-496a-adba-9cf9e8a224cc</onsuccess>
+    <calculation expression="[Counter Excel]+1" stage="Counter Excel" />
+  </stage>
+  <stage stageid="03e92f48-057f-496a-adba-9cf9e8a224cc" name="Anchor1" type="Anchor">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="105" y="-105" w="10" h="10" />
+    <onsuccess>dd8ba1fd-6316-41ac-8ad4-a8795c95b7c1</onsuccess>
+  </stage>
+  <stage stageid="4fbce881-439f-49d3-8351-f1a7a4cf4511" name="Set Preço" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="0" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;B&quot; &amp; [Counter Excel]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[preço do ativo]" />
+    </inputs>
+    <onsuccess>0b49b944-34d1-4bb5-baf7-28c442b546ee</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="0b49b944-34d1-4bb5-baf7-28c442b546ee" name="Set oscilação" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="90" y="0" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;C&quot; &amp; [Counter Excel]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[oscilação do ativo]" />
+    </inputs>
+    <onsuccess>b1e3e02f-6aec-42d2-8a51-fa9872b8db72</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="2defed82-a790-48e4-9b6e-0616460393a4" name="Save Workbook" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="45" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the workbook which should be saved resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which should be saved" expr="[Workbook Name]" />
+      <input type="number" name="TitmeOut" friendlyname="TitmeOut" narrative="The timeout value. Default 30 Minimum is 10 seconds." expr="" />
+    </inputs>
+    <onsuccess>b0525b25-abe9-4a89-8cbb-cfcedc3b7e11</onsuccess>
+    <resource object="MS Excel VBO" action="Save Workbook" />
+  </stage>
+  <stage stageid="b0525b25-abe9-4a89-8cbb-cfcedc3b7e11" name="Close All Instances" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="0" y="90" />
+    <onsuccess>974f7228-e45b-4f53-965c-1f64a831820f</onsuccess>
+    <resource object="MS Excel VBO" action="Close All Instances" />
+  </stage>
+  <stage stageid="b1e3e02f-6aec-42d2-8a51-fa9872b8db72" name="Set Data" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="165" y="0" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;D&quot; &amp; [Counter Excel]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[data do ativo]" />
+    </inputs>
+    <onsuccess>2949807c-ca18-41cc-a5de-9d90c90e85ab</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="2949807c-ca18-41cc-a5de-9d90c90e85ab" name="Set Hora" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="240" y="0" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;E&quot; &amp; [Counter Excel]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[hora do ativo]" />
+    </inputs>
+    <onsuccess>38f293c6-288c-4c4e-bac6-c50a5234866a</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="6b78afc4-fb44-4282-8e92-2ac85c497a88" name="Gera Data Hora de Consulta do Robô" type="Calculation">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="240" />
+    <onsuccess>2e46f950-a4d1-4e6f-8a43-9b3bd1eee218</onsuccess>
+    <calculation expression="Today() &amp; &quot; &quot; &amp; LocalTime()" stage="Data Consulta Robo" />
+  </stage>
+  <stage stageid="c554522a-e000-48c9-bb0c-fe12d42b3c04" name="Data Consulta Robo" type="Data">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-210" y="90" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="38f293c6-288c-4c4e-bac6-c50a5234866a" name="Set Data Consulta Robô" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="240" y="45" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;F&quot; &amp; [Counter Excel]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[Data Consulta Robo]" />
+    </inputs>
+    <onsuccess>2defed82-a790-48e4-9b6e-0616460393a4</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="826dbae0-7ec4-41ca-9b7b-6f8ae3eec132" name="Is Empty?" type="Decision">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="-60" y="-120" />
+    <decision expression="[Item Data.Ativo] = &quot;&quot;" />
+    <ontrue>d92eb7ae-918e-4d18-a6d2-38daeec92a96</ontrue>
+    <onfalse>e253b1a4-6ce6-4fd6-bc51-74b50f5b0d52</onfalse>
+  </stage>
+  <stage stageid="d92eb7ae-918e-4d18-a6d2-38daeec92a96" name="Campo Ativo Vazio" type="Exception">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="15" y="-120" />
+    <exception localized="yes" type="Business Exception" detail="&quot;campo ativo vazio&quot;" />
+  </stage>
+  <stage stageid="eb310c65-b40b-479f-b71c-c7526e85edce" name="Fecha Google Chrome" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="180" />
+    <onsuccess>5d71d748-aeef-4075-a84a-ad85be891021</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Close Google Chrome" />
+  </stage>
+  <stage stageid="7a5f043e-2665-4b32-ab6e-72d6c97372ae" name="Anchor2" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="180" w="10" h="10" />
+    <onsuccess>a5cd8b55-cf33-4e71-b6c0-8b514afb5e6a</onsuccess>
+  </stage>
+  <stage stageid="a5cd8b55-cf33-4e71-b6c0-8b514afb5e6a" name="Anchor3" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="-135" w="10" h="10" />
+    <onsuccess>4564c9c8-2746-414a-9292-3aaebb547e2b</onsuccess>
+  </stage>
+  <stage stageid="c270e3ad-1026-4d10-8666-282486513fe5" name="Item?" type="Decision">
+    <display x="0" y="-75" />
+    <decision expression="[Item ID] &lt;&gt; &quot;&quot;" />
+    <ontrue>9dd8b772-0dd0-42b7-96dd-9f649f5b67a7</ontrue>
+    <onfalse>594e674b-9717-4150-8f9a-a729e098e32f</onfalse>
+  </stage>
+  <stage stageid="594e674b-9717-4150-8f9a-a729e098e32f" name="Anchor4" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="-75" w="10" h="10" />
+    <onsuccess>7590d93d-6a2e-4605-9e13-86cea3a03b02</onsuccess>
+  </stage>
+  <stage stageid="edbb382a-c330-45f4-a5e3-a39056d244a1" name="Pega Dados Ativo" type="Block">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-105" y="-75" w="405" h="285" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="5303e424-be96-4bdf-a4ee-6f56173d30c6" name="Recover1" type="Recover">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit />
+    <display x="150" y="105" />
+    <onsuccess>4037e606-7238-464e-9aa8-003d04873261</onsuccess>
+  </stage>
+  <stage stageid="ae397a88-fff7-43be-8386-94bfa3924b62" name="Resume1" type="Resume">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit />
+    <display x="150" y="-45" />
+    <onsuccess>e253b1a4-6ce6-4fd6-bc51-74b50f5b0d52</onsuccess>
+  </stage>
+  <stage stageid="4037e606-7238-464e-9aa8-003d04873261" name="Retry?" type="Decision">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="240" y="105" />
+    <decision expression="Lower(ExceptionType()) = &quot;system exception&quot; AND&#xA;[Counter] &lt; 3" />
+    <ontrue>8364a3cb-c67b-4b83-acb7-ca1491add425</ontrue>
+    <onfalse>a8eaea67-5284-4d09-b14c-be22b43e222c</onfalse>
+  </stage>
+  <stage stageid="96778081-8558-4036-8a37-5157e0b4e3d5" name="Fecha Google Chrome" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="240" y="0" />
+    <onsuccess>7e709021-0a65-431d-98de-e61c94bcd0b2</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Close Google Chrome" />
+  </stage>
+  <stage stageid="7e709021-0a65-431d-98de-e61c94bcd0b2" name="Startup" type="SubSheet">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="240" y="-45" />
+    <onsuccess>ae397a88-fff7-43be-8386-94bfa3924b62</onsuccess>
+    <processid>9f7625d1-916a-4d0e-b5f3-2ed7b66e974d</processid>
+  </stage>
+  <stage stageid="2d75301c-34d3-4831-b847-feaa6a506c9f" name="Counter" type="Data">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="135" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="b46648fe-6251-4a49-9d88-83ccb6f6e3da" name="Limit Counter" type="Data">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="165" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>3</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="8364a3cb-c67b-4b83-acb7-ca1491add425" name="Counter++" type="Calculation">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="240" y="45" />
+    <onsuccess>96778081-8558-4036-8a37-5157e0b4e3d5</onsuccess>
+    <calculation expression="[Counter]+1" stage="Counter" />
+  </stage>
+  <stage stageid="ac5e50ba-d278-4348-9450-4eb8a9f3db64" name="Mark Exception" type="Action">
+    <loginhibit onsuccess="true" />
+    <narrative>Marks the item as an exception, optionally retrying it by cloning the item and returning the ID of the clone. The item must be 'owned' by the calling process - i.e. it must have been retrieved using Get Next Item.</narrative>
+    <display x="210" y="45" />
+    <inputs>
+      <input type="text" name="Item ID" friendlyname="Item ID" narrative="The ID of the item to mark" expr="[Item ID]" />
+      <input type="text" name="Exception Reason" friendlyname="Exception Reason" narrative="A description of the reason for the exception" expr="[ExceptionType] &amp; &quot;: &quot; &amp; [ExceptionDetail]" />
+      <input type="flag" name="Retry" friendlyname="Retry" narrative="Whether or not to retry the item, up to the maximum number of attempts specified for the queue. Optional - if not specified, the item will be retried" expr="" />
+      <input type="flag" name="Keep Locked" friendlyname="Keep Locked" narrative="Whether or not the clone of the item should remain locked after the exception has been registered and the item is retried. Optional - default is False" expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="New Item ID" friendlyname="New Item ID" narrative="The Item ID of the newly cloned item. This item will be locked if 'Keep Locked' is True. This will be empty if no item was cloned (ie. the item was not retried." stage="" />
+    </outputs>
+    <onsuccess>e00049cc-4e6b-4332-ab67-97167e45c648</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Mark Exception" />
+  </stage>
+  <stage stageid="a8eaea67-5284-4d09-b14c-be22b43e222c" name="Exception" type="Exception">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <display x="345" y="105" />
+    <exception localized="yes" type="" detail="" usecurrent="yes" />
+  </stage>
+  <stage stageid="61aa163a-d83f-4988-90f9-afef4691673f" name="Excel" type="Block">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-270" w="330" h="390" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="8c500812-36ff-45f7-89c4-f11d6d1d78f1" name="Recover1" type="Recover">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit />
+    <display x="240" y="-120" />
+    <onsuccess>f6ff3d96-bee2-497a-b7fb-7bb51ca0cbd1</onsuccess>
+  </stage>
+  <stage stageid="ada1957b-2632-4256-96ed-d63b46dcdd46" name="Resume1" type="Resume">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit />
+    <display x="240" y="-240" />
+    <onsuccess>e4ad9938-727e-49d0-be8e-6f71b45150d0</onsuccess>
+  </stage>
+  <stage stageid="f6ff3d96-bee2-497a-b7fb-7bb51ca0cbd1" name="Retry?" type="Decision">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="330" y="-120" />
+    <decision expression="Lower(ExceptionType()) = &quot;system exception&quot; AND&#xA;[Counter] &lt; 3" />
+    <ontrue>7068347b-f341-467e-889c-f66f9ba73f5a</ontrue>
+    <onfalse>2f2b4fff-d7be-4e55-b037-d4637a157da0</onfalse>
+  </stage>
+  <stage stageid="7068347b-f341-467e-889c-f66f9ba73f5a" name="Counter++" type="Calculation">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="330" y="-180" />
+    <onsuccess>734576d8-74d9-4452-b900-0a18ec50f269</onsuccess>
+    <calculation expression="[Counter]+1" stage="Counter Excel" />
+  </stage>
+  <stage stageid="2f2b4fff-d7be-4e55-b037-d4637a157da0" name="Exception" type="Exception">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="435" y="-120" />
+    <exception localized="yes" type="" detail="" usecurrent="yes" />
+  </stage>
+  <stage stageid="ce059034-d5f0-41e7-b09f-4e28ddaadfd0" name="Counter" type="Data">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Contador para re-tentar operação</narrative>
+    <display x="-345" y="-75" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="9cbf2c34-30c4-4bd0-a2d9-6ebba94214db" name="Limit Counter" type="Data">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-345" y="-45" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>3</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="734576d8-74d9-4452-b900-0a18ec50f269" name="Close All Instances" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="330" y="-240" />
+    <onsuccess>ada1957b-2632-4256-96ed-d63b46dcdd46</onsuccess>
+    <resource object="MS Excel VBO" action="Close All Instances" />
+  </stage>
+  <stage stageid="0e012260-0ce0-47f9-9c5a-eea7a5a5568a" name="Work" type="Block">
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="15" w="300" h="120" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="b7d6961f-5701-4e3f-b7a2-11ffba4ff683" name="Recover" type="Recover">
+    <loginhibit />
+    <display x="120" y="105" />
+    <onsuccess>129c42ed-eda7-4adb-aaa0-3ae7f52e7cc9</onsuccess>
+  </stage>
+  <stage stageid="beea7247-ba18-4555-96bd-f15db9e7a2f1" name="Anchor6" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="210" y="-135" w="10" h="10" />
+    <onsuccess>6cc6dd8c-3357-4926-8342-8f9c40b8e4db</onsuccess>
+  </stage>
+  <stage stageid="6cc6dd8c-3357-4926-8342-8f9c40b8e4db" name="Resume" type="Resume">
+    <loginhibit />
+    <display x="135" y="-135" />
+    <onsuccess>4564c9c8-2746-414a-9292-3aaebb547e2b</onsuccess>
+  </stage>
+  <stage stageid="129c42ed-eda7-4adb-aaa0-3ae7f52e7cc9" name="Get Exception Data" type="MultipleCalculation">
+    <loginhibit onsuccess="true" />
+    <display x="210" y="105" />
+    <onsuccess>ac5e50ba-d278-4348-9450-4eb8a9f3db64</onsuccess>
+    <steps>
+      <calculation expression="ExceptionType()" stage="ExceptionType" />
+      <calculation expression="ExceptionDetail() " stage="ExceptionDetail" />
+    </steps>
+  </stage>
+  <stage stageid="cef45888-9336-40bc-8733-c71e46956f05" name="ExceptionType" type="Data">
+    <display x="-195" y="165" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="31b2e72b-fb47-452b-8a0b-39f6b3e1d032" name="ExceptionDetail" type="Data">
+    <display x="-195" y="195" w="90" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="f774aa85-8506-422b-84cb-5f00e1a856f2" name="Close Down" type="SubSheetInfo">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <narrative>Fecha todos os sistemas</narrative>
+    <display x="-120" y="-60" w="150" h="90" />
+  </stage>
+  <stage stageid="1e5cbc0c-e293-47ba-b394-0695cd7c4175" name="Start" type="Start">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <display x="15" y="-105" />
+    <onsuccess>4b495250-0faa-41ed-bea4-1db00ead9169</onsuccess>
+  </stage>
+  <stage stageid="f72e520d-b9b7-4192-8c52-3338b47d2808" name="End" type="End">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <display x="15" y="180" />
+  </stage>
+  <stage stageid="4b495250-0faa-41ed-bea4-1db00ead9169" name="Fecha Google Chrome" type="Action">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-60" />
+    <onsuccess>582ac72a-3c5b-4f24-b89c-40f41acfb382</onsuccess>
+    <resource object="B3 - Consulta de Ativos" action="Close Google Chrome" />
+  </stage>
+  <stage stageid="582ac72a-3c5b-4f24-b89c-40f41acfb382" name="Close All Instances" type="Action">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-15" />
+    <onsuccess>3c966238-de29-4abf-9d65-73ea0b1306ca</onsuccess>
+    <resource object="MS Excel VBO" action="Close All Instances" />
+  </stage>
+  <stage stageid="e00049cc-4e6b-4332-ab67-97167e45c648" name="Close Down" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="210" y="-60" />
+    <onsuccess>beea7247-ba18-4555-96bd-f15db9e7a2f1</onsuccess>
+    <processid>98e7738e-321d-4e8f-8a01-f2686d36155b</processid>
+  </stage>
+  <stage stageid="148b36ee-b3c0-453b-bfa0-777796d2c600" name="Excel" type="Block">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-15" y="-60" w="225" h="300" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="5ef17807-7073-4d7e-80a2-b4f693ba0a4c" name="Recover1" type="Recover">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit />
+    <display x="165" y="90" />
+    <onsuccess>c0ca3927-1cf0-49c6-80ae-9f7a1515c1f6</onsuccess>
+  </stage>
+  <stage stageid="932978c3-d109-4566-b567-ddb3d0d754a6" name="Resume1" type="Resume">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit />
+    <display x="165" y="-30" />
+    <onsuccess>536b3034-7bd7-42f9-86e9-2f7a3697793f</onsuccess>
+  </stage>
+  <stage stageid="c0ca3927-1cf0-49c6-80ae-9f7a1515c1f6" name="Retry?" type="Decision">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="255" y="90" />
+    <decision expression="Lower(ExceptionType()) = &quot;system exception&quot; AND&#xA;[Counter] &lt; 3" />
+    <ontrue>43b3983b-343c-4413-87cb-f6a6deade649</ontrue>
+    <onfalse>5dc1373d-7e4f-4708-8fa6-bc4b225300aa</onfalse>
+  </stage>
+  <stage stageid="43b3983b-343c-4413-87cb-f6a6deade649" name="Counter++" type="Calculation">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="255" y="30" />
+    <onsuccess>2c9b87b1-25ef-45f1-bb24-273612c3b49e</onsuccess>
+    <calculation expression="[Counter]+1" stage="Counter" />
+  </stage>
+  <stage stageid="5dc1373d-7e4f-4708-8fa6-bc4b225300aa" name="Exception" type="Exception">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="360" y="90" />
+    <exception localized="yes" type="" detail="" usecurrent="yes" />
+  </stage>
+  <stage stageid="2c9b87b1-25ef-45f1-bb24-273612c3b49e" name="Close All Instances" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="255" y="-30" />
+    <onsuccess>932978c3-d109-4566-b567-ddb3d0d754a6</onsuccess>
+    <resource object="MS Excel VBO" action="Close All Instances" />
+  </stage>
+  <stage stageid="a90a8788-71d0-4fc6-b20f-9f7b47a12a33" name="Counter" type="Data">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="180" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="266954c5-55ad-4c50-bcf4-91b38f6cdae4" name="Limit Counter" type="Data">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="210" w="120" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>3</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="5d71d748-aeef-4075-a84a-ad85be891021" name="Tag with Price" type="Action">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Adds a tag to a work queue item</narrative>
+    <display x="15" y="180" />
+    <inputs>
+      <input type="text" name="Item ID" friendlyname="Item ID" narrative="The ID of the queue item to add the tag to" expr="[Item ID]" />
+      <input type="text" name="Tag" friendlyname="Tag" narrative="The tag to add to the item. Note that this cannot start with a '+' (plus) or '-' (minus) character, and cannot contain ';' (semi-colon) characters" expr="Replace([preço do ativo], &quot;.&quot;, &quot;,&quot;)" />
+    </inputs>
+    <onsuccess>7b493ab1-da1a-463b-a067-de2f9f9290e8</onsuccess>
+    <resource object="Blueprism.Automate.clsWorkQueuesActions" action="Tag Item" />
+  </stage>
+  <stage stageid="7b493ab1-da1a-463b-a067-de2f9f9290e8" name="Anchor7" type="Anchor">
+    <subsheetid>84bdd8bf-e073-4fa1-9ccf-40f4889c551f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="240" w="10" h="10" />
+    <onsuccess>6b78afc4-fb44-4282-8e92-2ac85c497a88</onsuccess>
+  </stage>
+  <stage stageid="bf17a840-1433-4ae3-ba5a-b5328e075ffa" name="Acquire Lock" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Acquires the lock associated with the given name. If this session already holds the required lock, it will be re-acquired with a new token</narrative>
+    <display x="30" y="-150" />
+    <inputs>
+      <input type="text" name="Name" friendlyname="Name" narrative="The name of the required lock. Mandatory parameter." expr="[Lock Populate]" />
+      <input type="timespan" name="Timeout" friendlyname="Timeout" narrative="The maximum amount of time to await the lock. Default is to wait forever" expr="&quot;00:00:01&quot;" />
+      <input type="text" name="Preferred Token" friendlyname="Preferred Token" narrative="The preferred token to use for the lock. Default behaviour is to generate a new unique token." expr="" />
+      <input type="text" name="Comment" friendlyname="Comment" narrative="The comments to set on the lock" expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Token" friendlyname="Token" narrative="The token registered against the lock. This will be empty if the lock could not be acquired" stage="Token Populate" />
+    </outputs>
+    <onsuccess>57050aaa-fa6b-476b-859b-0429a42e69fe</onsuccess>
+    <resource object="BluePrism.AutomateAppCore.clsEnvironmentLockingBusinessObject" action="Acquire Lock" />
+  </stage>
+  <stage stageid="944d1df4-d486-4793-b3f9-b2322227dc94" name="Token Populate" type="Data">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="-210" y="0" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="57050aaa-fa6b-476b-859b-0429a42e69fe" name="Token?" type="Decision">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="30" y="-105" />
+    <decision expression="[Token Populate] &lt;&gt; &quot;&quot;" />
+    <ontrue>536b3034-7bd7-42f9-86e9-2f7a3697793f</ontrue>
+    <onfalse>1672354a-5cf5-4033-9bfa-f507c4ce58f6</onfalse>
+  </stage>
+  <stage stageid="1672354a-5cf5-4033-9bfa-f507c4ce58f6" name="Anchor8" type="Anchor">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-75" y="-105" w="10" h="10" />
+    <onsuccess>343ba9b6-0acb-48e0-b4ab-fb755260bf80</onsuccess>
+  </stage>
+  <stage stageid="81472d01-fe34-4dbb-91ee-f6089ed50b5a" name="Anchor9" type="Anchor">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-75" y="390" w="10" h="10" />
+    <onsuccess>cd5acb05-8c43-4245-8600-5626dc8998ae</onsuccess>
+  </stage>
+  <stage stageid="98dff062-43e4-4e37-9319-9974b12f7ab2" name="Lock Populate" type="Data">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <display x="-210" y="-30" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">B3 - Populate</initialvalue>
+    <alwaysinit />
+  </stage>
+  <stage stageid="78763337-8364-4b4f-b05c-94e137fe3824" name="Release Lock Populate" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Releases the lock(s) associated with the given name and token</narrative>
+    <display x="30" y="330" />
+    <inputs>
+      <input type="text" name="Name" friendlyname="Name" narrative="The name of the specific lock to be released. Default behaviour is to release all locks with the given token." expr="[Lock Populate]" />
+      <input type="text" name="Comment" friendlyname="Comment" narrative="The comments to set on the lock(s)" expr="" />
+      <input type="text" name="Token" friendlyname="Token" narrative="The token associated with the lock(s) to be released. Mandatory parameter." expr="[Token Populate]" />
+      <input type="flag" name="All Sessions" friendlyname="All Sessions" narrative="True to release locks matching the specified constraints across all sessions; False to only release locks acquired in the current session. Default is False" expr="" />
+      <input type="flag" name="Keep Environment Lock" friendlyname="Keep Environment Lock" narrative="The environment lock will be kept after that lock is released. Default behaviour is to delete the lock." expr="True" />
+    </inputs>
+    <onsuccess>cd5acb05-8c43-4245-8600-5626dc8998ae</onsuccess>
+    <resource object="BluePrism.AutomateAppCore.clsEnvironmentLockingBusinessObject" action="Release Lock" />
+  </stage>
+  <stage stageid="c002480a-1f95-45f9-b10a-21c66e0aa73f" name="Acquire Lock" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Acquires the lock associated with the given name. If this session already holds the required lock, it will be re-acquired with a new token</narrative>
+    <display x="0" y="-345" />
+    <inputs>
+      <input type="text" name="Name" friendlyname="Name" narrative="The name of the required lock. Mandatory parameter." expr="[Lock Write Data]" />
+      <input type="timespan" name="Timeout" friendlyname="Timeout" narrative="The maximum amount of time to await the lock. Default is to wait forever" expr="&quot;00:00:01&quot;" />
+      <input type="text" name="Preferred Token" friendlyname="Preferred Token" narrative="The preferred token to use for the lock. Default behaviour is to generate a new unique token." expr="" />
+      <input type="text" name="Comment" friendlyname="Comment" narrative="The comments to set on the lock" expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Token" friendlyname="Token" narrative="The token registered against the lock. This will be empty if the lock could not be acquired" stage="Token Write Data" />
+    </outputs>
+    <onsuccess>03cfaea9-f945-4b89-b92b-55eceec77b83</onsuccess>
+    <resource object="BluePrism.AutomateAppCore.clsEnvironmentLockingBusinessObject" action="Acquire Lock" />
+  </stage>
+  <stage stageid="974f7228-e45b-4f53-965c-1f64a831820f" name="Release Lock Write Data" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Releases the lock(s) associated with the given name and token</narrative>
+    <display x="0" y="150" />
+    <inputs>
+      <input type="text" name="Name" friendlyname="Name" narrative="The name of the specific lock to be released. Default behaviour is to release all locks with the given token." expr="[Lock Write Data]" />
+      <input type="text" name="Comment" friendlyname="Comment" narrative="The comments to set on the lock(s)" expr="" />
+      <input type="text" name="Token" friendlyname="Token" narrative="The token associated with the lock(s) to be released. Mandatory parameter." expr="[Token Write Data]" />
+      <input type="flag" name="All Sessions" friendlyname="All Sessions" narrative="True to release locks matching the specified constraints across all sessions; False to only release locks acquired in the current session. Default is False" expr="" />
+      <input type="flag" name="Keep Environment Lock" friendlyname="Keep Environment Lock" narrative="The environment lock will be kept after that lock is released. Default behaviour is to delete the lock." expr="True" />
+    </inputs>
+    <onsuccess>a1ed5836-af12-446d-b50e-38cf8063175d</onsuccess>
+    <resource object="BluePrism.AutomateAppCore.clsEnvironmentLockingBusinessObject" action="Release Lock" />
+  </stage>
+  <stage stageid="4ba38158-78e3-49a0-8c23-1c9a6e010c7f" name="Token Write Data" type="Data">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="-345" y="-225" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <alwaysinit />
+  </stage>
+  <stage stageid="cc18b92a-7c4f-409f-a9a6-efe6de215037" name="Lock Write Data" type="Data">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="-345" y="-255" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">B3 - Write Data</initialvalue>
+    <alwaysinit />
+  </stage>
+  <stage stageid="03cfaea9-f945-4b89-b92b-55eceec77b83" name="Token?" type="Decision">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <display x="0" y="-300" />
+    <decision expression="[Token Write Data] &lt;&gt; &quot;&quot;" />
+    <ontrue>e4ad9938-727e-49d0-be8e-6f71b45150d0</ontrue>
+    <onfalse>4de8bfc9-5187-42e1-a475-6034c68550c2</onfalse>
+  </stage>
+  <stage stageid="4de8bfc9-5187-42e1-a475-6034c68550c2" name="Sleep 5" type="Action">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>tempo para que bots aguardem a liberação do excel caso esteja ocupado</narrative>
+    <display x="-90" y="-300" />
+    <inputs>
+      <input type="number" name="Sleep Time (Seconds)" friendlyname="Sleep Time (Seconds)" narrative="The time (in seconds) for which to sleep" expr="5" />
+    </inputs>
+    <onsuccess>8af5d429-6fc2-478c-9196-1506fade4ca9</onsuccess>
+    <resource object="Utility - General" action="Sleep" />
+  </stage>
+  <stage stageid="8af5d429-6fc2-478c-9196-1506fade4ca9" name="Anchor10" type="Anchor">
+    <subsheetid>cd4fd67d-1089-40e6-a039-1c35139c0a51</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-90" y="-345" w="10" h="10" />
+    <onsuccess>c002480a-1f95-45f9-b10a-21c66e0aa73f</onsuccess>
+  </stage>
+  <stage stageid="343ba9b6-0acb-48e0-b4ab-fb755260bf80" name="Sleep 15" type="Action">
+    <subsheetid>2dd766e8-018e-47df-8d5f-ab6ddf6c615c</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Tempo para que outros bots aguardem o bot que popula fila terminar de popular</narrative>
+    <display x="-75" y="135" />
+    <inputs>
+      <input type="number" name="Sleep Time (Seconds)" friendlyname="Sleep Time (Seconds)" narrative="The time (in seconds) for which to sleep" expr="15" />
+    </inputs>
+    <onsuccess>81472d01-fe34-4dbb-91ee-f6089ed50b5a</onsuccess>
+    <resource object="Utility - General" action="Sleep" />
+  </stage>
+  <stage stageid="3c966238-de29-4abf-9d65-73ea0b1306ca" name="Release Lock Populate" type="Action">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Releases the lock(s) associated with the given name and token</narrative>
+    <display x="15" y="60" />
+    <inputs>
+      <input type="text" name="Name" friendlyname="Name" narrative="The name of the specific lock to be released. Default behaviour is to release all locks with the given token." expr="[Lock Populate]" />
+      <input type="text" name="Comment" friendlyname="Comment" narrative="The comments to set on the lock(s)" expr="" />
+      <input type="text" name="Token" friendlyname="Token" narrative="The token associated with the lock(s) to be released. Mandatory parameter." expr="[Token Populate]" />
+      <input type="flag" name="All Sessions" friendlyname="All Sessions" narrative="True to release locks matching the specified constraints across all sessions; False to only release locks acquired in the current session. Default is False" expr="" />
+      <input type="flag" name="Keep Environment Lock" friendlyname="Keep Environment Lock" narrative="The environment lock will be kept after that lock is released. Default behaviour is to delete the lock." expr="True" />
+    </inputs>
+    <onsuccess>a20897e5-4303-4f44-ae16-fa0bbcfbd133</onsuccess>
+    <resource object="BluePrism.AutomateAppCore.clsEnvironmentLockingBusinessObject" action="Release Lock" />
+  </stage>
+  <stage stageid="a20897e5-4303-4f44-ae16-fa0bbcfbd133" name="Release Lock Wite Data" type="Action">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Releases the lock(s) associated with the given name and token</narrative>
+    <display x="15" y="105" />
+    <inputs>
+      <input type="text" name="Name" friendlyname="Name" narrative="The name of the specific lock to be released. Default behaviour is to release all locks with the given token." expr="[Lock Write Data]" />
+      <input type="text" name="Comment" friendlyname="Comment" narrative="The comments to set on the lock(s)" expr="" />
+      <input type="text" name="Token" friendlyname="Token" narrative="The token associated with the lock(s) to be released. Mandatory parameter." expr="[Token Write Data]" />
+      <input type="flag" name="All Sessions" friendlyname="All Sessions" narrative="True to release locks matching the specified constraints across all sessions; False to only release locks acquired in the current session. Default is False" expr="" />
+      <input type="flag" name="Keep Environment Lock" friendlyname="Keep Environment Lock" narrative="The environment lock will be kept after that lock is released. Default behaviour is to delete the lock." expr="True" />
+    </inputs>
+    <onsuccess>f72e520d-b9b7-4192-8c52-3338b47d2808</onsuccess>
+    <resource object="BluePrism.AutomateAppCore.clsEnvironmentLockingBusinessObject" action="Release Lock" />
+  </stage>
+  <stage stageid="582ef02f-e1ae-425d-873e-2ee112b46be3" name="Block1" type="Block">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="30" w="315" h="105" />
+    <font family="Segoe UI" size="10" style="Regular" color="7FB2E5" />
+  </stage>
+  <stage stageid="0af8e3be-0e76-4f77-a141-cf4902d66671" name="Recover2" type="Recover">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit />
+    <display x="195" y="60" />
+    <onsuccess>54394942-44c2-420f-b8da-11eeb7cc4202</onsuccess>
+  </stage>
+  <stage stageid="54394942-44c2-420f-b8da-11eeb7cc4202" name="Resume2" type="Resume">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit />
+    <display x="195" y="105" />
+    <onsuccess>c1a38bc3-1faa-4aaa-bdde-e625ad0f1ff4</onsuccess>
+  </stage>
+  <stage stageid="c1a38bc3-1faa-4aaa-bdde-e625ad0f1ff4" name="Anchor11" type="Anchor">
+    <subsheetid>98e7738e-321d-4e8f-8a01-f2686d36155b</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="195" y="180" w="10" h="10" />
+    <onsuccess>f72e520d-b9b7-4192-8c52-3338b47d2808</onsuccess>
+  </stage>
+  <stage stageid="d28e5d57-f1a8-4d2b-bacf-53d3794a86c4" name="Recover3" type="Recover">
+    <loginhibit />
+    <display x="360" y="-60" />
+    <onsuccess>eed1503f-5d12-4f10-a5a9-752fb225102b</onsuccess>
+  </stage>
+  <stage stageid="eed1503f-5d12-4f10-a5a9-752fb225102b" name="Get Exception Data" type="MultipleCalculation">
+    <loginhibit onsuccess="true" />
+    <display x="360" y="0" />
+    <onsuccess>f6e39fb0-be35-44cf-b103-8f867048d653</onsuccess>
+    <steps>
+      <calculation expression="ExceptionType()" stage="ExceptionType" />
+      <calculation expression="ExceptionDetail() " stage="ExceptionDetail" />
+    </steps>
+  </stage>
+  <stage stageid="6a95daa8-f550-4c39-80e4-47594c2781f8" name="Close Down" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="360" y="120" />
+    <onsuccess>2a4ee62d-0a74-4552-9d95-61ddd1b3ffc0</onsuccess>
+    <processid>98e7738e-321d-4e8f-8a01-f2686d36155b</processid>
+  </stage>
+  <stage stageid="2a4ee62d-0a74-4552-9d95-61ddd1b3ffc0" name="Resume" type="Resume">
+    <loginhibit />
+    <display x="360" y="180" />
+    <onsuccess>ff55b9b8-012e-42b3-9300-7b77bc78f58b</onsuccess>
+  </stage>
+  <stage stageid="ff55b9b8-012e-42b3-9300-7b77bc78f58b" name="Anchor12" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="360" y="270" w="10" h="10" />
+    <onsuccess>246f59a7-e963-4461-8d30-fca1b9b172eb</onsuccess>
+  </stage>
+  <stage stageid="dbc2ce8a-1274-43cb-a85a-8f83b3207fbe" name="Envia Email" type="SubSheetInfo">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="5213d59d-e73e-4c83-b77f-b3fb2e9fce16" name="Start" type="Start">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <display x="-30" y="-135" />
+    <inputs>
+      <input type="flag" name="Sucess?" stage="Sucess?" />
+    </inputs>
+    <onsuccess>c53928ef-fbb6-4971-8616-dcee84c81710</onsuccess>
+  </stage>
+  <stage stageid="8bbddc3c-157d-4b99-a18a-b53167c39fa7" name="End" type="End">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <display x="-30" y="240" />
+  </stage>
+  <stage stageid="7590d93d-6a2e-4605-9e13-86cea3a03b02" name="Envia Email" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="180" />
+    <inputs>
+      <input type="flag" name="Sucess?" friendlyname="Sucess?" expr="True" />
+    </inputs>
+    <onsuccess>246f59a7-e963-4461-8d30-fca1b9b172eb</onsuccess>
+    <processid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</processid>
+  </stage>
+  <stage stageid="f6e39fb0-be35-44cf-b103-8f867048d653" name="Envia Email" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="360" y="60" />
+    <inputs>
+      <input type="flag" name="Sucess?" friendlyname="Sucess?" expr="False" />
+    </inputs>
+    <onsuccess>6a95daa8-f550-4c39-80e4-47594c2781f8</onsuccess>
+    <processid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</processid>
+  </stage>
+  <stage stageid="6c2dc8e8-20ad-4169-a674-b7ea6ed68bd5" name="Configure" type="Action">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="0" />
+    <inputs>
+      <input type="text" name="Username" friendlyname="Username" narrative="The POP3 and SMTP Username" expr="[Username]" />
+      <input type="password" name="Password" friendlyname="Password" narrative="The POP3 and SMTP Password" expr="[Password]" />
+      <input type="text" name="POP3 Server" friendlyname="POP3 Server" narrative="The POP3 Server address e.g. pop.domain.com" expr="&quot;pop.gmail.com&quot;" />
+      <input type="number" name="POP3 Port" friendlyname="POP3 Port" narrative="The POP3 Port, e.g. 110 or 995" expr="995" />
+      <input type="flag" name="POP3 UseSSL" friendlyname="POP3 UseSSL" narrative="Whether to use SSL for POP3" expr="True" />
+      <input type="text" name="SMTP Server" friendlyname="SMTP Server" narrative="The SMTP Server address e.g. smtp.domain.com" expr="&quot;smtp.gmail.com&quot;" />
+      <input type="number" name="SMTP Port" friendlyname="SMTP Port" narrative="The SMTP Port, e.g 25 or 465" expr="587" />
+      <input type="flag" name="SMTP UseSSL" friendlyname="SMTP UseSSL" narrative="Whether to use SSL for SMTP" expr="True" />
+      <input type="flag" name="Use OAuth2" friendlyname="Use OAuth2" narrative="Optional: Flag that indicates OAuth2 authentication should be used when connecting to the POP3 server." expr="" />
+      <input type="text" name="OAuth2 Access Token" friendlyname="OAuth2 Access Token" narrative="Optional: A valid, non-expired OAuth2 access token for the target platform (ex. Exchange Online, Google Mail, etc). Note: Use of OAuth only applies to POP3. SMTP AUTH is still used for SMTP connections." expr="" />
+      <input type="text" name="IMAP Server" friendlyname="IMAP Server" narrative="The IMAP Server. Supplied by your IT dept or ISP" expr="" />
+      <input type="number" name="IMAP Port" friendlyname="IMAP Port" narrative="The IMAP Port 993 or in some cases 143" expr="" />
+      <input type="flag" name="UseStartTLS" friendlyname="UseStartTLS" narrative="Use StartTLS for IMAP Server" expr="" />
+    </inputs>
+    <onsuccess>338b6c08-e721-4e08-9046-4b3d253bd3c4</onsuccess>
+    <resource object="Email - POP3/SMTP/IMAP" action="Configure" />
+  </stage>
+  <stage stageid="34afe5e4-1a3d-4647-a991-03d83706b98d" name="Username" type="Data">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="30" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="9e774521-ddfb-46e2-91d9-a536d1aebc1e" name="Password" type="Data">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="60" w="120" h="30" />
+    <datatype>password</datatype>
+    <initialvalueenc>
+    </initialvalueenc>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="9aced4bd-d6fd-48d4-8af3-75fc6c422e0c" name="Send Message" type="Action">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="195" />
+    <inputs>
+      <input type="text" name="From" friendlyname="From" narrative="The email address of the sender." expr="[Username]" />
+      <input type="text" name="To" friendlyname="To" narrative="The email address of the recipient. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="[Destinatario]" />
+      <input type="text" name="CC" friendlyname="CC" narrative="The email address of the recipient in CC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="BCC" friendlyname="BCC" narrative="The email address of the recipient in BCC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="Subject" friendlyname="Subject" narrative="The subject of the email." expr="&quot;B3 - Consulta de Ativos COMPLETA&quot;" />
+      <input type="text" name="Body" friendlyname="Body" narrative="The body of the email." expr="&quot;A consulta de ativos do robô B3 foi finalizada.&quot;" />
+      <input type="collection" name="Attachments" friendlyname="Attachments" narrative="A Collection containing a list of files to add to the email as attachments." expr="[Files]" />
+      <input type="flag" name="BodyIsHTML" friendlyname="BodyIsHTML" narrative="Indicates if the body should be sent as HTML" expr="False" />
+    </inputs>
+    <onsuccess>8bbddc3c-157d-4b99-a18a-b53167c39fa7</onsuccess>
+    <resource object="Email - POP3/SMTP/IMAP" action="Send Message" />
+  </stage>
+  <stage stageid="349d98ae-783a-410b-9ea6-68fa71ce6031" name="Files" type="Collection">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <display x="-210" y="120" w="120" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Path" type="text" />
+    </collectioninfo>
+  </stage>
+  <stage stageid="f14aeeb8-f80f-48c9-9991-85a1b187b3f6" name="Armazena caminho do arquivo" type="Calculation">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="150" />
+    <onsuccess>9aced4bd-d6fd-48d4-8af3-75fc6c422e0c</onsuccess>
+    <calculation expression="[Camiho Arquivo - Ativos]" stage="Files.Path" />
+  </stage>
+  <stage stageid="f26e9246-2071-45b9-ac65-dd6f9371e3bb" name="Add Row" type="Action">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="105" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Files&quot;" />
+    </inputs>
+    <onsuccess>f14aeeb8-f80f-48c9-9991-85a1b187b3f6</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Add Row" />
+  </stage>
+  <stage stageid="b064a15c-213e-4006-97b3-2d5c3ec7f0d7" name="Destinatario" type="Data">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-210" y="90" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="dd9e9774-6d4e-451b-a05e-5d9eba3e6eac" name="Sucess?" type="Data">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <display x="-225" y="-15" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="338b6c08-e721-4e08-9046-4b3d253bd3c4" name="Sucess?" type="Decision">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <display x="-30" y="45" />
+    <decision expression="[Sucess?]" />
+    <ontrue>f26e9246-2071-45b9-ac65-dd6f9371e3bb</ontrue>
+    <onfalse>14de9aae-597c-4f1e-8ce9-021b29f81179</onfalse>
+  </stage>
+  <stage stageid="14de9aae-597c-4f1e-8ce9-021b29f81179" name="Send Message" type="Action">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="75" y="45" />
+    <inputs>
+      <input type="text" name="From" friendlyname="From" narrative="The email address of the sender." expr="[Username]" />
+      <input type="text" name="To" friendlyname="To" narrative="The email address of the recipient. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="[Destinatario]" />
+      <input type="text" name="CC" friendlyname="CC" narrative="The email address of the recipient in CC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="BCC" friendlyname="BCC" narrative="The email address of the recipient in BCC. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="" />
+      <input type="text" name="Subject" friendlyname="Subject" narrative="The subject of the email." expr="&quot;ERRO - B3 - Consulta de Ativos&quot;" />
+      <input type="text" name="Body" friendlyname="Body" narrative="The body of the email." expr="&quot;A consulta de ativos do robô B3 NÃO foi finalizada.&quot; &amp;&#xA;NewLine() &amp; &#xA;[ExceptionType] &amp;&#xA;[ExceptionDetail]" />
+      <input type="collection" name="Attachments" friendlyname="Attachments" narrative="A Collection containing a list of files to add to the email as attachments." expr="" />
+      <input type="flag" name="BodyIsHTML" friendlyname="BodyIsHTML" narrative="Indicates if the body should be sent as HTML" expr="False" />
+    </inputs>
+    <onsuccess>92280efa-0fe7-4722-bca7-9551393385bf</onsuccess>
+    <resource object="Email - POP3/SMTP/IMAP" action="Send Message" />
+  </stage>
+  <stage stageid="92280efa-0fe7-4722-bca7-9551393385bf" name="Anchor5" type="Anchor">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="75" y="240" w="10" h="10" />
+    <onsuccess>8bbddc3c-157d-4b99-a18a-b53167c39fa7</onsuccess>
+  </stage>
+  <stage stageid="c53928ef-fbb6-4971-8616-dcee84c81710" name="Get Sender Email" type="Action">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Get the specified set of credentials.
+
+An Exception will occur if access to the credentials is not allowed, based on the running Resource, Process and User.</narrative>
+    <display x="-30" y="-90" />
+    <inputs>
+      <input type="text" name="Credentials Name" friendlyname="Credentials Name" narrative="The name of the credentials to get" expr="&quot;B3 Consulta de Ativos - Email Remetente&quot;" />
+    </inputs>
+    <outputs>
+      <output type="password" name="Password" friendlyname="Password" narrative="The password" stage="Password" />
+      <output type="text" name="Username" friendlyname="Username" narrative="The user name" stage="Username" />
+      <output type="date" name="Expiry Date" friendlyname="Expiry Date" narrative="The expiry date" stage="" />
+      <output type="text" name="Status" friendlyname="Status" narrative="The status" stage="" />
+    </outputs>
+    <onsuccess>645ad86c-43d8-45d4-a7da-199bc2d4d931</onsuccess>
+    <resource object="Blueprism.Automate.clsCredentialsActions" action="Get" />
+  </stage>
+  <stage stageid="645ad86c-43d8-45d4-a7da-199bc2d4d931" name="Get Dest Email" type="Action">
+    <subsheetid>fbb8c68e-a5bf-4c80-b65a-41ff8c2b4791</subsheetid>
+    <loginhibit onsuccess="true" />
+    <narrative>Get the specified set of credentials.
+
+An Exception will occur if access to the credentials is not allowed, based on the running Resource, Process and User.</narrative>
+    <display x="-30" y="-45" />
+    <inputs>
+      <input type="text" name="Credentials Name" friendlyname="Credentials Name" narrative="The name of the credentials to get" expr="&quot;B3 Consulta de Ativos - Email Destinatario&quot;" />
+    </inputs>
+    <outputs>
+      <output type="password" name="Password" friendlyname="Password" narrative="The password" stage="" />
+      <output type="text" name="Username" friendlyname="Username" narrative="The user name" stage="Destinatario" />
+      <output type="date" name="Expiry Date" friendlyname="Expiry Date" narrative="The expiry date" stage="" />
+      <output type="text" name="Status" friendlyname="Status" narrative="The status" stage="" />
+    </outputs>
+    <onsuccess>6c2dc8e8-20ad-4169-a674-b7ea6ed68bd5</onsuccess>
+    <resource object="Blueprism.Automate.clsCredentialsActions" action="Get" />
+  </stage>
+</process>
