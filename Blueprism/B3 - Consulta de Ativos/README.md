@@ -1,5 +1,3 @@
-
-
 # 🤖 B3 - Consulta de Ativos (Blue Prism)
 
 Este robô foi desenvolvido na versão **7.4 do Blue Prism**, como parte do curso **"Blueprism do básico ao avançado"** do canal [RPA Hour](https://www.youtube.com/@rpahour), ministrado por **Davi Arndt**. Representa meu primeiro contato com a ferramenta Blue Prism.
@@ -65,6 +63,13 @@ A planilha Excel deve conter a seguinte estrutura:
 ### Queue
 
 - `B3 - Consulta de Ativos`: Queue utilizada pelo processo para gerenciar os itens.
+
+---
+
+## 🎥 Demonstração
+
+Assista ao vídeo de demonstração do projeto no YouTube:  
+📺 [https://www.youtube.com/watch?v=b1MKwVtr3y4](https://www.youtube.com/watch?v=b1MKwVtr3y4)
 
 ---
 
