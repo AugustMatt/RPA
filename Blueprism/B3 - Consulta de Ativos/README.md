@@ -33,11 +33,11 @@ Esses dados são extraídos de uma planilha Excel e, ao final do processo, os re
 
 A planilha Excel deve conter a seguinte estrutura:
 
-| Ativo | Preço | Data | Hora | Data Consulta Robô |
-|-------|-------|------|------|---------------------|
-| PETR4 |       |      |      |                     |
-| VALE3 |       |      |      |                     |
-| ...   |       |      |      |                     |
+| Ativo | Preço |  Oscilação  | Data | Hora | Data Consulta Robô |
+|-------|-------|-------------|------|------|--------------------|
+| PETR4 |       |             |      |      |                    |
+| VALE3 |       |             |      |      |                    |
+| ...   |       |             |      |      |                    |
 
 > Apenas a coluna **A (Ativo)** deve estar preenchida inicialmente. As demais serão preenchidas automaticamente pelo robô.
 
