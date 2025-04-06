@@ -1,11 +1,27 @@
 ﻿<process name="Minha Claro Residencial Emitir Fatura" version="1.0" bpversion="7.4.0.14902" narrative="Processo que emite a fatura da net/claro residencial e envia um email com ela anexada" byrefcollection="true" processrunningmessage="" disableversioning="false" preferredid="ff600ff0-cf2a-4959-a9dc-f50add10e451" published="true" published_type="2">
   <view>
-    <camerax>-11</camerax>
-    <cameray>-24</cameray>
+    <camerax>21</camerax>
+    <cameray>-6</cameray>
     <zoom version="2">1.875</zoom>
   </view>
   <preconditions />
   <endpoint narrative="" />
+  <subsheet subsheetid="74ffeb75-be1f-4205-ae96-e8d2034342d5" type="Normal" published="False">
+    <name>Criar Pasta de Download Temporario</name>
+    <view>
+      <camerax>-61</camerax>
+      <cameray>-21</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="6fc714f0-8c41-4afe-af77-0d1cc396d45f" type="Normal" published="False">
+    <name>Startup Chrome</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-21</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
   <subsheet subsheetid="cb143566-1f9c-49a9-9ae5-8746e8b1435e" type="Normal" published="False">
     <name>Close Down</name>
     <view>
@@ -14,19 +30,27 @@
       <zoom version="2">2.1875</zoom>
     </view>
   </subsheet>
-  <subsheet subsheetid="6fc714f0-8c41-4afe-af77-0d1cc396d45f" type="Normal" published="False">
-    <name>Startup</name>
+  <subsheet subsheetid="d0e4f283-9a18-4018-8ce4-5820511f5138" type="Normal" published="False">
+    <name>Contar Arquivos Na Pasta Temporaria</name>
     <view>
       <camerax>0</camerax>
-      <cameray>-21</cameray>
-      <zoom version="2">1.875</zoom>
+      <cameray>90</cameray>
+      <zoom version="2">2.1875</zoom>
     </view>
   </subsheet>
-  <subsheet subsheetid="665aaafd-ca87-46eb-a372-4334929f9159" type="Normal" published="False">
-    <name>Enviar Email</name>
+  <subsheet subsheetid="d560e673-686e-4f01-923e-f77263725eff" type="Normal" published="False">
+    <name>Ultimo Arquivo Modificado</name>
     <view>
       <camerax>0</camerax>
-      <cameray>-135</cameray>
+      <cameray>195</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="fcb5101d-b461-4ad0-9e98-dfca902f02c0" type="Normal" published="False">
+    <name>Checar Novo Download</name>
+    <view>
+      <camerax>67</camerax>
+      <cameray>21</cameray>
       <zoom version="2">2.1875</zoom>
     </view>
   </subsheet>
@@ -34,19 +58,27 @@
     <name>Configurar Email</name>
     <view>
       <camerax>0</camerax>
-      <cameray>-63</cameray>
+      <cameray>0</cameray>
       <zoom version="2">1.875</zoom>
     </view>
   </subsheet>
+  <subsheet subsheetid="665aaafd-ca87-46eb-a372-4334929f9159" type="Normal" published="False">
+    <name>Enviar Email</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>240</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
   <stage stageid="655b66fc-18f3-4060-a591-1aa2f8d26185" name="Start" type="Start">
-    <display x="-30" y="-150" />
-    <onsuccess>0abeb131-44fe-4e26-8a17-447aa7238757</onsuccess>
+    <display x="-135" y="-150" />
+    <onsuccess>166cf469-cfab-4ba0-8733-7f4750fd9e08</onsuccess>
   </stage>
   <stage stageid="092de232-9c81-4678-9eba-a14c934f2a7f" name="End" type="End">
-    <display x="-30" y="315" />
+    <display x="-30" y="270" />
   </stage>
   <stage stageid="0aae49cf-76ed-46e4-bce7-4a43accffa56" name="Stage1" type="ProcessInfo">
-    <display x="-315" y="-105" w="150" h="90" />
+    <display x="-270" y="-120" w="150" h="90" />
   </stage>
   <stage stageid="63ffefb0-2b0d-40df-9da8-b1e2deac8051" name="Adquire Credenciais de Acesso" type="Action">
     <loginhibit onsuccess="true" />
@@ -67,21 +99,23 @@ An Exception will occur if access to the credentials is not allowed, based on th
     <resource object="Blueprism.Automate.clsCredentialsActions" action="Get" />
   </stage>
   <stage stageid="db94ffdf-24aa-4890-a67f-4e9075b3dfd7" name="Username" type="Data">
-    <display x="-180" y="-15" />
+    <narrative>Nome de usuario para acesso ao sistema de NET/Claro</narrative>
+    <display x="-270" y="165" w="150" h="30" />
     <datatype>text</datatype>
     <initialvalue />
     <private />
     <alwaysinit />
   </stage>
   <stage stageid="280b9b16-583d-45c6-bdf9-444e30cbe7e1" name="Password" type="Data">
-    <display x="-120" y="-15" />
+    <narrative>Senha de acesso ao sistema da NET/Claro</narrative>
+    <display x="-270" y="195" w="150" h="30" />
     <datatype>password</datatype>
     <initialvalueenc>
     </initialvalueenc>
     <private />
     <alwaysinit />
   </stage>
-  <stage stageid="38d0796c-1292-4d13-afa2-ff40f9a29c8c" name="Startup" type="SubSheetInfo">
+  <stage stageid="38d0796c-1292-4d13-afa2-ff40f9a29c8c" name="Startup Chrome" type="SubSheetInfo">
     <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
     <narrative>Inicializa o navegador e verifica condições de inicialização</narrative>
     <display x="-195" y="-105" w="150" h="90" />
@@ -89,21 +123,11 @@ An Exception will occur if access to the credentials is not allowed, based on th
   <stage stageid="68c7e379-6743-429d-92e8-549b5aa74922" name="Start" type="Start">
     <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
     <display x="-45" y="-135" />
-    <onsuccess>295e05cc-f1e3-4dc7-be0d-60fd2c79ae13</onsuccess>
+    <onsuccess>f18a2d93-bbe1-481c-aa20-739b2a4e09d2</onsuccess>
   </stage>
   <stage stageid="4ad3d6af-e4af-4f83-a94b-e839e7fb4eef" name="End" type="End">
     <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
     <display x="-45" y="0" />
-  </stage>
-  <stage stageid="295e05cc-f1e3-4dc7-be0d-60fd2c79ae13" name="Abrir Site" type="Action">
-    <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="-45" y="-90" />
-    <inputs>
-      <input type="flag" name="headless?" friendlyname="headless?" expr="[modo headless]" />
-    </inputs>
-    <onsuccess>433b0dba-930e-409f-9760-dafac9feca49</onsuccess>
-    <resource object="Minha Claro Residencial - Emitir Fatura" action="Launch Google Chrome" />
   </stage>
   <stage stageid="433b0dba-930e-409f-9760-dafac9feca49" name="Check Cookies" type="Action">
     <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
@@ -112,9 +136,9 @@ An Exception will occur if access to the credentials is not allowed, based on th
     <onsuccess>4ad3d6af-e4af-4f83-a94b-e839e7fb4eef</onsuccess>
     <resource object="Minha Claro Residencial - Emitir Fatura" action="Accept Cookies" />
   </stage>
-  <stage stageid="0abeb131-44fe-4e26-8a17-447aa7238757" name="Startup" type="SubSheet">
+  <stage stageid="0abeb131-44fe-4e26-8a17-447aa7238757" name="Startup Chrome" type="SubSheet">
     <loginhibit onsuccess="true" />
-    <display x="75" y="-150" />
+    <display x="-30" y="-75" />
     <onsuccess>aec5cfc1-8bbf-44ea-bd76-225782396b3d</onsuccess>
     <processid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</processid>
   </stage>
@@ -148,21 +172,21 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="b879aaaa-f6db-47e7-a169-c3fda0ec2342" name="Baixar Fatura" type="Action">
     <loginhibit onsuccess="true" />
-    <display x="75" y="135" />
+    <display x="150" y="75" />
     <outputs>
       <output type="text" name="Downloaded File Path" friendlyname="Downloaded File Path" stage="Caminho do arquivo baixado" />
     </outputs>
-    <onsuccess>e5eb076b-fbd1-48f7-985b-0c6c59914a43</onsuccess>
+    <onsuccess>4f767f94-59b9-40ea-9cb4-71d05c888bed</onsuccess>
     <resource object="Minha Claro Residencial - Emitir Fatura" action="Emiitir Fatura" />
   </stage>
   <stage stageid="b646d24e-392d-4bc2-8d31-8ae82de377d1" name="Logout" type="Action">
     <loginhibit onsuccess="true" />
-    <display x="-30" y="180" />
+    <display x="-30" y="135" />
     <onsuccess>e861cae8-1e78-4b98-9124-28f6f1a73e5f</onsuccess>
     <resource object="Minha Claro Residencial - Emitir Fatura" action="Logout" />
   </stage>
   <stage stageid="a047585b-648c-418b-998f-8866328b788c" name="Caminho do arquivo baixado" type="Data">
-    <display x="-165" y="135" w="180" h="30" />
+    <display x="-270" y="240" w="150" h="30" />
     <datatype>text</datatype>
     <initialvalue xml:space="preserve">""</initialvalue>
     <private />
@@ -170,7 +194,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="e861cae8-1e78-4b98-9124-28f6f1a73e5f" name="Fechar Navegador" type="Action">
     <loginhibit onsuccess="true" />
-    <display x="-30" y="225" />
+    <display x="-30" y="180" />
     <onsuccess>910f0d7e-3817-4024-ae3e-bce1519304c2</onsuccess>
     <resource object="Minha Claro Residencial - Emitir Fatura" action="Close Google Chrome" />
   </stage>
@@ -184,7 +208,6 @@ An Exception will occur if access to the credentials is not allowed, based on th
     <display x="0" y="-135" />
     <inputs>
       <input type="text" name="Caminho do arquivo" stage="Caminho do arquivo" />
-      <input type="flag" name="Emitiu Fatura" stage="Emitiu Fatura?" />
     </inputs>
     <onsuccess>bd223b01-38ca-4df3-8048-75f94a818197</onsuccess>
   </stage>
@@ -194,7 +217,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="5f414353-4774-41ac-8d55-b72a14625b37" name="Caminho do arquivo" type="Data">
     <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
-    <display x="-210" y="0" w="120" h="30" />
+    <display x="-210" y="-30" w="120" h="30" />
     <datatype>text</datatype>
     <initialvalue />
     <private />
@@ -280,7 +303,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="f1837b8b-744a-464f-9152-c81eab5085a5" name="Remetente Email" type="Data">
     <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
-    <display x="-210" y="30" w="120" h="30" />
+    <display x="-210" y="0" w="120" h="30" />
     <datatype>text</datatype>
     <initialvalue />
     <private />
@@ -288,7 +311,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="816e947b-3d87-45cc-8958-a0ff9c855852" name="Remetente Senha" type="Data">
     <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
-    <display x="-210" y="60" w="120" h="30" />
+    <display x="-210" y="30" w="120" h="30" />
     <datatype>password</datatype>
     <initialvalueenc>
     </initialvalueenc>
@@ -316,7 +339,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="f3ebbad7-e883-4a73-bc97-59a00469045d" name="Destinatario Email" type="Data">
     <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
-    <display x="-210" y="90" w="120" h="30" />
+    <display x="-210" y="60" w="120" h="30" />
     <datatype>text</datatype>
     <initialvalue />
     <private />
@@ -443,7 +466,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="d1063c56-bac1-4363-a9c5-d51dc6c830e0" name="Email Server Configs" type="Collection">
     <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
-    <display x="-210" y="135" w="90" h="30" />
+    <display x="-210" y="105" w="90" h="30" />
     <datatype>collection</datatype>
     <private />
     <alwaysinit />
@@ -458,7 +481,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="95100399-c163-4ebf-aa23-d9cad55c9b97" name="Attached Files Paths" type="Collection">
     <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
-    <display x="-210" y="180" />
+    <display x="-210" y="150" />
     <datatype>collection</datatype>
     <private />
     <alwaysinit />
@@ -492,10 +515,9 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="910f0d7e-3817-4024-ae3e-bce1519304c2" name="Enviar Email" type="SubSheet">
     <loginhibit onsuccess="true" />
-    <display x="-30" y="270" />
+    <display x="-30" y="225" />
     <inputs>
       <input type="text" name="Caminho do arquivo" friendlyname="Caminho do arquivo" expr="[Caminho do arquivo baixado]" />
-      <input type="flag" name="Emitiu Fatura" friendlyname="Emitiu Fatura" expr="[Emitiu Fatura]" />
     </inputs>
     <onsuccess>092de232-9c81-4678-9eba-a14c934f2a7f</onsuccess>
     <processid>665aaafd-ca87-46eb-a372-4334929f9159</processid>
@@ -512,7 +534,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="a5edca65-eb58-4eb4-b7bb-39c7b4755ea2" name="Tentativas Maximas" type="Data">
     <loginhibit onsuccess="true" />
-    <display x="-330" y="0" w="120" h="30" />
+    <display x="-270" y="90" w="150" h="30" />
     <datatype>number</datatype>
     <initialvalue>3</initialvalue>
     <private />
@@ -521,7 +543,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   <stage stageid="d4461e9c-c1da-4c49-8819-211d9bcca3a5" name="Tentativa Atual" type="Data">
     <loginhibit onsuccess="true" />
     <narrative>Tentativa atual de navegação. Caso ocorra falha durante a navegação é incrementada. Caso atinja um maximo pre-definido, o robô ira parar e enviar mensagem de erro</narrative>
-    <display x="-330" y="-30" w="120" h="30" />
+    <display x="-270" y="60" w="150" h="30" />
     <datatype>number</datatype>
     <initialvalue>1</initialvalue>
     <private />
@@ -567,7 +589,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   <stage stageid="d0804f0f-13bc-4717-9c48-5ed8e08d35bb" name="Tentar Novamente Em" type="Data">
     <loginhibit onsuccess="true" />
     <narrative>Tempo em segundos antes de iniciar uma nova tentativa</narrative>
-    <display x="-330" y="30" w="120" h="30" />
+    <display x="-270" y="120" w="150" h="30" />
     <datatype>number</datatype>
     <initialvalue>60</initialvalue>
     <private />
@@ -585,7 +607,7 @@ An Exception will occur if access to the credentials is not allowed, based on th
   <stage stageid="2c5c8c9e-7e80-46c2-a9ec-cd5d7ff2855a" name="Proxima Tentativa" type="Calculation">
     <loginhibit onsuccess="true" />
     <display x="270" y="-150" />
-    <onsuccess>0abeb131-44fe-4e26-8a17-447aa7238757</onsuccess>
+    <onsuccess>166cf469-cfab-4ba0-8733-7f4750fd9e08</onsuccess>
     <calculation expression="[Tentativa Atual]+1" stage="Tentativa Atual" />
   </stage>
   <stage stageid="95155f59-7e82-458f-bd74-f6a2ab552836" name="Resume1" type="Resume">
@@ -593,32 +615,10 @@ An Exception will occur if access to the credentials is not allowed, based on th
     <display x="465" y="-150" />
     <onsuccess>4b965828-d101-4a78-b483-41a5ceaa8e3d</onsuccess>
   </stage>
-  <stage stageid="ac5ff717-1e31-4ecb-b87c-23c87cf9ea5e" name="Emitiu Fatura" type="Data">
-    <loginhibit onsuccess="true" />
-    <display x="-330" y="60" w="120" h="30" />
-    <datatype>flag</datatype>
-    <initialvalue>False</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="e5eb076b-fbd1-48f7-985b-0c6c59914a43" name="Emitiu Fatura Sim" type="Calculation">
-    <loginhibit onsuccess="true" />
-    <display x="-30" y="135" />
-    <onsuccess>b646d24e-392d-4bc2-8d31-8ae82de377d1</onsuccess>
-    <calculation expression="True" stage="Emitiu Fatura" />
-  </stage>
-  <stage stageid="325197bd-e205-41be-9f1c-fcd688df5410" name="Emitiu Fatura?" type="Data">
-    <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
-    <display x="-210" y="-30" w="120" h="30" />
-    <datatype>flag</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
   <stage stageid="4c45159a-f14c-4e63-9031-2f86cbf7f5eb" name="Emitiu Fatura?" type="Decision">
     <subsheetid>665aaafd-ca87-46eb-a372-4334929f9159</subsheetid>
     <display x="0" y="90" />
-    <decision expression="[Emitiu Fatura?]" />
+    <decision expression="[Caminho do arquivo]&lt;&gt;&quot;&quot;" />
     <ontrue>8a99d69a-301f-4548-aa19-e54857ac7a3d</ontrue>
     <onfalse>fe340828-e810-4257-8573-cb56e42f2ed6</onfalse>
   </stage>
@@ -649,13 +649,15 @@ An Exception will occur if access to the credentials is not allowed, based on th
     </steps>
   </stage>
   <stage stageid="c760b346-8991-4eb4-a0f6-ff96baa9f7b1" name="ExceptionType" type="Data">
-    <display x="-345" y="105" w="90" h="30" />
+    <narrative>Armazena tipo da exception em caso de falha de execução</narrative>
+    <display x="-270" y="285" w="150" h="30" />
     <datatype>text</datatype>
     <initialvalue />
     <alwaysinit />
   </stage>
   <stage stageid="1dc792da-6000-4710-913d-acb6c5361af6" name="ExceptionDetail" type="Data">
-    <display x="-345" y="135" w="90" h="30" />
+    <narrative>Armazena o texto da exception em caso de falha de execução</narrative>
+    <display x="-270" y="315" w="150" h="30" />
     <datatype>text</datatype>
     <initialvalue />
     <alwaysinit />
@@ -697,7 +699,6 @@ An Exception will occur if access to the credentials is not allowed, based on th
     <display x="660" y="30" />
     <inputs>
       <input type="text" name="Caminho do arquivo" friendlyname="Caminho do arquivo" expr="[Caminho do arquivo baixado]" />
-      <input type="flag" name="Emitiu Fatura" friendlyname="Emitiu Fatura" expr="[Emitiu Fatura]" />
     </inputs>
     <onsuccess>ad8ef38f-0528-437f-b2b5-cd0cdafc0e7e</onsuccess>
     <processid>665aaafd-ca87-46eb-a372-4334929f9159</processid>
@@ -718,12 +719,12 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="9e6d4384-7d04-458c-8f46-7a03008afb31" name="Recover1" type="Recover">
     <loginhibit />
-    <display x="150" y="75" />
+    <display x="225" y="75" />
     <onsuccess>5c375a94-c90c-410f-94a5-7275a18b2978</onsuccess>
   </stage>
   <stage stageid="5c375a94-c90c-410f-94a5-7275a18b2978" name="Logout" type="Action">
     <loginhibit onsuccess="true" />
-    <display x="225" y="75" />
+    <display x="225" y="135" />
     <onsuccess>972c4a0c-f99c-4f4a-b13f-4cb3f28ceda6</onsuccess>
     <resource object="Minha Claro Residencial - Emitir Fatura" action="Logout" />
   </stage>
@@ -739,15 +740,633 @@ An Exception will occur if access to the credentials is not allowed, based on th
   </stage>
   <stage stageid="972c4a0c-f99c-4f4a-b13f-4cb3f28ceda6" name="Anchor6" type="Anchor">
     <loginhibit onsuccess="true" />
-    <display x="360" y="75" w="10" h="10" />
+    <display x="360" y="135" w="10" h="10" />
     <onsuccess>8e169285-eb5a-4328-93fd-1fd035e96466</onsuccess>
   </stage>
-  <stage stageid="0aba117c-f707-4b93-8aa1-42c8b939ecc3" name="modo headless" type="Data">
+  <stage stageid="b9591505-f90e-4c8e-976a-4174427f41b6" name="Criar Pasta de Download Temporario" type="SubSheetInfo">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <narrative>Cria/Limpa pasta temporaria onde o robô ira baixar o arquivo da fatura</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="972d22ca-5a15-4156-a84b-0564ec35b9c7" name="Start" type="Start">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="120" y="-135" />
+    <onsuccess>c28215ec-8184-4a19-ae08-8cf254a224e0</onsuccess>
+  </stage>
+  <stage stageid="612cf58e-195b-4efd-80be-255d6c2678a4" name="End" type="End">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="210" y="90" />
+  </stage>
+  <stage stageid="c28215ec-8184-4a19-ae08-8cf254a224e0" name="Verificar diretorio de download" type="Action">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
     <loginhibit onsuccess="true" />
-    <narrative>ATENÇÃO: O MODO HEADLESS FAZ A PAGINA BLOQUEAR, IMPEDINDO QUALQUER EXECUÇÃO DO ROBÔ. ENTRETANDO ELE FOI IMPLEMENTADO POR MOTIVOS DE PRATICA.</narrative>
-    <display x="-150" y="-150" w="90" h="30" />
+    <display x="120" y="-90" />
+    <inputs>
+      <input type="text" name="Directory Name" friendlyname="Directory Name" narrative="The directory to check exists" expr="[Caminho Pasta Download Temporario]" />
+    </inputs>
+    <outputs>
+      <output type="flag" name="Exists" friendlyname="Exists" narrative="True if the directory exists" stage="Diretorio Temporario Existe" />
+    </outputs>
+    <onsuccess>1615d940-c1bf-42d2-9a5d-237024bb8fa0</onsuccess>
+    <resource object="Utility - File Management" action="Directory Exists" />
+  </stage>
+  <stage stageid="c972c69d-2a98-46be-8f4e-97fd0e644209" name="Diretorio Temporario Existe" type="Data">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="-195" y="-30" w="150" h="30" />
     <datatype>flag</datatype>
-    <initialvalue>False</initialvalue>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="1615d940-c1bf-42d2-9a5d-237024bb8fa0" name="Diretorio Existe?" type="Decision">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <loginhibit />
+    <display x="120" y="-45" />
+    <decision expression="[Diretorio Temporario Existe]" />
+    <ontrue>2c588bf4-3c39-4c2e-a533-9cf8fc8e55a4</ontrue>
+    <onfalse>e1ef66fc-045e-4d2e-9002-d850c5091181</onfalse>
+  </stage>
+  <stage stageid="2c588bf4-3c39-4c2e-a533-9cf8fc8e55a4" name="Apaga Diretorio" type="Action">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="120" y="15" />
+    <inputs>
+      <input type="text" name="Directory Path" friendlyname="Directory Path" narrative="The path of the directory to delete" expr="[Caminho Pasta Download Temporario]" />
+      <input type="flag" name="Error If Not Exists" friendlyname="Error If Not Exists" narrative="Set True to raise an error if the path does not exist" expr="" />
+      <input type="flag" name="Recursive" friendlyname="Recursive" narrative="Set True to delete all sub-directories of the path aswell" expr="" />
+    </inputs>
+    <outputs>
+      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="Success on delete" />
+      <output type="text" name="Message" friendlyname="Message" narrative="An error message if unsuccessful" stage="" />
+    </outputs>
+    <onsuccess>8f81e4a1-623b-4be5-8b17-db5f68a77eb9</onsuccess>
+    <resource object="Utility - File Management" action="Delete Directory" />
+  </stage>
+  <stage stageid="e1ef66fc-045e-4d2e-9002-d850c5091181" name="Cria Diretorio" type="Action">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="210" y="-45" />
+    <inputs>
+      <input type="text" name="Directory Path" friendlyname="Directory Path" narrative="The path in which to create the directory" expr="[Caminho Pasta Download Temporario]" />
+      <input type="flag" name="Error If Already Exists" friendlyname="Error If Already Exists" narrative="True to generate an error if the directory already exists" expr="" />
+    </inputs>
+    <outputs>
+      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="Success on create" />
+      <output type="text" name="Message" friendlyname="Message" narrative="An error message if unsuccessful" stage="" />
+    </outputs>
+    <onsuccess>58023678-9e2c-430a-b631-533dc94a5648</onsuccess>
+    <resource object="Utility - File Management" action="Create Directory" />
+  </stage>
+  <stage stageid="166cf469-cfab-4ba0-8733-7f4750fd9e08" name="Criar Pasta de Download Temporario" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="-150" />
+    <onsuccess>0abeb131-44fe-4e26-8a17-447aa7238757</onsuccess>
+    <processid>74ffeb75-be1f-4205-ae96-e8d2034342d5</processid>
+  </stage>
+  <stage stageid="13000866-bba7-405c-b381-f419c8d9be24" name="Caminho Pasta Download Temporario" type="Data">
+    <loginhibit />
+    <narrative>Caminho temporario o qual a instancia do chrome gerenciada pelo blueprism utilizará para baixar arquivos</narrative>
+    <display x="-270" y="-45" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">D:\Blueprism\VBO\MinhaClaroResidencial\TempDownload</initialvalue>
+    <alwaysinit />
+  </stage>
+  <stage stageid="a801a7a5-9fd4-4723-a233-16973252218d" name="Success on delete" type="Data">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="-195" y="0" w="150" h="30" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="5b206ede-8182-46cb-b2a8-feafe8d38593" name="Success on create" type="Data">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="-195" y="30" w="150" h="30" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="8f81e4a1-623b-4be5-8b17-db5f68a77eb9" name="Apagou com sucesso?" type="Decision">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="15" y="15" />
+    <decision expression="[Success on delete]" />
+    <ontrue>cc1657b4-f7cd-4d43-9f39-c5c2d1f6d959</ontrue>
+    <onfalse>a5ada917-5ce7-4b7c-8dbd-5dc80cda90b3</onfalse>
+  </stage>
+  <stage stageid="a5ada917-5ce7-4b7c-8dbd-5dc80cda90b3" name="Falha ao deletar pasta temporaria" type="Exception">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="15" y="90" w="120" h="30" />
+    <exception localized="yes" type="System Exception" detail="&quot;Falha ao deletar a pasta de donwload temporario&quot;" />
+  </stage>
+  <stage stageid="cc1657b4-f7cd-4d43-9f39-c5c2d1f6d959" name="Anchor9" type="Anchor">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-90" w="10" h="10" />
+    <onsuccess>c28215ec-8184-4a19-ae08-8cf254a224e0</onsuccess>
+  </stage>
+  <stage stageid="58023678-9e2c-430a-b631-533dc94a5648" name="Criou com sucesso?" type="Decision">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="210" y="15" />
+    <decision expression="[Success on create]" />
+    <ontrue>612cf58e-195b-4efd-80be-255d6c2678a4</ontrue>
+    <onfalse>51914ad8-61ad-4d1f-b8be-bc772df44156</onfalse>
+  </stage>
+  <stage stageid="51914ad8-61ad-4d1f-b8be-bc772df44156" name="Falha ao criar pasta temporaria" type="Exception">
+    <subsheetid>74ffeb75-be1f-4205-ae96-e8d2034342d5</subsheetid>
+    <display x="360" y="15" w="150" h="30" />
+    <exception localized="yes" type="System Exception" detail="&quot;Falha ao criar pasta temporaria de donwload&quot;" />
+  </stage>
+  <stage stageid="3f14f4e0-6f1c-494e-8fd8-55a2c8b4909d" name="Contar Arquivos Na Pasta Temporaria" type="SubSheetInfo">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <narrative>Retorna a quantidade de arquivos NÃO TEMPORARIOS, na pasta de download criada pelo robô</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="2a6f50f9-e270-4b66-84cc-f5f858b5cae1" name="Start" type="Start">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <display x="-15" y="-135" />
+    <onsuccess>6f92122f-ec95-4625-8553-f25ccfb3910d</onsuccess>
+  </stage>
+  <stage stageid="d1fe08b5-6ad9-450a-ae48-bf59b79ff825" name="End" type="End">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <display x="-15" y="270" />
+    <outputs>
+      <output type="number" name="Quantidade de arquvos " narrative="quantidade de arquivos não temporarios" stage="Quantidade de arquivos não temporarios na pasta de download" />
+    </outputs>
+  </stage>
+  <stage stageid="6f92122f-ec95-4625-8553-f25ccfb3910d" name="Listar arquivos na pasta de download" type="Action">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-15" y="-90" w="90" h="30" />
+    <inputs>
+      <input type="text" name="Folder" friendlyname="Folder" narrative="The folder in which to look for files" expr="[Caminho Pasta Download Temporario]" />
+      <input type="text" name="Patterns CSV" friendlyname="Patterns CSV" narrative="The comma seperated list of wildcard patterns" expr="&quot;*.*&quot;" />
+    </inputs>
+    <outputs>
+      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="Leu arquivos com sucesso" />
+      <output type="text" name="Message" friendlyname="Message" narrative="A message if unsuccessful" stage="" />
+      <output type="collection" name="Files" friendlyname="Files" narrative="The collection of files found" stage="Arquivos na pasta de download" />
+    </outputs>
+    <onsuccess>7c85ea31-0f98-4fa4-84aa-3fd9f958744a</onsuccess>
+    <resource object="Utility - File Management" action="Get Files" />
+  </stage>
+  <stage stageid="7c85ea31-0f98-4fa4-84aa-3fd9f958744a" name="Sucesso na listagem?" type="Decision">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="-15" y="-45" w="90" h="30" />
+    <decision expression="[Leu arquivos com sucesso]" />
+    <ontrue>239076eb-29ed-40c6-a354-2c2c6a0a0546</ontrue>
+    <onfalse>124f195c-c564-484e-bdc7-4af4167b4f8f</onfalse>
+  </stage>
+  <stage stageid="124f195c-c564-484e-bdc7-4af4167b4f8f" name="Falha ao ler arquivos da pasta de downloads" type="Exception">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <display x="180" y="-45" w="210" h="30" />
+    <exception localized="yes" type="System Exception" detail="&quot;Falha ao ler arquivos da pasta de downloads&quot;" />
+  </stage>
+  <stage stageid="239076eb-29ed-40c6-a354-2c2c6a0a0546" name="Contar quantidade total de arquivos" type="Action">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-15" y="0" w="90" h="30" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Arquivos na pasta de download&quot;" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Count" friendlyname="Count" narrative="The number of rows counted in the collection" stage="Quantidade de arquivos na pasta de download" />
+    </outputs>
+    <onsuccess>97b90a74-135c-47b1-a539-64f0c40787b9</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Count Rows" />
+  </stage>
+  <stage stageid="7a2e56fb-fc61-4c34-a698-a2420cd2ead4" name="Contar Arquivos Temporarios" type="LoopEnd">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="-15" y="180" />
+    <onsuccess>ac855959-ba78-44f0-93df-5e3d9425f335</onsuccess>
+    <groupid>422b1fc1-6421-49b6-b38c-c783beed79a5</groupid>
+  </stage>
+  <stage stageid="97b90a74-135c-47b1-a539-64f0c40787b9" name="Contar Arquivos Temporarios" type="LoopStart">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <narrative>Counts chrome temporary files</narrative>
+    <display x="-15" y="45" />
+    <onsuccess>5626d707-094f-4f17-b51c-01422b8fe8e4</onsuccess>
+    <groupid>422b1fc1-6421-49b6-b38c-c783beed79a5</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Arquivos na pasta de download</loopdata>
+  </stage>
+  <stage stageid="5626d707-094f-4f17-b51c-01422b8fe8e4" name="É arquivo temporario?" type="Decision">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="-15" y="90" />
+    <decision expression="[Arquivos na pasta de download.Extension] = &quot;.crdownload&quot; OR&#xA;[Arquivos na pasta de download.Extension] = &quot;.tmp&quot;" />
+    <ontrue>515934f5-e3e5-49fe-aa17-18e8c8d45b64</ontrue>
+    <onfalse>7f983a75-88f0-4953-9016-01e91a03030a</onfalse>
+  </stage>
+  <stage stageid="515934f5-e3e5-49fe-aa17-18e8c8d45b64" name="Contar" type="Calculation">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="-15" y="135" />
+    <onsuccess>7a2e56fb-fc61-4c34-a698-a2420cd2ead4</onsuccess>
+    <calculation expression="[Quantidade de arquivos temporarios na pasta de download]+1" stage="Quantidade de arquivos temporarios na pasta de download" />
+  </stage>
+  <stage stageid="ac855959-ba78-44f0-93df-5e3d9425f335" name="Contar total de arquivos não temporarios" type="Calculation">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="-15" y="225" w="90" h="30" />
+    <onsuccess>d1fe08b5-6ad9-450a-ae48-bf59b79ff825</onsuccess>
+    <calculation expression="[Quantidade de arquivos na pasta de download] - [Quantidade de arquivos temporarios na pasta de download]" stage="Quantidade de arquivos não temporarios na pasta de download" />
+  </stage>
+  <stage stageid="7f983a75-88f0-4953-9016-01e91a03030a" name="Anchor6" type="Anchor">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="60" y="90" w="10" h="10" />
+    <onsuccess>832ead87-f280-44ea-8b65-53334f432cd9</onsuccess>
+  </stage>
+  <stage stageid="832ead87-f280-44ea-8b65-53334f432cd9" name="Anchor7" type="Anchor">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="60" y="180" w="10" h="10" />
+    <onsuccess>7a2e56fb-fc61-4c34-a698-a2420cd2ead4</onsuccess>
+  </stage>
+  <stage stageid="5233bf0a-1ab7-4ead-b948-a185bbff08b4" name="Arquivos na pasta de download" type="Collection">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <display x="-195" y="15" w="150" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="c7f90aaa-70fb-4452-8cc6-b4ed39001da3" name="Leu arquivos com sucesso" type="Data">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <display x="-195" y="-30" w="150" h="30" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="e0ee96f8-6ae2-4a61-b0b4-e795f545127d" name="Quantidade de arquivos na pasta de download" type="Data">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <display x="-195" y="60" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="00d2738c-a2a7-4969-85f3-a3b266596955" name="Quantidade de arquivos temporarios na pasta de download" type="Data">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <loginhibit />
+    <display x="-195" y="90" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ca474be7-0e81-4748-a1dd-91d0a5f9c1eb" name="Quantidade de arquivos não temporarios na pasta de download" type="Data">
+    <subsheetid>d0e4f283-9a18-4018-8ce4-5820511f5138</subsheetid>
+    <display x="-195" y="120" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="3e11c5a9-bffe-43ee-b27c-c985aa6b84fc" name="Checar Novo Download" type="SubSheetInfo">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <narrative>Realiza verificações periodicas na pasta de download temporaria do robô. Quando um novo arquivo é detectado retorna o caminho para esse arquivo. Caso estrapole um tempo limite e nao encontre novos arquivos, dispara uma exception</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="b80394d0-b10f-4bd7-972c-a0100801f048" name="Start" type="Start">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <display x="60" y="-135" />
+    <onsuccess>c4054447-7bc2-4596-b863-8a5ac6f239eb</onsuccess>
+  </stage>
+  <stage stageid="8c25a036-f0ab-4d25-b4af-86dad886ad86" name="End" type="End">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <display x="60" y="195" />
+    <outputs>
+      <output type="text" name="Ultimo arquivo baixado" stage="Caminho do ultimo arquivo modificado" />
+    </outputs>
+  </stage>
+  <stage stageid="088f8970-da28-40dd-b35a-0586fbbf9ae5" name="Tempo para re-checagem de download" type="Data">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit />
+    <narrative>Tempo em segundos para aguardar ate checar a pasta de downloads temporario novamente</narrative>
+    <display x="-195" y="45" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>10</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="58d99231-5513-4f43-96b6-68c6b17a8cda" name="Tempo maximo de espera de download" type="Data">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit />
+    <narrative>Tempo maximo em segundos para o robô encontrar um novo arquivo</narrative>
+    <display x="-195" y="15" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>60</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="aa83ae0c-3210-4821-a492-44b7c78f2a50" name="Quantidade de arquivos baixados" type="Data">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <narrative>Espera-se que inicialmente seja 0, visto que é uma pasta que é sempre limpa no inicio de cada execução</narrative>
+    <display x="-195" y="-30" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="dd1ba30d-7cbc-4bf2-8d73-fa316a521fae" name="Acabou o tempo de checagem?" type="Decision">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit />
+    <display x="60" y="-30" w="90" h="60" />
+    <decision expression="[Tempo decorrido]&gt;=[Tempo maximo de espera de download]" />
+    <ontrue>95c9cfaa-9095-4ca9-8e60-aab315eb3b9a</ontrue>
+    <onfalse>c767379c-c33b-482d-b619-b58629a44fd0</onfalse>
+  </stage>
+  <stage stageid="82f135e5-ff06-466d-8702-3e51cfc98df7" name="Tempo decorrido" type="Data">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit />
+    <narrative>Tempo de checagem decorrido</narrative>
+    <display x="-195" y="75" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue>0</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="95c9cfaa-9095-4ca9-8e60-aab315eb3b9a" name="Fatura não baixada" type="Exception">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <display x="240" y="-30" w="150" h="30" />
+    <exception localized="yes" type="" detail="&quot;O download da fatura não ocorreu corretamente&quot;" />
+  </stage>
+  <stage stageid="c767379c-c33b-482d-b619-b58629a44fd0" name="Novo arquivo na pasta de download?" type="Decision">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit />
+    <display x="60" y="60" w="90" h="60" />
+    <decision expression="[Quantidade de arquivos baixados]&gt;0" />
+    <ontrue>3d7ff3b6-1648-40c4-85de-8408ff5303b1</ontrue>
+    <onfalse>ccd59400-4def-45ce-8df4-bb73ebe5da78</onfalse>
+  </stage>
+  <stage stageid="ccd59400-4def-45ce-8df4-bb73ebe5da78" name="Aguarde para tentar buscar novamente" type="Action">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="60" />
+    <inputs>
+      <input type="number" name="Sleep Time (Seconds)" friendlyname="Sleep Time (Seconds)" narrative="The time (in seconds) for which to sleep" expr="[Tempo para re-checagem de download]" />
+    </inputs>
+    <onsuccess>67f803fd-6fe9-4dbc-9f7e-f20e8aa318c6</onsuccess>
+    <resource object="Utility - General" action="Sleep" />
+  </stage>
+  <stage stageid="67f803fd-6fe9-4dbc-9f7e-f20e8aa318c6" name="Aumenta tempo decorrido" type="Calculation">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit />
+    <display x="-60" y="-90" />
+    <onsuccess>c4054447-7bc2-4596-b863-8a5ac6f239eb</onsuccess>
+    <calculation expression="[Tempo decorrido] + [Tempo para re-checagem de download]" stage="Tempo decorrido" />
+  </stage>
+  <stage stageid="c4054447-7bc2-4596-b863-8a5ac6f239eb" name="Contar Arquivos Na Pasta Temporaria" type="SubSheet">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="60" y="-90" w="90" h="30" />
+    <outputs>
+      <output type="number" name="Quantidade de arquvos " friendlyname="Quantidade de arquvos " narrative="quantidade de arquivos não temporarios" stage="Quantidade de arquivos baixados" />
+    </outputs>
+    <onsuccess>dd1ba30d-7cbc-4bf2-8d73-fa316a521fae</onsuccess>
+    <processid>d0e4f283-9a18-4018-8ce4-5820511f5138</processid>
+  </stage>
+  <stage stageid="67ee94eb-3648-4587-9813-2c07b3d8284a" name="Ultimo Arquivo Modificado" type="SubSheetInfo">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <narrative>Retorna o caminho completo do ultimo arquivo modificado na pasta de downloads temporaria do robo</narrative>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="5ccfd673-1fae-468e-84d2-6d96df8d7127" name="Start" type="Start">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <display x="-15" y="-135" />
+    <onsuccess>76a2efac-7050-49c6-b011-48434e2eec28</onsuccess>
+  </stage>
+  <stage stageid="48bdea12-46d2-4e0a-8d1f-5a51686c5f7d" name="End" type="End">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <display x="-15" y="330" />
+    <outputs>
+      <output type="text" name="Ultimo arquivo modificado" stage="Arquivo modificado mais recente" />
+    </outputs>
+  </stage>
+  <stage stageid="76a2efac-7050-49c6-b011-48434e2eec28" name="Listar arquivos na pasta temporaria" type="Action">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-15" y="-90" />
+    <inputs>
+      <input type="text" name="Folder" friendlyname="Folder" narrative="The folder in which to look for files" expr="[Caminho Pasta Download Temporario]" />
+      <input type="text" name="Patterns CSV" friendlyname="Patterns CSV" narrative="The comma seperated list of wildcard patterns" expr="&quot;*.*&quot;" />
+    </inputs>
+    <outputs>
+      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="Sucesso na listagem" />
+      <output type="text" name="Message" friendlyname="Message" narrative="A message if unsuccessful" stage="" />
+      <output type="collection" name="Files" friendlyname="Files" narrative="The collection of files found" stage="Files in Download Folder" />
+    </outputs>
+    <onsuccess>48bb2330-894c-43cc-9397-fe60be0f1b98</onsuccess>
+    <resource object="Utility - File Management" action="Get Files" />
+  </stage>
+  <stage stageid="48bb2330-894c-43cc-9397-fe60be0f1b98" name="Listou com sucesso?" type="Decision">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-15" y="-45" />
+    <decision expression="[Sucesso na listagem]" />
+    <ontrue>654c6543-be4d-462a-a99a-387fa11266e4</ontrue>
+    <onfalse>7bcaf93c-10d6-43c7-9504-6bc92df001cb</onfalse>
+  </stage>
+  <stage stageid="7bcaf93c-10d6-43c7-9504-6bc92df001cb" name="Falha ao ler arquivos na pasta de downloads do robo" type="Exception">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <display x="225" y="-45" w="270" h="30" />
+    <exception localized="yes" type="System Exception" detail="&quot;Falha ao ler arquivos na pasta de downloads do robo&quot;" />
+  </stage>
+  <stage stageid="654c6543-be4d-462a-a99a-387fa11266e4" name="Contar arquivos da listagem" type="Action">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-15" y="15" />
+    <inputs>
+      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Files in Download Folder&quot;" />
+    </inputs>
+    <outputs>
+      <output type="number" name="Count" friendlyname="Count" narrative="The number of rows counted in the collection" stage="Contagem de arquivos listados" />
+    </outputs>
+    <onsuccess>1a516960-4f79-4670-a9c6-f3f1f4ab463a</onsuccess>
+    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Count Rows" />
+  </stage>
+  <stage stageid="1a516960-4f79-4670-a9c6-f3f1f4ab463a" name="Sem arquivos?" type="Decision">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-15" y="60" />
+    <decision expression="[Contagem de arquivos listados]=0" />
+    <ontrue>dee2af44-e986-4e82-9d9d-bfdffe1a46e7</ontrue>
+    <onfalse>dd0564f7-4236-42c0-849d-7bb5d3b70b58</onfalse>
+  </stage>
+  <stage stageid="dee2af44-e986-4e82-9d9d-bfdffe1a46e7" name="Sem arquivos na pasta de download" type="Exception">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <display x="195" y="60" w="210" h="30" />
+    <exception localized="yes" type="System Exception" detail="&quot;Não há arquivos na pasta de downloads do robo&quot;" />
+  </stage>
+  <stage stageid="2a312106-578b-4310-9587-7307145d54a4" name="Adquire ultimo arquivo modificado" type="LoopEnd">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-15" y="285" />
+    <onsuccess>48bdea12-46d2-4e0a-8d1f-5a51686c5f7d</onsuccess>
+    <groupid>f064d747-f4dc-4d7f-8f33-d4bd372764db</groupid>
+  </stage>
+  <stage stageid="dd0564f7-4236-42c0-849d-7bb5d3b70b58" name="Adquire ultimo arquivo modificado" type="LoopStart">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-15" y="105" />
+    <onsuccess>d49793b6-c3d6-4d00-b683-9ad82d553dcb</onsuccess>
+    <groupid>f064d747-f4dc-4d7f-8f33-d4bd372764db</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Files in Download Folder</loopdata>
+  </stage>
+  <stage stageid="96bd11e8-dbb2-4938-bd78-cdc112fe9e21" name="Is most recent?" type="Decision">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-15" y="195" />
+    <decision expression="[Data de modificação do arquivo atual]&gt;[Data de modificação mais recente]" />
+    <ontrue>c93f4f8d-45c3-4dbb-8b6f-47337c71be42</ontrue>
+    <onfalse>e8a54354-9292-4f6f-a60b-2a284f7ac583</onfalse>
+  </stage>
+  <stage stageid="c93f4f8d-45c3-4dbb-8b6f-47337c71be42" name="Update Most Recent" type="MultipleCalculation">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-15" y="240" />
+    <onsuccess>2a312106-578b-4310-9587-7307145d54a4</onsuccess>
+    <steps>
+      <calculation expression="[Data de modificação do arquivo atual]" stage="Data de modificação mais recente" />
+      <calculation expression="[Arquivo atual]" stage="Arquivo modificado mais recente" />
+    </steps>
+  </stage>
+  <stage stageid="e8a54354-9292-4f6f-a60b-2a284f7ac583" name="Anchor14" type="Anchor">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="45" y="195" w="10" h="10" />
+    <onsuccess>9b6895fd-7d84-470e-9258-b38b19cb3272</onsuccess>
+  </stage>
+  <stage stageid="9b6895fd-7d84-470e-9258-b38b19cb3272" name="Anchor15" type="Anchor">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="45" y="285" w="10" h="10" />
+    <onsuccess>2a312106-578b-4310-9587-7307145d54a4</onsuccess>
+  </stage>
+  <stage stageid="d49793b6-c3d6-4d00-b683-9ad82d553dcb" name="Set Actual Loop Variables" type="MultipleCalculation">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-15" y="150" />
+    <onsuccess>96bd11e8-dbb2-4938-bd78-cdc112fe9e21</onsuccess>
+    <steps>
+      <calculation expression="[Files in Download Folder.Last Written]" stage="Data de modificação do arquivo atual" />
+      <calculation expression="[Files in Download Folder.Path]" stage="Arquivo atual" />
+    </steps>
+  </stage>
+  <stage stageid="6ae4f2dd-55f5-42e0-8e7c-a238181ceb2e" name="Files in Download Folder" type="Collection">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <display x="-195" y="0" w="150" h="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="d7167398-faed-4a2a-9e40-ae58aa713259" name="Sucesso na listagem" type="Data">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <display x="-195" y="-30" w="150" h="30" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="a4c1ec5e-2735-481c-90fc-4943be6e136d" name="Contagem de arquivos listados" type="Data">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <display x="-195" y="45" w="150" h="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="5fba6d8c-518c-4853-91f6-48a446a112ec" name="Data de modificação mais recente" type="Data">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-195" y="90" w="150" h="30" />
+    <datatype>datetime</datatype>
+    <initialvalue>1900-01-01 00:00:00Z</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="fe60c5e2-7c9d-4415-a0a6-32ce65684af8" name="Arquivo modificado mais recente" type="Data">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-195" y="120" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="802fa370-4d75-4dcf-8344-1b2baab884f1" name="Data de modificação do arquivo atual" type="Data">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-195" y="165" w="150" h="30" />
+    <datatype>datetime</datatype>
+    <initialvalue>1900-01-01 00:00:00Z</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="809da2bb-f8e9-43d7-98f8-6d947954d6e2" name="Arquivo atual" type="Data">
+    <subsheetid>d560e673-686e-4f01-923e-f77263725eff</subsheetid>
+    <loginhibit />
+    <display x="-195" y="195" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">""</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="3d7ff3b6-1648-40c4-85de-8408ff5303b1" name="Ultimo Arquivo Modificado" type="SubSheet">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="60" y="135" />
+    <outputs>
+      <output type="text" name="Ultimo arquivo modificado" friendlyname="Ultimo arquivo modificado" stage="Caminho do ultimo arquivo modificado" />
+    </outputs>
+    <onsuccess>8c25a036-f0ab-4d25-b4af-86dad886ad86</onsuccess>
+    <processid>d560e673-686e-4f01-923e-f77263725eff</processid>
+  </stage>
+  <stage stageid="868691b6-d314-426f-b809-43ef59ed8815" name="Caminho do ultimo arquivo modificado" type="Data">
+    <subsheetid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</subsheetid>
+    <display x="-195" y="135" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="b47b3128-b1da-42e6-af6d-773c2c2b7fc3" name="Checar Novo Download" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="75" y="135" />
+    <outputs>
+      <output type="text" name="Ultimo arquivo baixado" friendlyname="Ultimo arquivo baixado" stage="Caminho do arquivo baixado" />
+    </outputs>
+    <onsuccess>b646d24e-392d-4bc2-8d31-8ae82de377d1</onsuccess>
+    <processid>fcb5101d-b461-4ad0-9e98-dfca902f02c0</processid>
+  </stage>
+  <stage stageid="4f767f94-59b9-40ea-9cb4-71d05c888bed" name="Anchor5" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="150" y="135" w="10" h="10" />
+    <onsuccess>b47b3128-b1da-42e6-af6d-773c2c2b7fc3</onsuccess>
+  </stage>
+  <stage stageid="f18a2d93-bbe1-481c-aa20-739b2a4e09d2" name="Launch Google Chrome" type="Action">
+    <subsheetid>6fc714f0-8c41-4afe-af77-0d1cc396d45f</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-90" />
+    <inputs>
+      <input type="text" name="Chrome Profile Name" friendlyname="Chrome Profile Name" narrative="Nome do perfil exclusivo do bot no chrome" expr="[Chrome Nome Perfil]" />
+    </inputs>
+    <onsuccess>433b0dba-930e-409f-9760-dafac9feca49</onsuccess>
+    <resource object="Minha Claro Residencial - Emitir Fatura" action="Launch Google Chrome" />
+  </stage>
+  <stage stageid="9dda9c5a-9b5c-439f-ba06-04d78969c3bb" name="Chrome Nome Perfil" type="Data">
+    <loginhibit />
+    <narrative>Nome do perfil do chrome cujo pasta de downloads aponta para a pasta criada no initialise do robo
+</narrative>
+    <display x="-270" y="0" w="150" h="30" />
+    <datatype>text</datatype>
+    <initialvalue xml:space="preserve">Profile 2</initialvalue>
     <alwaysinit />
   </stage>
 </process>

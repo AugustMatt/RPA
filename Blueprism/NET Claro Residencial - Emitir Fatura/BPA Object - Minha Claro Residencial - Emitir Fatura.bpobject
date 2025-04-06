@@ -2086,7 +2086,7 @@
     </apptypeinfo>
   </appdef>
   <view>
-    <camerax>114</camerax>
+    <camerax>58</camerax>
     <cameray>0</cameray>
     <zoom version="2">2.1875</zoom>
   </view>
@@ -2112,7 +2112,7 @@
     <name>Launch Google Chrome</name>
     <view>
       <camerax>0</camerax>
-      <cameray>-21</cameray>
+      <cameray>-63</cameray>
       <zoom version="2">2.5</zoom>
     </view>
   </subsheet>
@@ -2136,7 +2136,7 @@
     <name>Navigate to Login Page</name>
     <view>
       <camerax>203</camerax>
-      <cameray>444</cameray>
+      <cameray>465</cameray>
       <zoom version="2">1.875</zoom>
     </view>
   </subsheet>
@@ -2144,7 +2144,7 @@
     <name>Login</name>
     <view>
       <camerax>132</camerax>
-      <cameray>885</cameray>
+      <cameray>-60</cameray>
       <zoom version="2">2.1875</zoom>
     </view>
   </subsheet>
@@ -2168,23 +2168,7 @@
     <name>Emiitir Fatura</name>
     <view>
       <camerax>0</camerax>
-      <cameray>0</cameray>
-      <zoom version="2">2.1875</zoom>
-    </view>
-  </subsheet>
-  <subsheet subsheetid="7c239cd2-61eb-4f91-b2c8-ce92993fffbc" type="Normal" published="False">
-    <name>Check Donwloads Files</name>
-    <view>
-      <camerax>72</camerax>
-      <cameray>24</cameray>
-      <zoom version="2">2.1875</zoom>
-    </view>
-  </subsheet>
-  <subsheet subsheetid="3238792c-61a8-40bb-92f1-da96d158685b" type="Normal" published="False">
-    <name>Get Last Modified File</name>
-    <view>
-      <camerax>0</camerax>
-      <cameray>-36</cameray>
+      <cameray>42</cameray>
       <zoom version="2">2.1875</zoom>
     </view>
   </subsheet>
@@ -2198,12 +2182,12 @@
   </subsheet>
   <stage stageid="d3d575cd-8770-4eb2-8433-209ccb0332c8" name="Start" type="Start">
     <loginhibit />
-    <display x="300" y="-90" />
-    <onsuccess>65f6ca57-1aaf-4bad-b466-5aea036e182c</onsuccess>
+    <display x="210" y="-105" />
+    <onsuccess>6051c32f-43de-4fae-815d-457c5c2c728a</onsuccess>
   </stage>
   <stage stageid="6051c32f-43de-4fae-815d-457c5c2c728a" name="End" type="End">
     <loginhibit />
-    <display x="300" y="120" />
+    <display x="210" y="60" />
   </stage>
   <stage stageid="79dda10b-15b7-46db-97ca-b1bdc303e23a" name="Stage1" type="ProcessInfo">
     <display x="-195" y="-105" w="150" h="90" />
@@ -2251,14 +2235,14 @@
     <loginhibit />
     <display x="-60" y="-135" />
     <inputs>
-      <input type="flag" name="headless?" stage="headless" />
+      <input type="text" name="Chrome Profile Name" narrative="Nome do perfil exclusivo do bot no chrome" stage="Chrome Profile Name" />
     </inputs>
-    <onsuccess>e25a5a2e-5b76-4242-8a25-8d4ca3da959e</onsuccess>
+    <onsuccess>aeecc861-8457-474c-957e-d4d3504ba8d7</onsuccess>
   </stage>
   <stage stageid="efcc0ada-890f-4255-a392-e7f2a8e9d6d7" name="End" type="End">
     <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
     <loginhibit />
-    <display x="-60" y="180" />
+    <display x="-60" y="-45" />
   </stage>
   <stage stageid="f5c71ccc-eb5b-48d3-93bb-95bbede64b89" name="Clean Up" type="Note">
     <subsheetid>ace2dbae-52b5-48ae-a790-53815ae07226</subsheetid>
@@ -2284,8 +2268,8 @@ You will not be able to call this action from a business process, nor will it be
   <stage stageid="aeecc861-8457-474c-957e-d4d3504ba8d7" name="Launch Google Chrome" type="Navigate">
     <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
     <loginhibit />
-    <display x="60" y="-90" />
-    <onsuccess>8ce06895-12b6-482d-a623-568d6cd213e9</onsuccess>
+    <display x="-60" y="-90" />
+    <onsuccess>efcc0ada-890f-4255-a392-e7f2a8e9d6d7</onsuccess>
     <step>
       <element id="bbb3c55c-86bf-4811-b048-667ea2c628c2" />
       <action>
@@ -2300,7 +2284,7 @@ You will not be able to call this action from a business process, nor will it be
             <id>CommandLineParams</id>
             <value>"--user-data-dir=" &amp; Chr(34) &amp; [Chrome User Data Path] &amp; Chr(34) &amp;
 " --profile-directory=" &amp; Chr(34) &amp; [Chrome Profile Name] &amp; Chr(34) &amp;
-" " &amp; Chr(34) &amp; [NET/CLARO url] &amp; Chr(34)
+" " &amp; Chr(34) &amp; [URL Minha NET/Claro Residencial] &amp; Chr(34)
 </value>
           </argument>
           <argument>
@@ -2704,7 +2688,7 @@ You will not be able to call this action from a business process, nor will it be
     <subsheetid>f83a6683-460d-4bfb-a72c-d62d2a7876b0</subsheetid>
     <display x="-120" y="-30" w="120" h="30" />
     <datatype>text</datatype>
-    <initialvalue xml:space="preserve">29377285453</initialvalue>
+    <initialvalue />
     <private />
     <alwaysinit />
   </stage>
@@ -2712,7 +2696,8 @@ You will not be able to call this action from a business process, nor will it be
     <subsheetid>f83a6683-460d-4bfb-a72c-d62d2a7876b0</subsheetid>
     <display x="-120" y="15" w="120" h="30" />
     <datatype>password</datatype>
-    <initialvalueenc>12,20,0,88,8,65,7,84,115</initialvalueenc>
+    <initialvalueenc>
+    </initialvalueenc>
     <private />
     <alwaysinit />
   </stage>
@@ -3303,102 +3288,7 @@ Se o modal existe (no DOM) mas não esta visivel, não esta atrapalhando nada. P
   <stage stageid="6fa77cc4-6271-40ce-bbc9-c5556403ef15" name="End" type="End">
     <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
     <loginhibit />
-    <display x="-15" y="480" />
-    <outputs>
-      <output type="text" name="Downloaded File Path" stage="Downloaded File Path" />
-    </outputs>
-  </stage>
-  <stage stageid="39b74809-2924-4b70-8468-c0f6a2c6442c" name="Temp Download Folder" type="Data">
-    <loginhibit />
-    <narrative>Caminho temporario o qual a instancia do chrome gerenciada pelo blueprism utilizará para baixar arquivos</narrative>
-    <display x="30" y="-60" w="210" h="30" />
-    <datatype>text</datatype>
-    <initialvalue xml:space="preserve">D:\Blueprism\VBO\MinhaClaroResidencial\TempDownload</initialvalue>
-    <alwaysinit />
-  </stage>
-  <stage stageid="cb9943c8-ddc0-43d5-9c7c-7414ecf21d6f" name="Check Donwloads Files" type="SubSheetInfo">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <narrative>Retorna a quantidade de arquivos na pasta de downloads configurada no robô. Exclui da contagem arquivos temporarios de download do chrome.</narrative>
-    <display x="-195" y="-105" w="150" h="90" />
-  </stage>
-  <stage stageid="cfa434e8-7094-47a8-bf85-8744d3fe1a14" name="Start" type="Start">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="45" y="-135" />
-    <onsuccess>b20471a2-9cba-41a9-b903-408a4c49ddd9</onsuccess>
-  </stage>
-  <stage stageid="9e6c80e7-9654-476e-9744-b33fdad85cf6" name="End" type="End">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="45" y="300" />
-    <outputs>
-      <output type="number" name="Initial Files Count" narrative="Initial numbers of files in download folder" stage="Number of Files in Download Folder" />
-    </outputs>
-  </stage>
-  <stage stageid="b20471a2-9cba-41a9-b903-408a4c49ddd9" name="Get Download Dir Files List" type="Action">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="45" y="-90" w="90" h="30" />
-    <inputs>
-      <input type="text" name="Folder" friendlyname="Folder" narrative="The folder in which to look for files" expr="[Temp Download Folder]" />
-      <input type="text" name="Patterns CSV" friendlyname="Patterns CSV" narrative="The comma seperated list of wildcard patterns" expr="&quot;*.*&quot;" />
-    </inputs>
-    <outputs>
-      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="Read Files Success" />
-      <output type="text" name="Message" friendlyname="Message" narrative="A message if unsuccessful" stage="" />
-      <output type="collection" name="Files" friendlyname="Files" narrative="The collection of files found" stage="Files in Download Dir" />
-    </outputs>
-    <onsuccess>142aa7de-0b3c-41e3-9265-dbc1e419dfb3</onsuccess>
-    <resource object="Utility - File Management" action="Get Files" />
-  </stage>
-  <stage stageid="60d0b30d-0add-4315-bffe-82018a090e18" name="Files in Download Dir" type="Collection">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <display x="-135" y="15" w="120" h="30" />
-    <datatype>collection</datatype>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="cf276c52-64cc-4c2b-b42e-70e7a6c9dcf9" name="Read Files Success" type="Data">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <display x="-240" y="15" w="90" h="30" />
-    <datatype>flag</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="af95e926-5635-4430-8586-949456407b84" name="Read Success?" type="Decision">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="45" y="150" w="90" h="30" />
-    <decision expression="[Read Files Success]" />
-    <ontrue>e7437fd4-2873-4f47-858b-e3f804331eab</ontrue>
-    <onfalse>31fcbdba-aafc-4f63-bbb6-8b5ab9937ccc</onfalse>
-  </stage>
-  <stage stageid="31fcbdba-aafc-4f63-bbb6-8b5ab9937ccc" name="Falha ao ler arquivos da pasta de downloads" type="Exception">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <display x="240" y="150" w="210" h="30" />
-    <exception localized="yes" type="System Exception" detail="&quot;Falha ao ler arquivos da pasta de downloads&quot;" />
-  </stage>
-  <stage stageid="e7437fd4-2873-4f47-858b-e3f804331eab" name="Count Files" type="Action">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="45" y="210" />
-    <inputs>
-      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Files in Download Dir&quot;" />
-    </inputs>
-    <outputs>
-      <output type="number" name="Count" friendlyname="Count" narrative="The number of rows counted in the collection" stage="Number of Files in Download Folder" />
-    </outputs>
-    <onsuccess>d3b270b0-9bb9-4eab-8a5d-d101b683b1be</onsuccess>
-    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Count Rows" />
-  </stage>
-  <stage stageid="bdfd22c5-a067-461e-83a9-f09c0b8985c1" name="Number of Files in Download Folder" type="Data">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <display x="-195" y="60" w="210" h="30" />
-    <datatype>number</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
+    <display x="-15" y="120" />
   </stage>
   <stage stageid="6a373e02-5f28-436a-a7dd-a7ad1760b993" name="Emitir fatura" type="Navigate">
     <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
@@ -3442,7 +3332,7 @@ Se o modal existe (no DOM) mas não esta visivel, não esta atrapalhando nada. P
       <choice expression="True">
         <name>Button - Fazer Download da Fatura Check Exists</name>
         <distance>45</distance>
-        <ontrue>1b34c7bf-75f1-49f9-81a0-39a9f7958d58</ontrue>
+        <ontrue>d2864218-91be-4f85-b3c0-11106c8e0491</ontrue>
         <element id="dfe2b5f1-3aca-4284-9519-941855a3450d" />
         <condition>
           <id>WebCheckExists</id>
@@ -3467,8 +3357,8 @@ Se o modal existe (no DOM) mas não esta visivel, não esta atrapalhando nada. P
   <stage stageid="d2864218-91be-4f85-b3c0-11106c8e0491" name="Download fatura" type="Navigate">
     <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
     <loginhibit />
-    <display x="-15" y="135" />
-    <onsuccess>a1391b74-55e0-471b-a17f-f4f4a0bb7012</onsuccess>
+    <display x="-15" y="75" />
+    <onsuccess>6fa77cc4-6271-40ce-bbc9-c5556403ef15</onsuccess>
     <step>
       <element id="dfe2b5f1-3aca-4284-9519-941855a3450d" />
       <action>
@@ -3483,480 +3373,14 @@ Se o modal existe (no DOM) mas não esta visivel, não esta atrapalhando nada. P
       </action>
     </step>
   </stage>
-  <stage stageid="1b34c7bf-75f1-49f9-81a0-39a9f7958d58" name="Check Donwloads Files" type="SubSheet">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-15" y="75" />
-    <outputs>
-      <output type="number" name="Initial Files Count" friendlyname="Initial Files Count" narrative="Initial numbers of files in download folder" stage="Initial Files Count" />
-    </outputs>
-    <onsuccess>d2864218-91be-4f85-b3c0-11106c8e0491</onsuccess>
-    <processid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</processid>
-  </stage>
-  <stage stageid="cf3e43e7-b076-4514-8e53-b4cb4e47b2ea" name="Initial Files Count" type="Data">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <display x="-180" y="75" w="120" h="30" />
-    <datatype>number</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="19338827-7192-419d-a110-4387784d26a0" name="check download files step" type="Data">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <narrative>value in seconds to check periodicaly the number of files in download folder</narrative>
-    <display x="-165" y="195" w="150" h="30" />
-    <datatype>number</datatype>
-    <initialvalue>10</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="3505d0b8-4ab0-4b9d-932d-9cc124b8ca76" name="Timeout download" type="Data">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <narrative>value in seconds to stop searching download folder for new files</narrative>
-    <display x="-285" y="195" w="120" h="30" />
-    <datatype>number</datatype>
-    <initialvalue>60</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="a1391b74-55e0-471b-a17f-f4f4a0bb7012" name="Check Donwloads Files" type="SubSheet">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-15" y="195" />
-    <outputs>
-      <output type="number" name="Initial Files Count" friendlyname="Initial Files Count" narrative="Initial numbers of files in download folder" stage="Files count" />
-    </outputs>
-    <onsuccess>6a631c6d-e118-49b3-8b78-a9212714e884</onsuccess>
-    <processid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</processid>
-  </stage>
-  <stage stageid="92930f32-0877-45ca-a656-49acb94ac09d" name="Files count" type="Data">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <display x="-300" y="240" w="120" h="30" />
-    <datatype>number</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="6a631c6d-e118-49b3-8b78-a9212714e884" name="Timeout Download Check?" type="Decision">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-15" y="255" />
-    <decision expression="[Elapsed time]&gt;=[Timeout download]" />
-    <ontrue>e342aca3-e217-4e80-8c62-dfc13d3674ea</ontrue>
-    <onfalse>2885ed21-79a8-4fcf-afd9-e0ae006ecd9c</onfalse>
-  </stage>
-  <stage stageid="584f0df1-7343-4d64-a87b-c8eca49aa378" name="Elapsed time" type="Data">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <narrative>Elapsed time of download check</narrative>
-    <display x="-195" y="240" w="90" h="30" />
-    <datatype>number</datatype>
-    <initialvalue>0</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="e342aca3-e217-4e80-8c62-dfc13d3674ea" name="Fatura não baixada" type="Exception">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <display x="165" y="255" w="150" h="30" />
-    <exception localized="yes" type="" detail="&quot;O download da fatura não ocorreu corretamente&quot;" />
-  </stage>
-  <stage stageid="2885ed21-79a8-4fcf-afd9-e0ae006ecd9c" name="New file in downloads?" type="Decision">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-15" y="345" />
-    <decision expression="[Files count]&gt;[Initial Files Count]" />
-    <ontrue>3617e24e-1c7d-40cf-9c15-801b4ff6aa40</ontrue>
-    <onfalse>601ba4c9-c45f-46a6-979b-01774da677b9</onfalse>
-  </stage>
-  <stage stageid="601ba4c9-c45f-46a6-979b-01774da677b9" name="wait time to check again" type="Action">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="-120" y="345" />
-    <inputs>
-      <input type="number" name="Sleep Time (Seconds)" friendlyname="Sleep Time (Seconds)" narrative="The time (in seconds) for which to sleep" expr="[check download files step]" />
-    </inputs>
-    <onsuccess>183babe0-80bf-4be1-8075-63dff3a1907b</onsuccess>
-    <resource object="Utility - General" action="Sleep" />
-  </stage>
-  <stage stageid="183babe0-80bf-4be1-8075-63dff3a1907b" name="Elapsed time increment" type="Calculation">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-195" y="345" />
-    <onsuccess>7c1745a5-3039-42be-b28a-ab729f88112c</onsuccess>
-    <calculation expression="[Elapsed time] + [check download files step]" stage="Elapsed time" />
-  </stage>
-  <stage stageid="e4e7c607-63e8-40c9-92fd-ddd16dd0dd9d" name="Count  Temp Files" type="LoopEnd">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="45" y="90" />
-    <onsuccess>af95e926-5635-4430-8586-949456407b84</onsuccess>
-    <groupid>23c15bbb-b2d9-4422-b0ab-5eabd9628a85</groupid>
-  </stage>
-  <stage stageid="142aa7de-0b3c-41e3-9265-dbc1e419dfb3" name="Count  Temp Files" type="LoopStart">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <narrative>Counts chrome temporary files</narrative>
-    <display x="45" y="-45" />
-    <onsuccess>ee6b0c49-ab20-4dfc-a66d-f3b5ed3a9ea6</onsuccess>
-    <groupid>23c15bbb-b2d9-4422-b0ab-5eabd9628a85</groupid>
-    <looptype>ForEach</looptype>
-    <loopdata>Files in Download Dir</loopdata>
-  </stage>
-  <stage stageid="ee6b0c49-ab20-4dfc-a66d-f3b5ed3a9ea6" name="Is temp file?" type="Decision">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="45" y="0" />
-    <decision expression="[Files in Download Dir.Extension] = &quot;.crdownload&quot; OR&#xA;[Files in Download Dir.Extension] = &quot;.tmp&quot;" />
-    <ontrue>85d7efd5-3984-4f32-a3ec-488568f63c77</ontrue>
-    <onfalse>83bd69f6-ddca-4014-a99b-fb7bed586b25</onfalse>
-  </stage>
-  <stage stageid="631143da-0871-4355-bfb5-0e090b21032d" name="Number of temporary chrome files in folder" type="Data">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="-210" y="105" w="240" h="30" />
-    <datatype>number</datatype>
-    <initialvalue>0</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="85d7efd5-3984-4f32-a3ec-488568f63c77" name="count temp files" type="Calculation">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="45" y="45" />
-    <onsuccess>e4e7c607-63e8-40c9-92fd-ddd16dd0dd9d</onsuccess>
-    <calculation expression="[Number of temporary chrome files in folder]+1" stage="Number of temporary chrome files in folder" />
-  </stage>
-  <stage stageid="d3b270b0-9bb9-4eab-8a5d-d101b683b1be" name="Adjust number of files" type="Calculation">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="45" y="255" />
-    <onsuccess>9e6c80e7-9654-476e-9744-b33fdad85cf6</onsuccess>
-    <calculation expression="[Number of Files in Download Folder] - [Number of temporary chrome files in folder]" stage="Number of Files in Download Folder" />
-  </stage>
-  <stage stageid="83bd69f6-ddca-4014-a99b-fb7bed586b25" name="Anchor6" type="Anchor">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="120" y="0" w="10" h="10" />
-    <onsuccess>ba348289-e04e-4efe-9999-45d1a72cee92</onsuccess>
-  </stage>
-  <stage stageid="ba348289-e04e-4efe-9999-45d1a72cee92" name="Anchor7" type="Anchor">
-    <subsheetid>7c239cd2-61eb-4f91-b2c8-ce92993fffbc</subsheetid>
-    <loginhibit />
-    <display x="120" y="90" w="10" h="10" />
-    <onsuccess>e4e7c607-63e8-40c9-92fd-ddd16dd0dd9d</onsuccess>
-  </stage>
-  <stage stageid="7c1745a5-3039-42be-b28a-ab729f88112c" name="Anchor8" type="Anchor">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-195" y="300" w="10" h="10" />
-    <onsuccess>ac781634-4998-40c7-a8e4-6808778f837e</onsuccess>
-  </stage>
-  <stage stageid="ac781634-4998-40c7-a8e4-6808778f837e" name="Anchor9" type="Anchor">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-75" y="300" w="10" h="10" />
-    <onsuccess>d84b4773-7279-4fd6-afee-c3f2e1db48e8</onsuccess>
-  </stage>
-  <stage stageid="d84b4773-7279-4fd6-afee-c3f2e1db48e8" name="Anchor10" type="Anchor">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-75" y="195" w="10" h="10" />
-    <onsuccess>a1391b74-55e0-471b-a17f-f4f4a0bb7012</onsuccess>
-  </stage>
-  <stage stageid="65f6ca57-1aaf-4bad-b466-5aea036e182c" name="Verificar diretorio de download" type="Action">
-    <loginhibit onsuccess="true" />
-    <display x="300" y="-45" />
-    <inputs>
-      <input type="text" name="Directory Name" friendlyname="Directory Name" narrative="The directory to check exists" expr="[Temp Download Folder]" />
-    </inputs>
-    <outputs>
-      <output type="flag" name="Exists" friendlyname="Exists" narrative="True if the directory exists" stage="Exists" />
-    </outputs>
-    <onsuccess>84364172-71a3-4fc2-ad49-13405fb26c4c</onsuccess>
-    <resource object="Utility - File Management" action="Directory Exists" />
-  </stage>
-  <stage stageid="e3fc4f69-029a-46df-8fec-2198229b0a6b" name="Exists" type="Data">
-    <display x="180" y="-45" />
-    <datatype>flag</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="84364172-71a3-4fc2-ad49-13405fb26c4c" name="Diretorio Existe?" type="Decision">
-    <loginhibit />
-    <display x="300" y="0" />
-    <decision expression="[Exists]" />
-    <ontrue>1e86d773-af6f-4157-b7b3-8c0919622f4f</ontrue>
-    <onfalse>9f64b3ea-496b-4ccc-b8b2-66c81ed5fee3</onfalse>
-  </stage>
-  <stage stageid="1e86d773-af6f-4157-b7b3-8c0919622f4f" name="Apaga Diretorio" type="Action">
-    <loginhibit onsuccess="true" />
-    <display x="300" y="45" />
-    <inputs>
-      <input type="text" name="Directory Path" friendlyname="Directory Path" narrative="The path of the directory to delete" expr="[Temp Download Folder]" />
-      <input type="flag" name="Error If Not Exists" friendlyname="Error If Not Exists" narrative="Set True to raise an error if the path does not exist" expr="" />
-      <input type="flag" name="Recursive" friendlyname="Recursive" narrative="Set True to delete all sub-directories of the path aswell" expr="" />
-    </inputs>
-    <outputs>
-      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="" />
-      <output type="text" name="Message" friendlyname="Message" narrative="An error message if unsuccessful" stage="" />
-    </outputs>
-    <onsuccess>853d2c9e-d2a1-46fe-b1a6-5dc05fb8b8bb</onsuccess>
-    <resource object="Utility - File Management" action="Delete Directory" />
-  </stage>
-  <stage stageid="853d2c9e-d2a1-46fe-b1a6-5dc05fb8b8bb" name="Anchor11" type="Anchor">
-    <loginhibit />
-    <display x="240" y="45" w="10" h="10" />
-    <onsuccess>752728b7-cd61-47ca-8991-13fe73ebe17e</onsuccess>
-  </stage>
-  <stage stageid="752728b7-cd61-47ca-8991-13fe73ebe17e" name="Anchor12" type="Anchor">
-    <loginhibit />
-    <display x="240" y="-45" w="10" h="10" />
-    <onsuccess>65f6ca57-1aaf-4bad-b466-5aea036e182c</onsuccess>
-  </stage>
-  <stage stageid="9f64b3ea-496b-4ccc-b8b2-66c81ed5fee3" name="Cria Diretorio" type="Action">
-    <loginhibit onsuccess="true" />
-    <display x="390" y="0" />
-    <inputs>
-      <input type="text" name="Directory Path" friendlyname="Directory Path" narrative="The path in which to create the directory" expr="[Temp Download Folder]" />
-      <input type="flag" name="Error If Already Exists" friendlyname="Error If Already Exists" narrative="True to generate an error if the directory already exists" expr="" />
-    </inputs>
-    <outputs>
-      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="" />
-      <output type="text" name="Message" friendlyname="Message" narrative="An error message if unsuccessful" stage="" />
-    </outputs>
-    <onsuccess>47852b2a-5ede-4de9-baf9-d4ae56c3d646</onsuccess>
-    <resource object="Utility - File Management" action="Create Directory" />
-  </stage>
-  <stage stageid="47852b2a-5ede-4de9-baf9-d4ae56c3d646" name="Anchor13" type="Anchor">
-    <loginhibit />
-    <display x="390" y="120" w="10" h="10" />
-    <onsuccess>6051c32f-43de-4fae-815d-457c5c2c728a</onsuccess>
-  </stage>
   <stage stageid="e215494c-3df6-4ca4-9632-b2129708daab" name="Chrome User Data Path" type="Data">
     <loginhibit />
     <narrative>Caminho para a pasta de perfils do chrome</narrative>
-    <display x="15" y="-15" w="150" h="30" />
-    <datatype>text</datatype>
-    <initialvalue xml:space="preserve">C:\Users\Matheus\AppData\Local\Google\Chrome\User Data</initialvalue>
-    <alwaysinit />
-  </stage>
-  <stage stageid="d6512b9b-0645-48eb-9752-fef2a0c72dd5" name="Chrome Profile Name" type="Data">
-    <loginhibit />
-    <narrative>Nome do perfil do chrome cujo pasta de downloads aponta para a pasta criada no initialise do robo
-</narrative>
-    <display x="0" y="30" w="150" h="30" />
-    <datatype>text</datatype>
-    <initialvalue xml:space="preserve">Profile 2</initialvalue>
-    <alwaysinit />
-  </stage>
-  <stage stageid="dea8b919-91a6-4b91-bb80-05c65b3f9fbc" name="Get Last Modified File" type="SubSheetInfo">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <narrative>Retorna o caminho completo do ultimo arquivo modificado na pasta de downloads configurada no robô.</narrative>
-    <display x="-195" y="-105" w="150" h="90" />
-  </stage>
-  <stage stageid="2bc786ca-3fa6-45bb-8be6-93cfa2c305fa" name="Start" type="Start">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="-105" />
-    <onsuccess>251cbbc9-44b1-4128-a1dd-295632103372</onsuccess>
-  </stage>
-  <stage stageid="aeade7dd-8175-4775-a31f-0c7ce159c7b4" name="End" type="End">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="405" />
-    <outputs>
-      <output type="text" name="Most Recent File Path" narrative="Caminho do arquivo mais recente na pasta de downloads do robo" stage="Most Recent File Path" />
-    </outputs>
-  </stage>
-  <stage stageid="251cbbc9-44b1-4128-a1dd-295632103372" name="Get Files in Download Folder" type="Action">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="15" y="-45" />
-    <inputs>
-      <input type="text" name="Folder" friendlyname="Folder" narrative="The folder in which to look for files" expr="[Temp Download Folder]" />
-      <input type="text" name="Patterns CSV" friendlyname="Patterns CSV" narrative="The comma seperated list of wildcard patterns" expr="&quot;*.*&quot;" />
-    </inputs>
-    <outputs>
-      <output type="flag" name="Success" friendlyname="Success" narrative="True if successful" stage="Success" />
-      <output type="text" name="Message" friendlyname="Message" narrative="A message if unsuccessful" stage="" />
-      <output type="collection" name="Files" friendlyname="Files" narrative="The collection of files found" stage="Files in Download Folder" />
-    </outputs>
-    <onsuccess>5ce97b2c-48c0-4747-8a64-673009a54492</onsuccess>
-    <resource object="Utility - File Management" action="Get Files" />
-  </stage>
-  <stage stageid="a6276186-3ce3-400c-96b0-a5ceab05f061" name="Files in Download Folder" type="Collection">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <display x="-210" y="-30" w="120" h="30" />
-    <datatype>collection</datatype>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="598840eb-b0d3-4489-aa2b-52c55afb3756" name="Success" type="Data">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <display x="-225" y="15" />
-    <datatype>flag</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="5ce97b2c-48c0-4747-8a64-673009a54492" name="Success Check?" type="Decision">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="0" />
-    <decision expression="[Success]" />
-    <ontrue>662abc66-d423-4220-88e9-8a43956f011b</ontrue>
-    <onfalse>6a9dff3a-4980-456f-9175-c4db0bbb0977</onfalse>
-  </stage>
-  <stage stageid="6a9dff3a-4980-456f-9175-c4db0bbb0977" name="Falha ao ler arquivos na pasta de downloads do robo" type="Exception">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <display x="255" y="0" w="270" h="30" />
-    <exception localized="yes" type="System Exception" detail="&quot;Falha ao ler arquivos na pasta de downloads do robo&quot;" />
-  </stage>
-  <stage stageid="662abc66-d423-4220-88e9-8a43956f011b" name="Count Files" type="Action">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="15" y="60" />
-    <inputs>
-      <input type="text" name="Collection Name" friendlyname="Collection Name" narrative="The name of the collection to act upon" expr="&quot;Files in Download Folder&quot;" />
-    </inputs>
-    <outputs>
-      <output type="number" name="Count" friendlyname="Count" narrative="The number of rows counted in the collection" stage="Count" />
-    </outputs>
-    <onsuccess>5f5b4d2c-5ad5-4406-ab22-485cb3423cd0</onsuccess>
-    <resource object="Blueprism.AutomateProcessCore.clsCollectionActions" action="Count Rows" />
-  </stage>
-  <stage stageid="d74c343b-5f35-4d85-86a6-bc8f8bdddf61" name="Count" type="Data">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <display x="-225" y="60" />
-    <datatype>number</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="5f5b4d2c-5ad5-4406-ab22-485cb3423cd0" name="No Files?" type="Decision">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="120" />
-    <decision expression="[Count]=0" />
-    <ontrue>b54af131-9988-4969-9164-9124e7fa8415</ontrue>
-    <onfalse>e873ebf1-2760-47ab-96ca-2c0e19906432</onfalse>
-  </stage>
-  <stage stageid="b54af131-9988-4969-9164-9124e7fa8415" name="Sem arquivos na pasta de download" type="Exception">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <display x="225" y="120" w="210" h="30" />
-    <exception localized="yes" type="System Exception" detail="&quot;Não há arquivos na pasta de downloads do robo&quot;" />
-  </stage>
-  <stage stageid="028e4b49-169e-4f6d-bb34-9eead6194bf4" name="Get Last Modified File" type="LoopEnd">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="360" />
-    <onsuccess>aeade7dd-8175-4775-a31f-0c7ce159c7b4</onsuccess>
-    <groupid>7266c33b-2e6b-4ffb-87ab-e19e45bf6d04</groupid>
-  </stage>
-  <stage stageid="e873ebf1-2760-47ab-96ca-2c0e19906432" name="Get Last Modified File" type="LoopStart">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="180" />
-    <onsuccess>f1ed71d1-c40b-4944-855e-4c4aa44619f1</onsuccess>
-    <groupid>7266c33b-2e6b-4ffb-87ab-e19e45bf6d04</groupid>
-    <looptype>ForEach</looptype>
-    <loopdata>Files in Download Folder</loopdata>
-  </stage>
-  <stage stageid="e1c002f7-7e87-4fb3-8420-bf01af80cb07" name="Most Recent Date" type="Data">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="-285" y="300" w="120" h="30" />
-    <datatype>datetime</datatype>
-    <initialvalue>1900-01-01 00:00:00Z</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="d40dfbf6-7f99-4c41-bcae-b23d72f5a5f3" name="Most Recent File Path" type="Data">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="-150" y="300" w="150" h="30" />
+    <display x="15" y="-45" w="180" h="30" />
     <datatype>text</datatype>
     <initialvalue />
-    <private />
+    <exposure>Environment</exposure>
     <alwaysinit />
-  </stage>
-  <stage stageid="8c1b8e44-6313-4a3d-a665-f7c2dd992831" name="Is most recent?" type="Decision">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="270" />
-    <decision expression="[Actual Loop Date]&gt;[Most Recent Date]" />
-    <ontrue>563165aa-5cd7-41c9-81d6-bc384de61f20</ontrue>
-    <onfalse>111da3c5-5f39-4921-8c2a-b6b636e10f9e</onfalse>
-  </stage>
-  <stage stageid="563165aa-5cd7-41c9-81d6-bc384de61f20" name="Update Most Recent" type="MultipleCalculation">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="315" />
-    <onsuccess>028e4b49-169e-4f6d-bb34-9eead6194bf4</onsuccess>
-    <steps>
-      <calculation expression="[Actual Loop Date]" stage="Most Recent Date" />
-      <calculation expression="[Actual Loop File Path]" stage="Most Recent File Path" />
-    </steps>
-  </stage>
-  <stage stageid="111da3c5-5f39-4921-8c2a-b6b636e10f9e" name="Anchor14" type="Anchor">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="75" y="270" w="10" h="10" />
-    <onsuccess>126717fb-5632-418e-96d4-bcf9c61f0722</onsuccess>
-  </stage>
-  <stage stageid="126717fb-5632-418e-96d4-bcf9c61f0722" name="Anchor15" type="Anchor">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="75" y="360" w="10" h="10" />
-    <onsuccess>028e4b49-169e-4f6d-bb34-9eead6194bf4</onsuccess>
-  </stage>
-  <stage stageid="3617e24e-1c7d-40cf-9c15-801b4ff6aa40" name="Get Last Modified File" type="SubSheet">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <loginhibit />
-    <display x="-15" y="420" />
-    <outputs>
-      <output type="text" name="Most Recent File Path" friendlyname="Most Recent File Path" narrative="Caminho do arquivo mais recente na pasta de downloads do robo" stage="Downloaded File Path" />
-    </outputs>
-    <onsuccess>6fa77cc4-6271-40ce-bbc9-c5556403ef15</onsuccess>
-    <processid>3238792c-61a8-40bb-92f1-da96d158685b</processid>
-  </stage>
-  <stage stageid="b68266a8-2f8c-4912-9ee9-e1747e517b4c" name="Downloaded File Path" type="Data">
-    <subsheetid>8526e208-2ee3-4e20-87d5-102ac1d17100</subsheetid>
-    <display x="-135" y="420" w="150" h="30" />
-    <datatype>text</datatype>
-    <initialvalue />
-    <alwaysinit />
-  </stage>
-  <stage stageid="7a6e7951-2499-46e4-8ad1-e57085e2da22" name="Actual Loop Date" type="Data">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="-285" y="270" w="120" h="30" />
-    <datatype>datetime</datatype>
-    <initialvalue>1900-01-01 00:00:00Z</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="886c38c7-7cd6-413b-a255-df7e2b45d225" name="Actual Loop File Path" type="Data">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="-150" y="270" w="150" h="30" />
-    <datatype>text</datatype>
-    <initialvalue xml:space="preserve">""</initialvalue>
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="f1ed71d1-c40b-4944-855e-4c4aa44619f1" name="Set Actual Loop Variables" type="MultipleCalculation">
-    <subsheetid>3238792c-61a8-40bb-92f1-da96d158685b</subsheetid>
-    <loginhibit />
-    <display x="15" y="225" />
-    <onsuccess>8c1b8e44-6313-4a3d-a665-f7c2dd992831</onsuccess>
-    <steps>
-      <calculation expression="[Files in Download Folder.Last Written]" stage="Actual Loop Date" />
-      <calculation expression="[Files in Download Folder.Path]" stage="Actual Loop File Path" />
-    </steps>
   </stage>
   <stage stageid="c66bccff-4c35-4c54-9a1b-0cbb73df4a05" name="Logout" type="SubSheetInfo">
     <subsheetid>50bebe4d-1f61-4677-ae8e-f598829788ca</subsheetid>
@@ -4166,99 +3590,12 @@ Se o modal existe (no DOM) mas não esta visivel, não esta atrapalhando nada. P
     <display x="225" y="675" w="10" h="10" />
     <onsuccess>88f17c45-43cc-4733-ad20-aafcf82997a4</onsuccess>
   </stage>
-  <stage stageid="e25a5a2e-5b76-4242-8a25-8d4ca3da959e" name="Headless?" type="Decision">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
+  <stage stageid="6ba0a465-9e80-4833-9364-6181e5e026c1" name="URL Minha NET/Claro Residencial" type="Data">
     <loginhibit />
-    <narrative>Se o modo headless for invocado, tenta iniciar o processo e dar um atach, pois o launch do aplication modeler esta dando erro quando o navegador esta no headless</narrative>
-    <display x="-60" y="-90" />
-    <decision expression="[headless]" />
-    <ontrue>2d4a553f-f5ca-44df-ae07-df1abdf65a2a</ontrue>
-    <onfalse>aeecc861-8457-474c-957e-d4d3504ba8d7</onfalse>
-  </stage>
-  <stage stageid="8ce06895-12b6-482d-a623-568d6cd213e9" name="Anchor20" type="Anchor">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <loginhibit />
-    <display x="60" y="180" w="10" h="10" />
-    <onsuccess>efcc0ada-890f-4255-a392-e7f2a8e9d6d7</onsuccess>
-  </stage>
-  <stage stageid="2d4a553f-f5ca-44df-ae07-df1abdf65a2a" name="New Chrome Process" type="Action">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="-60" y="-30" />
-    <inputs>
-      <input type="text" name="Application" friendlyname="Application" narrative="The application or short cut to start" expr="[chrome executable path]" />
-      <input type="text" name="Arguments" friendlyname="Arguments" narrative="Any arguments needed for the app" expr="&quot;--headless &quot; &amp; &#xA;&quot;--user-data-dir=&quot; &amp; Chr(34) &amp; [Chrome User Data Path] &amp; Chr(34) &amp;&#xA;&quot; --profile-directory=&quot; &amp; Chr(34) &amp; [Chrome Profile Name] &amp; Chr(34) &amp;&#xA;&quot; &quot; &amp; Chr(34) &amp; [NET/CLARO url] &amp; Chr(34)" />
-      <input type="flag" name="Use Shell" friendlyname="Use Shell" narrative="Optional. Boolean value that determines whether the Windows shell should be used to launch the process. Default value is True. If you experience issue launching a process, try changing this value to False." expr="" />
-    </inputs>
-    <outputs>
-      <output type="number" name="Process ID" friendlyname="Process ID" narrative="The unique identifier of the new process." stage="" />
-      <output type="text" name="Process Name" friendlyname="Process Name" narrative="The the name of the process." stage="" />
-    </outputs>
-    <onsuccess>51fa2572-2520-420a-851e-d78862427c1f</onsuccess>
-    <resource object="Utility - Environment" action="Start Process" />
-  </stage>
-  <stage stageid="a5586987-a5fa-4e6c-bb1f-93e2249f47d8" name="chrome executable path" type="Data">
-    <loginhibit />
-    <display x="30" y="75" />
-    <datatype>text</datatype>
-    <initialvalue xml:space="preserve">C:\Program Files\Google\Chrome\Application\chrome.exe</initialvalue>
-    <alwaysinit />
-  </stage>
-  <stage stageid="361eed2a-0447-489e-b9d5-3c9b3c5255cb" name="Attach Google Chrome" type="SubSheet">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <loginhibit />
-    <display x="-60" y="120" />
-    <onsuccess>efcc0ada-890f-4255-a392-e7f2a8e9d6d7</onsuccess>
-    <processid>524315c3-9bef-41fd-903d-6b56f75f23e3</processid>
-  </stage>
-  <stage stageid="6ba0a465-9e80-4833-9364-6181e5e026c1" name="NET/CLARO url" type="Data">
-    <loginhibit />
-    <display x="0" y="120" w="120" h="30" />
+    <display x="15" y="0" w="180" h="30" />
     <datatype>text</datatype>
     <initialvalue xml:space="preserve">https://minhaclaro.claro.com.br/acesso-rapido/</initialvalue>
-    <alwaysinit />
-  </stage>
-  <stage stageid="057792b4-65b4-4302-9228-5957e6895b14" name="Found?" type="Data">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <display x="-150" y="15" />
-    <datatype>flag</datatype>
-    <initialvalue />
-    <private />
-    <alwaysinit />
-  </stage>
-  <stage stageid="3ad298f2-01be-4601-83c5-33ae4bf653e2" name="process found?" type="Decision">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <loginhibit />
-    <display x="-60" y="60" />
-    <decision expression="[Found?]" />
-    <ontrue>361eed2a-0447-489e-b9d5-3c9b3c5255cb</ontrue>
-    <onfalse>e87b4b0c-2e78-474d-aa30-bb08bc8cbe44</onfalse>
-  </stage>
-  <stage stageid="e87b4b0c-2e78-474d-aa30-bb08bc8cbe44" name="Processo do chrome não foi encontrado" type="Exception">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <display x="-225" y="60" w="180" h="30" />
-    <exception localized="yes" type="System Exception" detail="&quot;Processo do chrome não foi encontrado&quot;" />
-  </stage>
-  <stage stageid="51fa2572-2520-420a-851e-d78862427c1f" name="Wait for Process" type="Action">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <loginhibit onsuccess="true" />
-    <display x="-60" y="15" />
-    <inputs>
-      <input type="number" name="Maximum wait time (seconds)" friendlyname="Maximum wait time (seconds)" narrative="The maximum time to wait for the process to complete" expr="[Wait Time Low]" />
-      <input type="text" name="Process Name" friendlyname="Process Name" narrative="The name of the process to attach to" expr="&quot;chrome&quot;" />
-    </inputs>
-    <outputs>
-      <output type="flag" name="Found?" friendlyname="Found?" narrative="True=process found, false=process not found" stage="Found?" />
-    </outputs>
-    <onsuccess>3ad298f2-01be-4601-83c5-33ae4bf653e2</onsuccess>
-    <resource object="Utility - Environment" action="Wait for Process" />
-  </stage>
-  <stage stageid="388e8d32-5df0-4ae5-a6f8-5021bdc9dae7" name="headless" type="Data">
-    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
-    <display x="-240" y="-30" />
-    <datatype>flag</datatype>
-    <initialvalue />
-    <private />
+    <exposure>Environment</exposure>
     <alwaysinit />
   </stage>
   <stage stageid="b24cde45-1877-4400-b831-fc547ba202de" name="Verificar se ja esta logado" type="Read">
@@ -4344,7 +3681,7 @@ Se o modal existe (no DOM) mas não esta visivel, não esta atrapalhando nada. P
     </choices>
     <timeout>[Wait Time Low]</timeout>
   </stage>
-  <stage stageid="35e28827-7249-4bc6-948c-56bb98747a75" name="Fechar Modal" type="Navigate">
+  <stage stageid="35e28827-7249-4bc6-948c-56bb98747a75" name="Fechar Modal" type="Navigate" interval="[Wait Time Low]">
     <subsheetid>3e3f673e-4542-4c15-819e-7f802179d93b</subsheetid>
     <loginhibit />
     <display x="-30" y="135" />
@@ -4422,5 +3759,13 @@ Se o modal existe (no DOM) mas não esta visivel, não esta atrapalhando nada. P
     <subsheetid>9a80a828-016e-4708-b73f-e130f7858885</subsheetid>
     <display x="225" y="15" w="120" h="30" />
     <exception localized="yes" type="System Exception" detail="&quot;Link para navegar ate a pagina da fatura não existe&quot;" />
+  </stage>
+  <stage stageid="8ba5f886-b361-4f0d-b453-36292b693e7d" name="Chrome Profile Name" type="Data">
+    <subsheetid>9518cf58-8bda-47b6-9c51-0089437ede87</subsheetid>
+    <display x="-210" y="-30" w="120" h="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
   </stage>
 </process>
