@@ -25,6 +25,7 @@ Confira abaixo um vídeo demonstrando a automação em funcionamento:
 ## Requisitos
 
 ### 1. Dependências (VBOs)
+
 Para o funcionamento do robô, é necessário importar os seguintes **VBOs** disponíveis no **Blue Prism Digital Exchange**:
 
 - **Email - POP3/SMTP/IMAP**: [Download](https://digitalexchange.blueprism.com/cardDetails?id=115178)
@@ -37,6 +38,7 @@ Cada VBO pode possuir dependências específicas que devem ser verificadas diret
 ---
 
 ### 2. Credenciais no Blue Prism
+
 Para garantir a segurança dos dados de acesso, o bot utiliza credenciais armazenadas de forma segura no **Blue Prism**. As seguintes credenciais devem ser configuradas:
 
 - **NET/Claro Residencial**:
@@ -50,26 +52,31 @@ Para garantir a segurança dos dados de acesso, o bot utiliza credenciais armaze
 - **NET/Claro Residencial Email Destinatário**:
   - `Username`: Endereço de e-mail que receberá a fatura. **(Não necessita de senha)**.
 
-Também é necessário configurar corretamente os acessos de usuários, processos e recursos para que o bot possa utilizar essas credenciais.
+---
+
+### 3. Environment Variables
+
+As variáveis globais utilizadas pelo bot foram movidas para o ambiente (**Environment Variables**), facilitando a manutenção e configuração do processo:
+
+- **Chrome User Data Path**: Caminho para a pasta de perfis do Chrome.
+- **URL Minha NET/Claro Residencial**: Link da página inicial do site.
 
 ---
 
-### 3. Configurações Internas da VBO
-O bot utiliza algumas variáveis internas configuradas na página **"Initialise"** da **VBO**:
+### 4. Configurações no Processo Principal
 
-- **Chrome Executable Path**: Caminho do executável do **Google Chrome**;
-- **NET/CLARO URL**: Link da página inicial do site **Minha NET/Claro Residencial**;
-- **Temp Download Folder**: Pasta temporária criada para armazenar a fatura durante a execução;
-- **Chrome User Data Path**: Caminho do perfil exclusivo do Chrome para execução do bot;
-- **Chrome Profile Name**: Nome do perfil utilizado pelo Chrome.
+A lógica de manipulação de arquivos e pastas foi movida do VBO para o **processo principal**, garantindo melhor separação de responsabilidades. As seguintes variáveis foram adicionadas:
 
-**Importante:** O perfil do Chrome deve estar configurado para que a pasta de downloads seja a mesma definida em **"Temp Download Folder"**.
+- **Chrome Nome Perfil**: Nome do perfil do Chrome configurado para realizar os downloads na pasta correta.
+- **Caminho Pasta Download Temporario**: Pasta temporária gerenciada pelo processo para armazenar a fatura durante a execução.
+
+**Importante:** Certifique-se de que o perfil do Chrome esteja configurado para utilizar a pasta de downloads definida em `Caminho Pasta Download Temporario`.
 
 ---
 
-### 4. Outros Parâmetros
+### 5. Outros Parâmetros
 
-O bot também possui outras configurações, como **número de tentativas**, **tempo de espera**, entre outros, que podem ser ajustados conforme necessidade, mas **não são requisitos obrigatórios** para o funcionamento padrão.
+O bot também possui outras configurações ajustáveis, como **número de tentativas**, **tempo de espera**, entre outros — que não são obrigatórios para o funcionamento básico.
 
 ---
 
@@ -77,12 +84,14 @@ O bot também possui outras configurações, como **número de tentativas**, **t
 
 1. Configure todas as credenciais no **Blue Prism**;
 2. Importe e configure os VBOs necessários;
-3. Ajuste os caminhos e variáveis na página **Initialise**;
-4. Execute o processo principal.
+3. Defina as **Environment Variables**;
+4. Ajuste o nome do perfil e a pasta de download no processo principal;
+5. Execute o processo principal.
 
 ---
 
 ## Autor
+
 Matheus Amaral - RPA Developer
 
 Se precisar de ajustes ou melhorias, fique à vontade para contribuir! 🚀
