@@ -1,0 +1,498 @@
+﻿<process name="RPA Challenge Process" version="1.0" bpversion="7.4.0.14902" narrative="Processo responsavel por ler uma planilha de dados e submeter formularios no site rpa challenge." byrefcollection="true" processrunningmessage="" disableversioning="false" preferredid="1680efbb-c013-4be7-9c43-babae777a3e0" published="true" published_type="2">
+  <view>
+    <camerax>0</camerax>
+    <cameray>36</cameray>
+    <zoom version="2">1.875</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="fb3ba0d3-b62b-4b41-a606-5966845702c4" type="Normal" published="False">
+    <name>Open Site</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-21</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="8d581622-2f74-453b-9df9-a16465dd3caf" type="Normal" published="False">
+    <name>Open Excel</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-42</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="f7c0541b-f1ec-470e-b34e-4a0960656137" type="Normal" published="False">
+    <name>Read Excel Data</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="4e01f7dd-443c-4f55-8a5e-42ac03447509" type="Normal" published="False">
+    <name>Close Excel</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="dbfd8a03-224c-44d2-a5c9-47f95e78ac73" type="Normal" published="False">
+    <name>Submit Forms</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-21</cameray>
+      <zoom version="2">1.875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="8fd169e7-f81a-45aa-b5b6-bd77bc698c64" type="Normal" published="False">
+    <name>Get Feedback</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-21</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="e9b3114f-d7a5-439e-8bc3-7fe000dbfc61" type="Normal" published="False">
+    <name>Close Site</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>-84</cameray>
+      <zoom version="2">2.1875</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="814e471f-58b8-4f09-a5d2-2f2beae0693b" name="Start" type="Start">
+    <display x="-30" y="-135" />
+    <onsuccess>aec662c8-b13b-4460-adfd-691f1b3ac118</onsuccess>
+  </stage>
+  <stage stageid="16352c4b-7ab2-48c8-8da5-eb629e9d4c19" name="End" type="End">
+    <display x="-30" y="225" />
+  </stage>
+  <stage stageid="982624a0-b6d8-442e-b6bd-126de7243c7d" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="7d51d37e-80e3-490f-9208-4c3357ee32eb" name="Test Mode" type="Data">
+    <loginhibit onsuccess="true" />
+    <narrative>Variavel que diz se o robo executará no modo de teste (sem apertar o start no site).</narrative>
+    <display x="-225" y="-30" />
+    <datatype>flag</datatype>
+    <initialvalue>False</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="1da898fe-62b6-47c2-bbd7-fd1ad12a56c8" name="Open Site" type="SubSheetInfo">
+    <subsheetid>fb3ba0d3-b62b-4b41-a606-5966845702c4</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="f58f472e-8c0b-43ec-b528-b08cb47f071c" name="Start" type="Start">
+    <subsheetid>fb3ba0d3-b62b-4b41-a606-5966845702c4</subsheetid>
+    <display x="-30" y="-135" />
+    <onsuccess>f276a82a-83d9-42a9-a272-f4bc11faa6c5</onsuccess>
+  </stage>
+  <stage stageid="a75c758b-6c43-45b6-9149-99183eaaaa11" name="End" type="End">
+    <subsheetid>fb3ba0d3-b62b-4b41-a606-5966845702c4</subsheetid>
+    <display x="-30" y="-15" />
+  </stage>
+  <stage stageid="f276a82a-83d9-42a9-a272-f4bc11faa6c5" name="Launch Google Chrome" type="Action">
+    <subsheetid>fb3ba0d3-b62b-4b41-a606-5966845702c4</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="-75" />
+    <onsuccess>a75c758b-6c43-45b6-9149-99183eaaaa11</onsuccess>
+    <resource object="RPA Challenge" action="Launch Google Chrome" />
+  </stage>
+  <stage stageid="aec662c8-b13b-4460-adfd-691f1b3ac118" name="Open Site" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="-90" />
+    <onsuccess>63decf9f-c489-4483-b076-7df88991ae96</onsuccess>
+    <processid>fb3ba0d3-b62b-4b41-a606-5966845702c4</processid>
+  </stage>
+  <stage stageid="03446858-8fd1-46fd-bf49-8dd1053b6ee1" name="Open Excel" type="SubSheetInfo">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="9c752785-e823-4008-ab9b-783606a19881" name="Start" type="Start">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <display x="-45" y="-135" />
+    <inputs>
+      <input type="text" name="Sheet Path" narrative="Caminho do Excel" stage="Sheet Path" />
+    </inputs>
+    <onsuccess>47577a04-d3be-43fe-86c2-3a403e281dea</onsuccess>
+  </stage>
+  <stage stageid="d416db6b-d5e0-442d-b37e-d88c539d59b3" name="End" type="End">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <display x="-45" y="0" />
+    <outputs>
+      <output type="text" name="Workbook Name" stage="Workbook Name" />
+      <output type="number" name="Excel Handle" stage="handle" />
+    </outputs>
+  </stage>
+  <stage stageid="a75a40dc-bfb0-41a0-9cbb-dc0dbd7f383b" name="Caminho Arquivo RPA Challenge" type="Data">
+    <loginhibit onsuccess="true" />
+    <display x="-165" y="-30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <exposure>Environment</exposure>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ba68d913-b0c7-41fa-ac1c-15a0af5b272d" name="Sheet Path" type="Data">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <display x="-225" y="-30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="63decf9f-c489-4483-b076-7df88991ae96" name="Open Excel" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="-45" />
+    <inputs>
+      <input type="text" name="Sheet Path" friendlyname="Sheet Path" narrative="Caminho do Excel" expr="[Caminho Arquivo RPA Challenge]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" stage="Workbook Name" />
+      <output type="number" name="Excel Handle" friendlyname="Excel Handle" stage="Excel Handle" />
+    </outputs>
+    <onsuccess>5f9a87a0-96c2-4e22-a4ac-7c25a34d3392</onsuccess>
+    <processid>8d581622-2f74-453b-9df9-a16465dd3caf</processid>
+  </stage>
+  <stage stageid="9b5eb59d-59f5-48b9-be38-b15b500a7471" name="Open Workbook" type="Action">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-45" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="[Sheet Path]" />
+      <input type="number" name="Timeout" friendlyname="Timeout" narrative="The time available for the action to complete." expr="" />
+      <input type="text" name="Password" friendlyname="Password" narrative="Optional. The password required to open the workbook. This only applies to workbooks that were saved with a password." expr="" />
+      <input type="flag" name="Update Links" friendlyname="Update Links" narrative="Optional. Flag that controls whether external references (links) in the file, such as the reference to other Workbooks, are updated. Default value is True." expr="" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Workbook Name" />
+    </outputs>
+    <onsuccess>d416db6b-d5e0-442d-b37e-d88c539d59b3</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="67e3e902-cb9b-4231-bb6f-3ec552e1f361" name="Workbook Name" type="Data">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <display x="-165" y="15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="eb26bd05-51ff-46cc-8060-1ca2bb87e7e6" name="Read Excel Data" type="SubSheetInfo">
+    <subsheetid>f7c0541b-f1ec-470e-b34e-4a0960656137</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="e4d01c2d-ba40-408d-87e5-fd6b49192585" name="Start" type="Start">
+    <subsheetid>f7c0541b-f1ec-470e-b34e-4a0960656137</subsheetid>
+    <display x="-45" y="-135" />
+    <inputs>
+      <input type="text" name="Workbook Name" stage="Workbook Name" />
+      <input type="number" name="Excel Handle" stage="Excel Handle" />
+    </inputs>
+    <onsuccess>7796805b-4a67-435c-884b-558e91c68b63</onsuccess>
+  </stage>
+  <stage stageid="8d67e4b7-f6af-4f13-bc02-8893cadacec4" name="End" type="End">
+    <subsheetid>f7c0541b-f1ec-470e-b34e-4a0960656137</subsheetid>
+    <display x="-45" y="-45" />
+    <outputs>
+      <output type="collection" name="Data" stage="Data" />
+    </outputs>
+  </stage>
+  <stage stageid="7ab26e07-8219-4c6a-b4f4-963c66049f8d" name="Data" type="Collection">
+    <subsheetid>f7c0541b-f1ec-470e-b34e-4a0960656137</subsheetid>
+    <display x="-225" y="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="6327ae12-c84b-463f-8ce7-17e28bb6cc4d" name="Workbook Name" type="Data">
+    <subsheetid>f7c0541b-f1ec-470e-b34e-4a0960656137</subsheetid>
+    <display x="-225" y="-15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="5f9a87a0-96c2-4e22-a4ac-7c25a34d3392" name="Read Excel Data" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="0" />
+    <inputs>
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" expr="[Workbook Name]" />
+      <input type="number" name="Excel Handle" friendlyname="Excel Handle" expr="[Excel Handle]" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" friendlyname="Data" stage="Data" />
+    </outputs>
+    <onsuccess>42d23fc6-636c-45e2-9701-4aa5a536b8b2</onsuccess>
+    <processid>f7c0541b-f1ec-470e-b34e-4a0960656137</processid>
+  </stage>
+  <stage stageid="60451e05-ae79-4502-8c47-87dcd2719587" name="Workbook Name" type="Data">
+    <display x="-165" y="15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="47577a04-d3be-43fe-86c2-3a403e281dea" name="Open Instance" type="Action">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-90" />
+    <inputs>
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which should be opened. An empty value indicates that the first activated instance of Excel should be opened." expr="" />
+      <input type="flag" name="Enable Events?" friendlyname="Enable Events?" narrative="Flag to indicate whether events (ie. macros) should be enabled on the given instance. Default is True" expr="" />
+      <input type="number" name="Timeout" friendlyname="Timeout" narrative="The time by which the action will complete. Default is 30 seconds. Minimum is 10." expr="" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="The integer handle with which the instance can be identified in later actions." stage="handle" />
+    </outputs>
+    <onsuccess>9b5eb59d-59f5-48b9-be38-b15b500a7471</onsuccess>
+    <resource object="MS Excel VBO" action="Open Instance" />
+  </stage>
+  <stage stageid="7ff19718-a070-4d28-93e4-bcdbc763a471" name="handle" type="Data">
+    <subsheetid>8d581622-2f74-453b-9df9-a16465dd3caf</subsheetid>
+    <display x="-225" y="15" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="bb37019e-e886-49c1-b468-d2964af47ec1" name="Excel Handle" type="Data">
+    <display x="-225" y="15" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="e81c5380-dc86-485b-a571-0a659a44ee97" name="Excel Handle" type="Data">
+    <subsheetid>f7c0541b-f1ec-470e-b34e-4a0960656137</subsheetid>
+    <display x="-165" y="-15" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7796805b-4a67-435c-884b-558e91c68b63" name="Get Worksheet As Collection" type="Action">
+    <subsheetid>f7c0541b-f1ec-470e-b34e-4a0960656137</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-90" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the worksheet which should be retrieved resides. The default of zero indicates the currently active instance." expr="[Excel Handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which contains the sheet required. The default empty text indicates the currently active workbook on the specified instance." expr="[Workbook Name]" />
+      <input type="text" name="Worksheet Name" friendlyname="Worksheet Name" narrative="The name of the worksheet within the specified workbook which should be written to a collection. The default empty text indicates the currently active worksheet within the specified workbook." expr="" />
+      <input type="text" name="Fetch Data with Method" friendlyname="Fetch Data with Method" narrative="Optional: The method used to fetch data from cells in the worksheet. Options include Text, Value, and Value2. The default indicates Value will be used." expr="" />
+      <input type="flag" name="Use Clipboard" friendlyname="Use Clipboard" narrative="Optional: Flag that indicates the Windows clipboard should be used. Default value is False." expr="" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" friendlyname="Data" narrative="The collection containing the data from the specified worksheet - the column IDs will be gleaned from the first row on the sheet being retrieved." stage="Data" />
+    </outputs>
+    <onsuccess>8d67e4b7-f6af-4f13-bc02-8893cadacec4</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet As Collection" />
+  </stage>
+  <stage stageid="263c43ab-e2a4-4b04-903c-98447669ddcc" name="Close Excel" type="SubSheetInfo">
+    <subsheetid>4e01f7dd-443c-4f55-8a5e-42ac03447509</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="ec31ba27-0a85-4061-a2eb-dae54b892228" name="Start" type="Start">
+    <subsheetid>4e01f7dd-443c-4f55-8a5e-42ac03447509</subsheetid>
+    <display x="-45" y="-135" />
+    <inputs>
+      <input type="number" name="handle" stage="handle" />
+      <input type="text" name="Workbook Name" stage="Workbook Name" />
+    </inputs>
+    <onsuccess>b5c9e164-db3e-4bc2-97da-d9725b4f573f</onsuccess>
+  </stage>
+  <stage stageid="3e2f2925-d07b-4435-8f1a-5091f36f62ee" name="End" type="End">
+    <subsheetid>4e01f7dd-443c-4f55-8a5e-42ac03447509</subsheetid>
+    <display x="-45" y="60" />
+  </stage>
+  <stage stageid="f7c93fc6-9e48-4df0-84ba-0a3e749aef39" name="Data" type="Collection">
+    <display x="-225" y="60" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="24d1a6ba-646c-4728-acf4-1a029d66b385" name="handle" type="Data">
+    <subsheetid>4e01f7dd-443c-4f55-8a5e-42ac03447509</subsheetid>
+    <display x="-225" y="-30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="2ed61517-347c-4fdf-b2a5-101fa508df42" name="Workbook Name" type="Data">
+    <subsheetid>4e01f7dd-443c-4f55-8a5e-42ac03447509</subsheetid>
+    <display x="-165" y="-30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="b5c9e164-db3e-4bc2-97da-d9725b4f573f" name="Close Workbook" type="Action">
+    <subsheetid>4e01f7dd-443c-4f55-8a5e-42ac03447509</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-75" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the workbook which should be closed resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which should be closed." expr="[Workbook Name]" />
+      <input type="flag" name="Save Data" friendlyname="Save Data" narrative="True to save the data before closing the workbook; The default of False will discard any changes before closing the workbook." expr="" />
+      <input type="number" name="Timeout" friendlyname="Timeout" narrative="The timeout value for the function to complete." expr="" />
+    </inputs>
+    <onsuccess>541413aa-707f-47b9-ac7a-46c48c1ad3d7</onsuccess>
+    <resource object="MS Excel VBO" action="Close Workbook" />
+  </stage>
+  <stage stageid="541413aa-707f-47b9-ac7a-46c48c1ad3d7" name="Close Instance" type="Action">
+    <subsheetid>4e01f7dd-443c-4f55-8a5e-42ac03447509</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-15" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance to be closed. Zero indicates the currently active instance." expr="[handle]" />
+      <input type="flag" name="Save Changes" friendlyname="Save Changes" narrative="True to save the changes to the open workbooks on the instance, False to discard any changes. Default is False." expr="" />
+      <input type="number" name="Timeout" friendlyname="Timeout" narrative="The time for the action to complete. Default is 30. Minimum is 10." expr="" />
+    </inputs>
+    <onsuccess>3e2f2925-d07b-4435-8f1a-5091f36f62ee</onsuccess>
+    <resource object="MS Excel VBO" action="Close Instance" />
+  </stage>
+  <stage stageid="42d23fc6-636c-45e2-9701-4aa5a536b8b2" name="Close Excel" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="45" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" expr="[Excel Handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" expr="[Workbook Name]" />
+    </inputs>
+    <onsuccess>d0a5451d-1f00-4147-8c10-3470655e31dd</onsuccess>
+    <processid>4e01f7dd-443c-4f55-8a5e-42ac03447509</processid>
+  </stage>
+  <stage stageid="114d10ef-6cfe-4074-a850-8737d5105200" name="Submit Forms" type="SubSheetInfo">
+    <subsheetid>dbfd8a03-224c-44d2-a5c9-47f95e78ac73</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="0ee176cd-9f12-4d2b-8dbb-7d2b28f12a95" name="Start" type="Start">
+    <subsheetid>dbfd8a03-224c-44d2-a5c9-47f95e78ac73</subsheetid>
+    <display x="-15" y="-135" />
+    <inputs>
+      <input type="flag" name="Test Mode" stage="Test Mode" />
+      <input type="collection" name="Data" stage="Data" />
+    </inputs>
+    <onsuccess>aee3fa89-bfe3-4a79-ab1d-29e4b41051ca</onsuccess>
+  </stage>
+  <stage stageid="ac431278-44c9-41c9-baba-432516088f64" name="End" type="End">
+    <subsheetid>dbfd8a03-224c-44d2-a5c9-47f95e78ac73</subsheetid>
+    <display x="-15" y="-45" />
+  </stage>
+  <stage stageid="d0a5451d-1f00-4147-8c10-3470655e31dd" name="Submit Forms" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="90" />
+    <inputs>
+      <input type="flag" name="Test Mode" friendlyname="Test Mode" expr="[Test Mode]" />
+      <input type="collection" name="Data" friendlyname="Data" expr="[Data]" />
+    </inputs>
+    <onsuccess>e45cb88d-3f6c-415b-ab39-166d414974ac</onsuccess>
+    <processid>dbfd8a03-224c-44d2-a5c9-47f95e78ac73</processid>
+  </stage>
+  <stage stageid="1aab2b0d-d69b-489f-9ee4-74561551e5ff" name="Test Mode" type="Data">
+    <subsheetid>dbfd8a03-224c-44d2-a5c9-47f95e78ac73</subsheetid>
+    <display x="-225" y="-15" />
+    <datatype>flag</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="7fad76de-7501-435e-96a7-a1c7be573a1d" name="Data" type="Collection">
+    <subsheetid>dbfd8a03-224c-44d2-a5c9-47f95e78ac73</subsheetid>
+    <display x="-165" y="-15" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="aee3fa89-bfe3-4a79-ab1d-29e4b41051ca" name="Submit Forms" type="Action">
+    <subsheetid>dbfd8a03-224c-44d2-a5c9-47f95e78ac73</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-15" y="-90" />
+    <inputs>
+      <input type="flag" name="Test Mode" friendlyname="Test Mode" expr="[Test Mode]" />
+      <input type="collection" name="Data" friendlyname="Data" expr="[Data]" />
+    </inputs>
+    <onsuccess>ac431278-44c9-41c9-baba-432516088f64</onsuccess>
+    <resource object="RPA Challenge" action="Submit Forms" />
+  </stage>
+  <stage stageid="af0c171c-9c73-4e80-960f-4dcda4cede04" name="Get Feedback" type="SubSheetInfo">
+    <subsheetid>8fd169e7-f81a-45aa-b5b6-bd77bc698c64</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="4b1466eb-18d0-4ed4-99bc-8de969b95440" name="Start" type="Start">
+    <subsheetid>8fd169e7-f81a-45aa-b5b6-bd77bc698c64</subsheetid>
+    <display x="-60" y="-135" />
+    <onsuccess>4f878cc7-1134-441a-81e2-22048e4c643d</onsuccess>
+  </stage>
+  <stage stageid="422f7b2f-b927-47a5-8498-b087d13744f5" name="End" type="End">
+    <subsheetid>8fd169e7-f81a-45aa-b5b6-bd77bc698c64</subsheetid>
+    <display x="-60" y="-45" />
+    <outputs>
+      <output type="text" name="Bot Feedback" stage="Bot Feedback" />
+    </outputs>
+  </stage>
+  <stage stageid="e45cb88d-3f6c-415b-ab39-166d414974ac" name="Get Feedback" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="135" />
+    <outputs>
+      <output type="text" name="Bot Feedback" friendlyname="Bot Feedback" stage="Bot Feedback" />
+    </outputs>
+    <onsuccess>1ced4fe8-f575-4604-be95-4703b8b71527</onsuccess>
+    <processid>8fd169e7-f81a-45aa-b5b6-bd77bc698c64</processid>
+  </stage>
+  <stage stageid="4f878cc7-1134-441a-81e2-22048e4c643d" name="Get Feedback" type="Action">
+    <subsheetid>8fd169e7-f81a-45aa-b5b6-bd77bc698c64</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-60" y="-90" />
+    <outputs>
+      <output type="text" name="Bot Feedback" friendlyname="Bot Feedback" stage="Bot Feedback" />
+    </outputs>
+    <onsuccess>422f7b2f-b927-47a5-8498-b087d13744f5</onsuccess>
+    <resource object="RPA Challenge" action="Get Feedback" />
+  </stage>
+  <stage stageid="c36e6c71-e586-47b5-be08-827617632703" name="Bot Feedback" type="Data">
+    <subsheetid>8fd169e7-f81a-45aa-b5b6-bd77bc698c64</subsheetid>
+    <display x="-210" y="-30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="836a3e0a-a173-47b8-a712-4a40f156eb41" name="Bot Feedback" type="Data">
+    <display x="-165" y="60" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="ba34fe59-1043-4e6f-a9f9-467efd79fbb1" name="Close Site" type="SubSheetInfo">
+    <subsheetid>e9b3114f-d7a5-439e-8bc3-7fe000dbfc61</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="db31d68c-ef1c-4596-8bf0-784b7ccd3066" name="Start" type="Start">
+    <subsheetid>e9b3114f-d7a5-439e-8bc3-7fe000dbfc61</subsheetid>
+    <display x="-45" y="-135" />
+    <onsuccess>908ab15c-63f0-4465-8f5e-3b5d19dab3d6</onsuccess>
+  </stage>
+  <stage stageid="9f054f6a-efb3-42df-a007-693e16ea6cac" name="End" type="End">
+    <subsheetid>e9b3114f-d7a5-439e-8bc3-7fe000dbfc61</subsheetid>
+    <display x="-45" y="-45" />
+  </stage>
+  <stage stageid="1ced4fe8-f575-4604-be95-4703b8b71527" name="Close Site" type="SubSheet">
+    <loginhibit onsuccess="true" />
+    <display x="-30" y="180" />
+    <onsuccess>16352c4b-7ab2-48c8-8da5-eb629e9d4c19</onsuccess>
+    <processid>e9b3114f-d7a5-439e-8bc3-7fe000dbfc61</processid>
+  </stage>
+  <stage stageid="908ab15c-63f0-4465-8f5e-3b5d19dab3d6" name="Close Google Chrome" type="Action">
+    <subsheetid>e9b3114f-d7a5-439e-8bc3-7fe000dbfc61</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="-45" y="-90" />
+    <onsuccess>9f054f6a-efb3-42df-a007-693e16ea6cac</onsuccess>
+    <resource object="RPA Challenge" action="Close Google Chrome" />
+  </stage>
+</process>
