@@ -43,4 +43,6 @@ Cada projeto possui um README próprio com instruções detalhadas e vídeos dem
 
 ---
 
-> Desenvolvido por [AugustMatt](https://github.com/AugustMatt).
+## Contato
+
+Para dúvidas ou sugestões, entre em contato: [matheus.amaral.rpa@gmail.com]
