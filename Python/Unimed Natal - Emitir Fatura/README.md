@@ -84,5 +84,3 @@ Em breve será adicionado um vídeo de demonstração desta automação em funci
 Este projeto é de uso pessoal e educativo.
 
 ---
-
-*Desenvolvido com por [Matheus Amaral](hhttps://github.com/AugustMatt).*
