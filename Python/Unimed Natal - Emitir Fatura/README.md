@@ -4,20 +4,20 @@ Este projeto é uma automação em Python com Selenium para realizar o login no 
 
 ## 📌 Funcionalidades
 
-- Login automatizado no portal da Unimed Natal
-- Detecção de credenciais inválidas
-- Verificação de faturas disponíveis
-- Download automático da fatura em PDF
-- Envio por email com ou sem anexo
-- Re-tentativas automáticas em caso de falhas temporárias
-- Notificação por email em caso de erro crítico
+- Login automatizado no portal da Unimed Natal  
+- Detecção de credenciais inválidas  
+- Verificação de faturas disponíveis  
+- Download automático da fatura em PDF  
+- Envio por email com ou sem anexo  
+- Re-tentativas automáticas em caso de falhas temporárias  
+- Notificação por email em caso de erro crítico  
 
 ## 🚀 Tecnologias Utilizadas
 
-- Python 3
-- Selenium
-- Python-dotenv
-- SMTP (envio de email)
+- Python 3  
+- Selenium  
+- Python-dotenv  
+- SMTP (envio de email)  
 
 ## ⚙️ Instalação
 
@@ -47,7 +47,7 @@ Este projeto é uma automação em Python com Selenium para realizar o login no 
    RECEIVERS_MAILS=destinatario1@gmail.com,destinatario2@gmail.com
    ```
 
-Atenção: Use uma senha de aplicativo para contas Google com autenticação em dois fatores.
+> Atenção: Use uma senha de aplicativo para contas Google com autenticação em dois fatores.
 
 ## 📁 Estrutura do Projeto
 
@@ -77,10 +77,10 @@ O script tentará no máximo 3 vezes em caso de falha temporária. Se as credenc
 
 ## 📹 Demonstração
 
-Em breve será adicionado um vídeo de demonstração desta automação em funcionamento.
+Assista ao vídeo de demonstração da automação em funcionamento no YouTube:
+
+🔗 [Clique aqui para ver o vídeo](https://youtu.be/QaMXLjxEWsQ)
 
 ## 🧾 Licença
 
 Este projeto é de uso pessoal e educativo.
-
----
